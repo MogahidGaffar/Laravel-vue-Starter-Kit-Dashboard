@@ -1,152 +1,302 @@
 <script setup>
 import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-    <div>
-        <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
-                <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
-                            <!-- Logo -->
-                            <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
-                                    <ApplicationLogo
-                                        class="block h-9 w-auto fill-current text-gray-800"
-                                    />
-                                </Link>
-                            </div>
+    
+      <!-- ======= Header ======= -->
+      <header id="header" class="header fixed-top d-flex align-items-center">
 
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </NavLink>
-                            </div>
-                        </div>
+<div class="d-flex align-items-center justify-content-between">
+        <Link  class="logo d-flex align-items-center"  :href="route('dashboard')"  >
+        <img src="/dashboard-assets/img/app_logo.jpg" alt="">
+        <span class="d-none d-lg-block">SterterKit</span>
+        </Link>
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+</div>
+<!-- End Logo -->
 
-                        <div class="hidden sm:flex sm:items-center sm:ms-6">
-                            <!-- Settings Dropdown -->
-                            <div class="ms-3 relative">
-                                <Dropdown align="right" width="48">
-                                    <template #trigger>
-                                        <span class="inline-flex rounded-md">
-                                            <button
-                                                type="button"
-                                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                            >
-                                                {{ $page.props.auth.user.name }}
+<div class="search-bar">
+    <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    </form>
+</div>
+<!-- End Search Bar -->
 
-                                                <svg
-                                                    class="ms-2 -me-0.5 h-4 w-4"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fill-rule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clip-rule="evenodd"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </template>
+<nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
 
-                                    <template #content>
-                                        <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">
-                                            Log Out
-                                        </DropdownLink>
-                                    </template>
-                                </Dropdown>
-                            </div>
-                        </div>
+        <li class="nav-item d-block d-lg-none">
+            <a class="nav-link nav-icon search-bar-toggle " href="#">
+                <i class="bi bi-search"></i>
+            </a>
+        </li>
+        <!-- End Search Icon-->
 
-                        <!-- Hamburger -->
-                        <div class="-me-2 flex items-center sm:hidden">
-                            <button
-                                @click="showingNavigationDropdown = !showingNavigationDropdown"
-                                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-                            >
-                                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path
-                                        :class="{
-                                            hidden: showingNavigationDropdown,
-                                            'inline-flex': !showingNavigationDropdown,
-                                        }"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                    <path
-                                        :class="{
-                                            hidden: !showingNavigationDropdown,
-                                            'inline-flex': showingNavigationDropdown,
-                                        }"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
+        <li class="nav-item dropdown">
+
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-bell"></i>
+                <span class="badge bg-primary badge-number">4</span>
+            </a>
+            <!-- End Notification Icon -->
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                <li class="dropdown-header">
+                    You have 4 new notifications
+                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="notification-item">
+                    <i class="bi bi-exclamation-circle text-warning"></i>
+                    <div>
+                        <h4>Lorem Ipsum</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>30 min. ago</p>
                     </div>
-                </div>
+                </li>
 
-                <!-- Responsive Navigation Menu -->
-                <div
-                    :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }"
-                    class="sm:hidden"
-                >
-                    <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </ResponsiveNavLink>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="notification-item">
+                    <i class="bi bi-x-circle text-danger"></i>
+                    <div>
+                        <h4>Atque rerum nesciunt</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>1 hr. ago</p>
                     </div>
+                </li>
 
-                    <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">
-                                {{ $page.props.auth.user.name }}
-                            </div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
-                        </div>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
 
-                        <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
-                            </ResponsiveNavLink>
-                        </div>
+                <li class="notification-item">
+                    <i class="bi bi-check-circle text-success"></i>
+                    <div>
+                        <h4>Sit rerum fuga</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>2 hrs. ago</p>
                     </div>
-                </div>
-            </nav>
+                </li>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <slot name="header" />
-                </div>
-            </header>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
 
-            <!-- Page Content -->
-            <main>
+                <li class="notification-item">
+                    <i class="bi bi-info-circle text-primary"></i>
+                    <div>
+                        <h4>Dicta reprehenderit</h4>
+                        <p>Quae dolorem earum veritatis oditseno</p>
+                        <p>4 hrs. ago</p>
+                    </div>
+                </li>
+
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li class="dropdown-footer">
+                    <a href="#">Show all notifications</a>
+                </li>
+
+            </ul>
+            <!-- End Notification Dropdown Items -->
+
+        </li>
+        <!-- End Notification Nav -->
+
+        <li class="nav-item dropdown">
+
+            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                <i class="bi bi-chat-left-text"></i>
+                <span class="badge bg-success badge-number">3</span>
+            </a>
+            <!-- End Messages Icon -->
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                <li class="dropdown-header">
+                    You have 3 new messages
+                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="message-item">
+                    <a href="#">
+                        <img src="/dashboard-assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                        <div>
+                            <h4>Maria Hudson</h4>
+                            <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                            <p>4 hrs. ago</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="message-item">
+                    <a href="#">
+                        <img src="/dashboard-assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                        <div>
+                            <h4>Anna Nelson</h4>
+                            <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                            <p>6 hrs. ago</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="message-item">
+                    <a href="#">
+                        <img src="/dashboard-assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                        <div>
+                            <h4>David Muldon</h4>
+                            <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                            <p>8 hrs. ago</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li class="dropdown-footer">
+                    <a href="#">Show all messages</a>
+                </li>
+
+            </ul>
+            <!-- End Messages Dropdown Items -->
+
+        </li>
+        <!-- End Messages Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                <img src="/dashboard-assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.name }}</span>
+            </a>
+            <!-- End Profile Iamge Icon -->
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                <li class="dropdown-header">
+                    <h6>{{ user.name }}</h6>
+                    <span>{{ user.email }}</span>
+                </li>
+                <!-- <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Account Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Need Help?</span>
+                    </a>
+                </li> -->
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+
+                <li>
+                    <Link :href="route('logout')" method="post" as="button"
+                    class="dropdown-item d-flex align-items-center">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Log Out</span>
+                </Link>
+
+                    
+                    
+                </li>
+
+            </ul>
+            <!-- End Profile Dropdown Items -->
+        </li>
+        <!-- End Profile Nav -->
+
+    </ul>
+</nav>
+<!-- End Icons Navigation -->
+
+
+
+
+</header>
+
+   <!-- Include the Sidebar here -->
+   <Sidebar  />
+
+   <!-- Include the main content here -->
+
+<main id="main" class="main">
+    <div v-if="flashSuccess" class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+        {{ flashSuccess }}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+
+
+    <main>
                 <slot />
             </main>
-        </div>
-    </div>
+    </main>
+
+
+
 </template>
+
+
+<script>
+import Sidebar from '@/Components/SideBar.vue';
+import { Link, usePage } from  '@inertiajs/vue3'
+import { computed } from 'vue'
+
+const flashSuccess = computed(
+    () => page.props.flash.success,
+  )
+  
+const page = usePage()
+
+const user = computed(
+  () => page.props.user,
+)
+
+
+export default {
+  components: {
+    Sidebar,
+  },
+};
+</script>

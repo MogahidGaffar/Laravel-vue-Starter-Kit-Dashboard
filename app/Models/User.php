@@ -12,15 +12,19 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
+        'created_at',
+        'updated_at'
     ];
 
     /**
@@ -41,5 +45,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'created_at'  => 'date:Y-m-d',
+
+
     ];
+
+
+    
+    public function getFormattedCreatedAtAttribute(): string
+{
+    return $this->created_at->format('d M Y');
+}
+
+
 }
