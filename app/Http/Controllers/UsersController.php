@@ -37,7 +37,7 @@ class UsersController extends Controller
        $user= User::make(
             $request->validate([
                 'name' => 'required',
-                'email' => 'required',
+                'email' => 'required|unique:users,email',
                 'password' => 'required',
             ])
         );
