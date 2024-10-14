@@ -77,6 +77,16 @@ class UsersController extends Controller
             ->with('success', 'user Updated successfully!');
     }
 
+    
+    public function activate(User $user)
+{
+    $user->update([
+            'is_active' => ($user->is_active) ? 0 : 1
+        ]
+    );
+return redirect()->route('users.index')
+->with('success', 'user Status Updated successfully!');
+}
     /**
      * Remove the specified resource from storage.
      */

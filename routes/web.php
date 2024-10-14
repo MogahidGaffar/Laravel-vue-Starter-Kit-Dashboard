@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 Route::resource('users',UsersController::class);
+Route::post('users/{user}/activate',[UsersController::class,'activate'])->name('activate');
 
 });
 

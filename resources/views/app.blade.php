@@ -32,7 +32,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('dashboard-assets/css/style.css') }}" rel="stylesheet">
 
-    </style>
+
     <!-- Scripts -->
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])

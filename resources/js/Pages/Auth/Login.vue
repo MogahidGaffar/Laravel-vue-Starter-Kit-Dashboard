@@ -69,6 +69,7 @@
                     <InputError  :message="form.errors.password" />
 
                 </div>
+                <InputError  :message="form.errors.is_active" />
 
                     <div class="col-12">
                       <div class="form-check">
