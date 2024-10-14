@@ -39,7 +39,10 @@ class HandleInertiaRequests extends Middleware
             ] : null,
             'flash' => [
                 'success' => $request->session()->get('success')
-         ]
+            ],
+            'auth' => [
+                'user' => $request->user(), // Passing the authenticated user
+            ],
 
         ];
     }

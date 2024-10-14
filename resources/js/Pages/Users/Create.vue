@@ -20,37 +20,60 @@
       <!-- End breadcrumb-->
   
       <section class="section dashboard">
-        <div class="row">
-  
-            
-                <form @submit.prevent="store" class="row g-3">
 
-                <div class="col-md-12">
-                  <div class="form-floating">
-                    <input type="text"  v-model="form.name"  class="form-control" id="floatingName" placeholder="Your Name">
-                    <label for="floatingName">Your Name</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <input type="email"  v-model="form.email"  class="form-control" id="floatingEmail" placeholder="Your Email">
-                    <label for="floatingEmail">Your Email</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-floating">
-                    <input type="password"  v-model="form.password"  class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
-                  </div>
-                </div>
-              
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Save &nbsp; <i class="bi bi-save"></i> </button>
-                </div>
-              </form>
-              
+<div class="row">
+<div class="col-lg-12">
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Add New User </h5>
+
+      <!-- General Form Elements -->
+      <form @submit.prevent="store" class="row g-3">
+        <div class="row mb-3">
+          <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" placeholder="user name"  v-model="form.name" >
+          </div>
         </div>
-      </section>
+        <div class="row mb-3">
+          <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control"  v-model="form.email"  placeholder="user Email">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control"  v-model="form.password"  placeholder="Password">
+          </div>
+        </div>
+    
+        <!-- <div class="row mb-3">
+          <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
+          <div class="col-sm-10">
+            <input class="form-control" type="file" id="formFile">
+          </div>
+        </div> -->
+    
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Save &nbsp; <i class="bi bi-save"></i> </button>
+        </div>
+
+
+      </form>
+      <!-- End Edit User From -->
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+
+
+</section>
   
     </AuthenticatedLayout>
   </template>

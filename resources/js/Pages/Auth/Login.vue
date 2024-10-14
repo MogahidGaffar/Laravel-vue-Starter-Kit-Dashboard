@@ -53,8 +53,10 @@
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="email" v-model="form.email" required autofocus autocomplete="username"  class="form-control" >
-                        <div class="invalid-feedback">Please enter your username.</div>
+                          <br>
                       </div>
+                      <InputError  :message="form.errors.email" />
+
                     </div>
 
                     <div class="col-12">
@@ -63,19 +65,31 @@
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-lock"></i></span>
                       <input type="password"  v-model="form.password" class="form-control" id="yourPassword"  required autocomplete="current-password">
-                      <div class="invalid-feedback">Please enter your password!</div>
                     </div>
+                    <InputError  :message="form.errors.password" />
+
                 </div>
 
                     <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                        <Checkbox name="remember" v-model:checked="form.remember" />
                         <label class="form-check-label" for="rememberMe">Remember me</label>
                       </div>
                     </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
+
+                    <div class="col-12">
+                      <Link
+                    v-if="canResetPassword"
+                    :href="route('password.request')"
+                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                    Forgot your password?
+                </Link>
+              </div>
+
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
                     </div>

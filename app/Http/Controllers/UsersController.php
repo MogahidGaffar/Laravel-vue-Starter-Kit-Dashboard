@@ -14,7 +14,7 @@ class UsersController extends Controller
     public function index()
     {
      return Inertia('Users/index',[
-        'users'=>User::all()
+        'users'=>User::latest()->paginate(10)
      ]);
     }
 

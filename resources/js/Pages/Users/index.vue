@@ -25,7 +25,7 @@
           <div class="card-header">
             <div class="d-flex">
 
-              <Link class="btn btn-primary ms-auto" :href="route('users.create')">Create new &nbsp; <i
+              <Link class="btn btn-primary ms-auto" :href="route('users.create')">Add new &nbsp; <i
                 class="bi bi-plus-circle"> </i></Link>
             </div>
           </div>
@@ -43,7 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in users" :key="user.id">
+              <tr v-for="user in users.data" :key="user.id">
                 <th scope="row">1</th>
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
@@ -67,12 +67,7 @@
 
         </div>
       </div>
-
-
-      <div class="row">
-
-
-      </div>
+        <Pagination :links="users.links" />
     </section>
 
   </AuthenticatedLayout>
@@ -82,6 +77,7 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import Pagination from '@/Components/Pagination.vue';
 import { Link } from '@inertiajs/vue3'
 import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
