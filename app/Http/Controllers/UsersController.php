@@ -14,9 +14,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $user =User::with('roles')->latest()->paginate(10);
+        $users =User::with('roles')->latest()->paginate(10);
      return Inertia('Users/index',[
-        'users'=>$user
+        'users'=>$users
      ]);
     }
 

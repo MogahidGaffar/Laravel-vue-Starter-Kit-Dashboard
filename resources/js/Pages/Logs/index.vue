@@ -5,7 +5,7 @@
   
       <!-- breadcrumb-->
       <div class="pagetitle">
-        <h1>Roles</h1>
+        <h1>Logs</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -13,54 +13,52 @@
               Home
               </Link>
             </li>
-            <li class="breadcrumb-item active">Roles</li>
+            <li class="breadcrumb-item active">Logs</li>
   
           </ol>
         </nav>
       </div>
       <!-- End breadcrumb-->
+  
       <section class="section dashboard">
         <div class="card">
-          <div class="card-body">
+
             <div class="card-header">
-              <div class="d-flex">
-  
-                <Link class="btn btn-primary ms-auto" :href="route('roles.create')">Add new &nbsp; <i
-                  class="bi bi-plus-circle"> </i></Link>
-              </div>
+            <div class="d-flex">
+
             </div>
-  
+          </div>
+          <div class="card-body">
+          
   
             <div class="table-responsive">
-              <table class="table text-center">
+            <table class="table text-center">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Permissions</th>
-                  <th scope="col">Edit</th>
+                  <th scope="col">Module</th>
+                  <th scope="col">action</th>
+                  <th scope="col">affected record</th>
+                  <th scope="col"> at</th>
+                  <th scope="col">Details</th>
                   <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                  <tr v-for="(role, index)   in roles" :key="role.id">
-                    <th scope="row">{{ index+1 }}</th>
-
-                  <td>{{ role.name }}</td>
+                <tr v-for="(log, index)   in logs.data" :key="log.id">
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ log.module_name }}</td>
                   <td>
-                    <a class="btn btn-dark" :href="'roles/'+role.id+'/give-permissions'">
-                      <i class="bi bi-lock"></i>
-                    </a>
+                    <span :class="['badge', 'bg-' + log.badge]"> {{ log.action }}</span>
                   </td>
-                 
+                  <td>{{ log.affected_record_id }}</td>
+                  <td>{{ log.created_at }}</td>
                   <td>
-                    <a class="btn btn-primary" :href="route('roles.edit', { role: role.id })">
-                      <i class="bi bi-pencil-square"></i>
-                    </a>
-                  </td>
-                  <td>
-  
-                    <button type="button" class="btn btn-danger" @click="Delete(role.id)">
+                  <a class="btn btn-primary" :href="route('logs.view', { log: log.id })">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                </td>
+                  <td> <button type="button" class="btn btn-danger" @click="Delete(log.id)">
                       <i class="bi bi-trash"></i>
                     </button>
   
@@ -75,6 +73,7 @@
   
   
         </div>
+        <Pagination :links="logs.links" />
       </section>
   
     </AuthenticatedLayout>
@@ -89,9 +88,8 @@
   import Swal from 'sweetalert2';
   import { router } from '@inertiajs/vue3'
   
-  defineProps({ roles: Object })
+  defineProps({ logs: Object })
   
-
   
   const Delete = (id) => {
     Swal.fire({
@@ -104,7 +102,7 @@
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        router.delete('roles/' + id, {
+        router.delete('users/' + id, {
           onSuccess: () => {
             Swal.fire(
               'Deleted!',

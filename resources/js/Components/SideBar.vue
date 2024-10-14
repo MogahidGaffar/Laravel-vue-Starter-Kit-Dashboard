@@ -52,6 +52,13 @@
         </ul>
     </li>
     
+    <li class="nav-item">
+    <Link  class="nav-link "  :href="route('logs')"  :class="{ 'collapsed':  !$page.url.startsWith('/logs') }" >
+            <i class="bi bi-database"></i>
+            <span>Logs</span>
+               </Link>
+    </li>
+
 
 
 </ul>

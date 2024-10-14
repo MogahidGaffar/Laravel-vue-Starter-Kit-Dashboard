@@ -32,7 +32,8 @@
           </div>
 
 
-          <table class="table text-center">
+          <div class="table-responsive">
+            <table class="table text-center">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -83,6 +84,7 @@
 
             </tbody>
           </table>
+        </div>
 
         </div>
 

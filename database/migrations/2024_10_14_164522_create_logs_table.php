@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('module_name');
             $table->string('action'); // create, update, delete
-            $table->unsignedBigInteger('affected_record_id');
+            $table->string('badge'); // success(save), update (primary), delete *(danger)
+            $table->unsignedBigInteger(column: 'affected_record_id');
             $table->json('original_data')->nullable();
             $table->json('updated_data')->nullable();
             $table->unsignedBigInteger('user_id')->nullable(); // User performing the action
