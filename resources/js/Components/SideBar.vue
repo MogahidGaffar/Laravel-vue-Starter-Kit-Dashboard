@@ -18,26 +18,40 @@
                </Link>
     </li>
 
-    <!-- End Dashboard Nav -->
-<!-- 
+    <!-- <li class="nav-item">
+    <Link  class="nav-link "  :href="route('roles.index')"  :class="{ 'collapsed':  !$page.url.startsWith('/roles') }" >
+            <i class="bi bi-lock"></i>
+            <span>Roles</span>
+               </Link>
+    </li> -->
+
+    <!-- <li class="nav-item">
+    <Link  class="nav-link "  :href="route('permissions.index')"  :class="{ 'collapsed':  !$page.url.startsWith('/permissions') }" >
+            <i class="bi bi-lock"></i>
+            <span>Permissions</span>
+               </Link>
+    </li> -->
+
     <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-lock"></i><span>Roles Control</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-                <a href="components-alerts.html">
-                    <i class="bi bi-circle"></i><span>Alerts</span>
-                </a>
+                <Link   :href="route('roles.index')"  :class="{ 'collapsed':  !$page.url.startsWith('/roles') }" >
+            <i class="bi bi-circle"></i>
+            <span>Roles</span>
+               </Link>
             </li>
             <li>
-                <a href="components-accordion.html">
-                    <i class="bi bi-circle"></i><span>Accordion</span>
-                </a>
+                <Link   :href="route('permissions.index')"  :class="{ 'collapsed':  !$page.url.startsWith('/permissions') }" >
+            <i class="bi bi-circle"></i>
+            <span>Permissions</span>
+               </Link>
             </li>
         </ul>
     </li>
-     -->
+    
 
 
 </ul>

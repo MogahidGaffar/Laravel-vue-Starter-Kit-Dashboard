@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -13,8 +14,9 @@ class UsersController extends Controller
      */
     public function index()
     {
+        $user =User::with('roles')->latest()->paginate(10);
      return Inertia('Users/index',[
-        'users'=>User::latest()->paginate(10)
+        'users'=>$user
      ]);
     }
 
@@ -23,7 +25,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return Inertia('Users/Create');
+        $roles = Role::pluck('name','name')->all();
+        return Inertia('Users/Create', ['roles' => $roles]);
     }
 
     /**
@@ -31,13 +34,18 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        User::create(
+       $user= User::make(
             $request->validate([
                 'name' => 'required',
                 'email' => 'required',
                 'password' => 'required',
             ])
         );
+        if(!empty($request->password)){
+           $user->password=$request->password;
+        }
+        $user->save();
+        $user->syncRoles($request->selectedRoles);
 
         return redirect()->route('users.index')
             ->with('success', 'user Saved successfully!');
@@ -56,9 +64,13 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        $roles = Role::pluck('name','name')->all();
+        $userRoles = $user->roles->pluck('name')->all();
         return Inertia('Users/Edit',[
-            'user'=>$user
-         ]);
+            'user'=>$user,
+            'roles' => $roles,
+            'userRoles' => $userRoles
+            ]);
     }
 
     /**
@@ -72,6 +84,7 @@ class UsersController extends Controller
                 'email' => 'required',
             ])
         );
+        $user->syncRoles($request->selectedRoles);
 
         return redirect()->route('users.index')
             ->with('success', 'user Updated successfully!');

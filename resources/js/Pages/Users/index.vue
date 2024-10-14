@@ -2,7 +2,7 @@
 
   <AuthenticatedLayout>
 
-    
+
     <!-- breadcrumb-->
     <div class="pagetitle">
       <h1>Users</h1>
@@ -32,11 +32,12 @@
           </div>
 
 
-          <table class="table table-condensed">
+          <table class="table text-center">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Roles</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Active</th>
@@ -45,22 +46,29 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in users.data" :key="user.id">
-                <th scope="row">1</th>
-                <td>{{ user.name }}</td>  
+              <tr v-for="(user, index)   in users.data" :key="user.id">
+                <th scope="row">{{ index + 1 }}</th>
+                <td>{{ user.name }}</td>
+                <td>
+                  <span v-for="role in user.roles" :key="role.id" class="badge bg-secondary">
+                    {{ role.name }}
+                  </span>
+                </td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.created_at }}</td>
                 <td>
-                  
+
                   <div>
-    <label class="inline-flex items-center me-5 cursor-pointer">
-      <input type="checkbox" class="sr-only peer" :checked="user.is_active" @change="Activate(user.id)">
-      <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"></div>
-    </label>
-  </div>
+                    <label class="inline-flex items-center me-5 cursor-pointer">
+                      <input type="checkbox" class="sr-only peer" :checked="user.is_active" @change="Activate(user.id)">
+                      <div
+                        class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600">
+                      </div>
+                    </label>
+                  </div>
                 </td>
                 <td>
-                  <a class="btn btn-info" :href="route('users.edit', { user: user.id })">
+                  <a class="btn btn-primary" :href="route('users.edit', { user: user.id })">
                     <i class="bi bi-pencil-square"></i>
                   </a>
                 </td>
@@ -77,10 +85,10 @@
           </table>
 
         </div>
-        
+
 
       </div>
-        <Pagination :links="users.links" />
+      <Pagination :links="users.links" />
     </section>
 
   </AuthenticatedLayout>
@@ -97,6 +105,8 @@ import { router } from '@inertiajs/vue3'
 
 defineProps({ users: Object })
 
+// router.put(`/users/${id}/activate`, {
+//     });
 
 
 const Activate = (id) => {
@@ -105,11 +115,11 @@ const Activate = (id) => {
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
+    cancelButtonColor: '#7066e0',
     confirmButtonText: 'Yes, change status'
   }).then((result) => {
     if (result.isConfirmed) {
-      router.post('users/' + id+'/activate', {
+      router.post(`/users/${id}/activate`, {
         onSuccess: () => {
           Swal.fire(
             'Updated !',

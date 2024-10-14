@@ -1,12 +1,12 @@
 <template>
 
-    <AuthenticatedLayout>
-  
-      <!-- breadcrumb-->
-      <div class="pagetitle">
-        <h1>Users</h1>
-        <nav>
-            <ol class="breadcrumb">
+  <AuthenticatedLayout>
+
+    <!-- breadcrumb-->
+    <div class="pagetitle">
+      <h1>Users</h1>
+      <nav>
+        <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <Link class="nav-link" :href="route('dashboard')">
             Home
@@ -15,13 +15,13 @@
           <li class="breadcrumb-item active">Users</li>
           <li class="breadcrumb-item active">Edit</li>
         </ol>
-        </nav>
-      </div>
-      <!-- End breadcrumb-->
-  
-      <section class="section dashboard">
+      </nav>
+    </div>
+    <!-- End breadcrumb-->
 
-        <div class="row">
+    <section class="section dashboard">
+
+      <div class="row">
         <div class="col-lg-12">
 
           <div class="card">
@@ -33,37 +33,49 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="user name"  v-model="form.name" >
+                    <input type="text" class="form-control" placeholder="user name" v-model="form.name">
+                    <InputError :message="form.errors.name" />
+
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control"  v-model="form.email"  placeholder="user Email">
+                    <input type="email" class="form-control" v-model="form.email" placeholder="user Email">
+                    <InputError :message="form.errors.email" />
+
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control"  v-model="form.password"  placeholder="Password">
-                  </div>
-                </div>
-            
-                <!-- <div class="row mb-3">
-                  <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="file" id="formFile">
-                  </div>
-                </div> -->
-                <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">Joined Date</label>
-                  <div class="col-sm-10">
-                    <input type="date" class="form-control"  v-model="form.created_at" disabled>
+                    <input type="password" class="form-control" v-model="form.password" placeholder="Password">
+                    <InputError :message="form.errors.password" />
+
                   </div>
                 </div>
 
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label"> Role</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" multiple v-model="form.selectedRoles" >
+                      <option value="" disabled>Select Role</option>
+                      <option v-for="role in roles" :key="role" :value="role">
+                        {{ role }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputDate" class="col-sm-2 col-form-label">Joined Date</label>
+                  <div class="col-sm-10">
+                    <input type="date" class="form-control" v-model="form.created_at" disabled>
+                  </div>
+                </div>
+
+
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Update &nbsp; <i class="bi bi-save"></i> </button>
+                  <button type="submit" class="btn btn-primary">Update &nbsp; <i class="bi bi-save"></i> </button>
                 </div>
 
 
@@ -76,33 +88,33 @@
 
       </div>
 
+    </section>
 
-        
-      </section>
-  
-    </AuthenticatedLayout>
-  </template>
-  
-  
-  
-  <script setup>
+  </AuthenticatedLayout>
+</template>
+
+
+
+<script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { useForm } from  '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps({
-    user: Object,
-  })
+  user: Object,
+  userRoles : Array,
+  roles : Object,
+})
 
 const form = useForm({
-    name: props.user.name,
-    email: props.user.email,
-    password: props.user.password,
-    created_at: props.user.created_at,
-  })
+  name: props.user.name,
+  email: props.user.email,
+  password: props.user.password,
+  created_at: props.user.created_at,
+ selectedRoles:props.userRoles
+})
 
-  const update = () => form.put(
+const update = () => form.put(
   route('users.update', { user: props.user.id }),
 )
-  
-  </script>
-  
+
+</script>
