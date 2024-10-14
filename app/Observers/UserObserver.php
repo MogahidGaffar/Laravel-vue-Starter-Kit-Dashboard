@@ -14,6 +14,7 @@ class UserObserver
         Log::create([
             'module_name' => 'User',
             'action' => 'create',
+            'badge' => 'success',
             'affected_record_id' => $user->id,
             'updated_data' => json_encode($user),
             'user_id' => auth()->id(),
@@ -31,6 +32,7 @@ class UserObserver
         Log::create([
             'module_name' => 'User',
             'action' => 'update',
+            'badge' => 'primary',
             'affected_record_id' => $user->id,
             'original_data' => json_encode($originalData),
             'updated_data' => json_encode($user),
@@ -46,6 +48,7 @@ class UserObserver
         Log::create([
             'module_name' => 'User',
             'action' => 'delete',
+            'badge' => 'danger',
             'affected_record_id' => $user->id,
             'original_data' => json_encode($user),
             'user_id' => auth()->id(),

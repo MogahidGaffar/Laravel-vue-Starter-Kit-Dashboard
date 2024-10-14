@@ -52,6 +52,7 @@ Route::post('users/{user}/activate',[UsersController::class,'activate'])->name('
 
     Route::get('logs', [LogController::class, 'index'])->name('logs');
     Route::get('logs/{log}', [LogController::class, 'view'])->name('logs.view');
+    Route::post('logs/undo/{log}', [LogController::class, 'undo'])->name('logs.undo');
 
 
 });
