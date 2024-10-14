@@ -36,8 +36,9 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Module</th>
+                  <th scope="col">On Module</th>
                   <th scope="col">action</th>
+                  <th scope="col">By</th>
                   <th scope="col">affected record</th>
                   <th scope="col"> at</th>
                   <th scope="col">Details</th>
@@ -51,6 +52,7 @@
                   <td>
                     <span :class="['badge', 'bg-' + log.badge]"> {{ log.action }}</span>
                   </td>
+                  <td>{{ log.user.name }}</td>
                   <td>{{ log.affected_record_id }}</td>
                   <td>{{ log.created_at }}</td>
                   <td>

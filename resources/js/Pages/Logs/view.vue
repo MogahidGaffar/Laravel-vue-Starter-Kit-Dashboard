@@ -33,9 +33,9 @@
           <div class="card-body">
             <form @submit.prevent="undo" class="row g-3">
 
-          <h5 class="card-title"  v-if="log.action != 'create'">Before</h5>
+          <h5 class="card-title"  v-if="log.action != 'create'">Before {{ log.action }}</h5>
           <div class="table-responsive"  v-if="log.action != 'create'">
-          <table class="table table-bordered">
+          <table class="table table-bordered fs-13">
                 <thead>
                   <tr>
                     <th scope="col" v-for="col in  Object.keys(JSON.parse(log.original_data))" :key="log.id">{{ col }}</th>
@@ -51,9 +51,9 @@
             </div>
 
 
-            <h5 class="card-title" v-if="log.action != 'delete'">After</h5>
+            <h5 class="card-title" v-if="log.action != 'delete'">After {{ log.action }}</h5>
           <div class="table-responsive" v-if="log.action != 'delete'">
-          <table class="table table-bordered">
+          <table class="table table-bordered fs-13">
                 <thead>
                   <tr>
                     <th scope="col" v-for="col in  Object.keys(JSON.parse(log.updated_data))" :key="log.id">{{ col }}</th>

@@ -19,7 +19,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::latest()->get();
         return Inertia('roles-permissions/Roles/index',[
             'roles'=>$roles
          ]);

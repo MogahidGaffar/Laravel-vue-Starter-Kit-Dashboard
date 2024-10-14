@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,   HasRoles;
@@ -57,5 +59,12 @@ class User extends Authenticatable
     return $this->created_at->format('d M Y');
 }
 
+public function logs(): HasMany
+{
+    return $this->hasMany(
+        \App\Models\Log::class,
+        'by_user_id'
+    );
+}
 
 }

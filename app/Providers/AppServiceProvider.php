@@ -4,7 +4,12 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\User;
+use App\Observers\PermissionObserver;
+use App\Observers\RoleObserver;
 use App\Observers\UserObserver;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         User::observe(UserObserver::class);
+        Role::observe(RoleObserver::class);
+        Permission::observe(PermissionObserver::class);
 
     }
 }

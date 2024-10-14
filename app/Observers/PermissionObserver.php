@@ -2,40 +2,40 @@
 
 namespace App\Observers;
 
-use App\Models\User;
+use Spatie\Permission\Models\Permission;
 use App\Models\Log;
-class UserObserver 
+class PermissionObserver 
 {
     /**
      * Handle the User "created" event.
      */
-    public function created(User $user): void
+    public function created(Permission $permission): void
     {
         Log::create([
-            'module_name' => 'User',
+            'module_name' => 'Permission',
             'action' => 'create',
             'badge' => 'success',
-            'affected_record_id' => $user->id,
-            'updated_data' => json_encode($user),
-           'by_user_id' => auth()->id() ?? $user->id, // Use auth()->id() if available, otherwise fallback to $user->id
+            'affected_record_id' => $permission->id,
+            'updated_data' => json_encode($permission),
+           'by_user_id' => auth()->id() ,
         ]);
     }
 
     /**
      * Handle the User "updated" event.
      */
-    public function updated(User $user): void
+    public function updated(Permission $permission): void
     {
         // Get the original data before the update
-        $originalData = $user->getOriginal();
+        $originalData = $permission->getOriginal();
 
         Log::create([
-            'module_name' => 'User',
+            'module_name' => 'Permission',
             'action' => 'update',
             'badge' => 'primary',
-            'affected_record_id' => $user->id,
+            'affected_record_id' => $permission->id,
             'original_data' => json_encode($originalData),
-            'updated_data' => json_encode($user),
+            'updated_data' => json_encode($permission),
            'by_user_id'=> auth()->id(),
         ]);
     }
@@ -43,14 +43,14 @@ class UserObserver
     /**
      * Handle the User "deleted" event.
      */
-    public function deleted(User $user): void
+    public function deleted(Permission $permission): void
     {
         Log::create([
-            'module_name' => 'User',
+            'module_name' => 'Permission',
             'action' => 'delete',
             'badge' => 'danger',
-            'affected_record_id' => $user->id,
-            'original_data' => json_encode($user),
+            'affected_record_id' => $permission->id,
+            'original_data' => json_encode($permission),
            'by_user_id'=> auth()->id(),
         ]);
     }
@@ -58,7 +58,7 @@ class UserObserver
     /**
      * Handle the User "restored" event.
      */
-    public function restored(User $user): void
+    public function restored(Permission $permission): void
     {
         //
     }
@@ -66,7 +66,7 @@ class UserObserver
     /**
      * Handle the User "force deleted" event.
      */
-    public function forceDeleted(User $user): void
+    public function forceDeleted(Permission $permission): void
     {
         //
     }

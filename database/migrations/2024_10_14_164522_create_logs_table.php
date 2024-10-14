@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,11 +18,14 @@ return new class extends Migration
             $table->unsignedBigInteger(column: 'affected_record_id');
             $table->json('original_data')->nullable();
             $table->json('updated_data')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable(); // User performing the action
+            $table->foreignIdFor(
+                \App\Models\User::class,
+                'by_user_id'
+            )->constrained('users');    // User performing the action
             $table->timestamps();
         });
     }
-    
+
 
     /**
      * Reverse the migrations.
