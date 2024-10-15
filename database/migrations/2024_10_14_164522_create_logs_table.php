@@ -21,8 +21,8 @@ return new class extends Migration {
             $table->foreignIdFor(
                 \App\Models\User::class,
                 'by_user_id'
-            )->constrained('users');    // User performing the action
-            $table->timestamps();
+                )->nullable()->constrained('users');
+                $table->timestamps();
         });
     }
 

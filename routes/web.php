@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     
 Route::resource('users',UsersController::class);
+Route::post('users/{user}',[UsersController::class,'update'])->name('users.update');
 Route::post('users/{user}/activate',[UsersController::class,'activate'])->name('activate');
 
     Route::resource('permissions', App\Http\Controllers\PermissionController::class);

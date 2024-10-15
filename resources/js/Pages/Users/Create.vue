@@ -61,22 +61,27 @@
                       <option v-for="role in roles" :key="role" :value="role">
                         {{ role }}
                       </option>
-                      </select>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Profle</label>
+                  <div class="col-sm-10">
+                    <input type="file" @input="form.avatar = $event.target.files[0]" />
+                    <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                      {{ form.progress.percentage }}%
+                    </progress>
                   </div>
                 </div>
 
-
-                <!-- <div class="row mb-3">
-          <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-          <div class="col-sm-10">
-            <input class="form-control" type="file" id="formFile">
-          </div>
-        </div> -->
-
-
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Save &nbsp; <i class="bi bi-save"></i> </button>
+                  <button type="submit" class="btn btn-primary">Save &nbsp; <i class="bi bi-save"
+                      v-if="!show_loader"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                      v-if="show_loader"></span>
+                  </button>
                 </div>
+
 
 
               </form>
@@ -101,6 +106,9 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { useForm } from '@inertiajs/vue3'
 import InputError from '@/Components/InputError.vue';
+import { ref } from 'vue';
+
+const show_loader = ref(false);
 
 
 const props = defineProps({
@@ -112,12 +120,23 @@ const form = useForm({
   name: "",
   email: "",
   password: "",
-  selectedRoles:""
+  selectedRoles: "",
+  avatar: null,
 })
 
 
-const store = () => form.post(
-  route('users.store'),
-)
+const store = () => {
+  show_loader.value = true;
+  form.post(route('users.store'), {
+    onSuccess: () => {
+      show_loader.value = false;
+    },
+    onError: () => {
+      show_loader.value = false;
+    },
+  });
+};
+
+
 
 </script>

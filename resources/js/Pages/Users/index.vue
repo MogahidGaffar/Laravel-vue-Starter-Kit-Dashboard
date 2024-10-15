@@ -58,6 +58,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
+                  <th scope="col">Avatar</th>
                   <th scope="col">Roles</th>
                   <th scope="col">E-mail</th>
                   <th scope="col">Created at</th>
@@ -66,10 +67,13 @@
                   <th scope="col">Delete</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class=" text-center">
                 <tr v-for="(user, index)   in users.data" :key="user.id">
                   <th scope="row">{{ index + 1 }}</th>
                   <td>{{ user.name }}</td>
+                  <td>
+                    <img :src="user.avatar" alt="Avatar" class="avatar" width="45px"  />
+                  </td>
                   <td>
                     <span v-for="role in user.roles" :key="role.id" class="badge bg-secondary">
                       {{ role.name }}

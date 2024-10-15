@@ -1293,3 +1293,8 @@ h6 {
 .form-select {
   border-radius: 8px !important;
 }
+
+.avatar {
+  margin: auto !important;
+  border-radius: 25px;
+}

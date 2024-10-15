@@ -28,9 +28,16 @@ class User extends Authenticatable
         'password',
         'created_at',
         'is_active',
+        'avatar',
         'updated_at'
     ];
 
+    protected $appends = ['avatar'];
+
+    public function getAvatarAttribute()
+    {
+        return asset("storage/{$this->attributes['avatar']}");
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

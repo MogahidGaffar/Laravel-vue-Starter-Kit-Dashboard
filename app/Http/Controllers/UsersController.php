@@ -62,17 +62,25 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = User::make(
             $request->validate([
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
                 'password' => 'required',
+                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ])
         );
         if (!empty($request->password)) {
             $user->password = $request->password;
         }
+        $user->avatar = $request->avatar ?: 'avatars/default_avatar.png';
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $path;
+        }
         $user->save();
+        // Sync roles if any
         $user->syncRoles($request->selectedRoles);
 
         return redirect()->route('users.index')
@@ -106,18 +114,30 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update(
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-            ])
-        );
+        // Validate the request
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
+        ]);
+    
+        // Check if an avatar file is uploaded
+        if ($request->hasFile('avatar')) {
+            // Store the file in the 'avatars' directory within the 'public' disk
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $validatedData['avatar'] = $path;
+        }
+    
+        // Update user information, including avatar and other fields, in a single save operation
+        $user->update($validatedData);
+    
+        // Sync roles if any
         $user->syncRoles($request->selectedRoles);
-
+    
         return redirect()->route('users.index')
-            ->with('success', 'user Updated successfully!');
+            ->with('success', 'User updated successfully!');
     }
-
+    
 
     public function activate(User $user)
     {

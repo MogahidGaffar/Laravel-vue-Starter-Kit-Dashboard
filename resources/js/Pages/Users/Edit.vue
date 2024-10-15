@@ -27,9 +27,9 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Edit User info</h5>
-
               <!-- General Form Elements -->
-              <form @submit.prevent="update" class="row g-3">
+              <form @submit.prevent="update" class="row g-3" method="POST">
+
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-10">
@@ -55,10 +55,11 @@
                   </div>
                 </div>
 
+
                 <div class="row mb-3">
                   <label for="inputDate" class="col-sm-2 col-form-label"> Role</label>
                   <div class="col-sm-10">
-                    <select class="form-control" multiple v-model="form.selectedRoles" >
+                    <select class="form-control" multiple v-model="form.selectedRoles">
                       <option value="" disabled>Select Role</option>
                       <option v-for="role in roles" :key="role" :value="role">
                         {{ role }}
@@ -74,8 +75,29 @@
                 </div>
 
 
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Profle</label>
+                  <div class="col-sm-10">
+                    <input type="file" @input="form.avatar = $event.target.files[0]" />
+                    <img v-if="props.user.avatar" :src="props.user.avatar" alt="Current Avatar" class="img-thumbnail"  width="80" />
+                    <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                      {{ form.progress.percentage }}%
+                    </progress>
+                  </div>
+                </div>
+
+
+
+                <div v-if="imageErrors.length" class="input-error">
+                  <div v-for="(error, index) in imageErrors" :key="index">
+                    {{ error }}
+                  </div>
+                </div>
+
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Update &nbsp; <i class="bi bi-save"></i> </button>
+                  <button type="submit" class="btn btn-primary">Update &nbsp; <i class="bi bi-save"  v-if="!show_loader"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="show_loader"></span>
+                  </button>
                 </div>
 
 
@@ -87,7 +109,6 @@
         </div>
 
       </div>
-
     </section>
 
   </AuthenticatedLayout>
@@ -98,23 +119,42 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { useForm } from '@inertiajs/vue3'
+import { computed } from 'vue'
+import { ref } from 'vue';
+
+const imageErrors = computed(() => Object.values(form.errors))
 
 const props = defineProps({
   user: Object,
-  userRoles : Array,
-  roles : Object,
+  userRoles: Array,
+  roles: Object,
 })
 
+const show_loader = ref(false);
+
 const form = useForm({
+  avatar: null,
   name: props.user.name,
   email: props.user.email,
   password: props.user.password,
   created_at: props.user.created_at,
- selectedRoles:props.userRoles
+  selectedRoles: props.userRoles,
+
 })
 
-const update = () => form.put(
-  route('users.update', { user: props.user.id }),
-)
+
+const update = () => {
+  show_loader.value = true; 
+  form.post(route('users.update', { user: props.user.id }), {
+    onSuccess: () => {
+      show_loader.value = false; 
+    },
+    onError: () => {
+      show_loader.value = false; 
+    },
+  });
+};
+
+
 
 </script>
