@@ -1,0 +1,52 @@
+.sidebar {
+    right: 0;
+}
+
+@media (min-width: 1200px) {
+    #main,
+    #footer {
+        margin-right: 300px !important;
+    }
+}
+
+.sidebar-nav .nav-link i {
+    margin-left: 10px !important;
+}
+
+.sidebar-nav .nav-link {
+    flex-direction: row-reverse;
+}
+
+.sidebar-nav .nav-link .bi-chevron-down {
+    position: absolute;
+    left: 20px;
+}
+
+.logo img {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.d-flex {
+    flex-direction: row-reverse;
+}
+
+.dropdown-toggle {
+    margin-right: 15px;
+}
+
+.card-title {
+    text-align: right;
+}
+
+.dashboard .info-card h6 {
+    margin-right: 15px;
+}
+
+.sidebar-nav .nav-content a {
+    flex-direction: row-reverse;
+}
+
+.sidebar-nav .nav-content a i {
+    margin-left: 8px !important;
+}

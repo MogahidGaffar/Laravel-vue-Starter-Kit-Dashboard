@@ -1,0 +1,14 @@
+.sidebar {
+    left: 0;
+}
+
+@media (min-width: 1200px) {
+    #main,
+    #footer {
+        margin-left: 300px !important;
+    }
+}
+
+.sidebar-nav .nav-link i {
+    margin-right: 10px !important;
+}

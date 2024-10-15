@@ -600,7 +600,7 @@ h6 {
 .sidebar {
   position: fixed;
   top: 60px;
-  left: 0;
+  /* left: 0; */
   bottom: 0;
   width: 300px;
   z-index: 996;
@@ -633,7 +633,7 @@ h6 {
 
   #main,
   #footer {
-    margin-left: 300px;
+    /* margin-left: 300px; */
   }
 }
 
@@ -693,7 +693,7 @@ h6 {
 
 .sidebar-nav .nav-link i {
   font-size: 16px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   color: #4154f1;
 }
 
@@ -716,7 +716,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
-  margin-right: 0;
+  /* margin-right: 0; */
   transition: transform 0.2s ease-in-out;
 }
 

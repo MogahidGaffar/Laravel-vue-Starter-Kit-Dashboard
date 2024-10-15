@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+    <title > {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -13,6 +14,7 @@
     <!-- Favicons -->
     <link href="{{ asset('dashboard-assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('dashboard-assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -32,6 +34,13 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('dashboard-assets/css/style.css') }}" rel="stylesheet">
 
+    @if (app()->getLocale() === 'en')
+        <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-rtl.css') }}">
+
+    @else
+        <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-ltr.css') }}">
+
+    @endif
 
     <!-- Scripts -->
     @routes
