@@ -365,7 +365,7 @@ h6 {
 }
 
 .logo img {
-  max-height: 26px;
+  max-height: 32px;
   margin-right: 6px;
 }
 
@@ -1275,4 +1275,21 @@ h6 {
 
 .fs-13{
   font-size: 13px !important;
+}
+.filter_form{
+  padding: 10px;
+  border-bottom: 2px solid gray ;
+}
+
+.search_box {
+  border-radius: 8px !important;
+}
+
+.table {
+  margin-top: 15px !important;
+
+}
+
+.form-select {
+  border-radius: 8px !important;
 }

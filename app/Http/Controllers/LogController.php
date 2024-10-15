@@ -2,16 +2,50 @@
 
 namespace App\Http\Controllers;
 use App\Models\Log;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $logs = Log::with('user')->latest()->paginate(10);
+        // Define the filters
+        $filters = [
+            'module_name' => $request->module,
+            'action' => $request->action,
+            'by_user_id' => $request->by_user_id,
+        ];
+        // Start the logs query
+        $logsQuery = Log::with('user')->latest();
+    
+        // Apply the filters if they exist
+        if ($filters['module_name']) {
+            $logsQuery->where('module_name', $filters['module_name']);
+        }
+    
+        if ($filters['action']) {
+            $logsQuery->where('action', $filters['action']);
+        }
+    
+        if ($filters['by_user_id']) {
+            $logsQuery->where('by_user_id', $filters['by_user_id']);
+        }
+    
+        // Paginate the filtered logs
+        $logs = $logsQuery->paginate(10);
+    
+        // Retrieve users, modules, and actions for the filter dropdowns
+        $users = User::latest()->get();
+        $modules = ['User', 'Role', 'Permission'];
+        $actions = ['Create', 'Update', 'Delete'];
+    
         return Inertia('Logs/index', [
-            'logs' => $logs
+            'filters' => $filters,
+            'logs' => $logs,
+            'users' => $users,
+            'modules' => $modules,
+            'actions' => $actions,
         ]);
     }
 

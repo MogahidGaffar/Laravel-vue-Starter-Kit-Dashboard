@@ -43,6 +43,7 @@
     @inertia
 
 
+   
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('dashboard-assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
