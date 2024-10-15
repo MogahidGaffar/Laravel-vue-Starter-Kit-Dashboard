@@ -46,7 +46,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                  <label for="inputPassword" class="col-sm-2 col-form-label"> {{ translations.password }}</label>
                   <div class="col-sm-10">
                     <input type="password" class="form-control" v-model="form.password"  :placeholder="translations.password">
                     <InputError :message="form.errors.password" />

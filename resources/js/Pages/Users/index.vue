@@ -1,6 +1,6 @@
 <template>
 
-  <AuthenticatedLayout :translations="translations" >
+  <AuthenticatedLayout :translations="translations">
     <!-- breadcrumb-->
     <div class="pagetitle">
       <h1>{{ translations.users }}</h1>
@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <Link class="nav-link" :href="route('dashboard')">
-            {{ translations.Home }} 
+            {{ translations.Home }}
             </Link>
           </li>
           <li class="breadcrumb-item active">{{ translations.users }} </li>
@@ -26,10 +26,12 @@
           <form @submit.prevent="Filter">
             <div class="row filter_form">
               <div class="col-md-3">
-                <input type="text" class="form-control search_box" v-model="filterForm.name" :placeholder="translations.name"   /> 
+                <input type="text" class="form-control search_box" v-model="filterForm.name"
+                  :placeholder="translations.name" />
               </div>
               <div class="col-md-3">
-                <input type="text" class="form-control search_box" v-model="filterForm.email" :placeholder="translations.email" />
+                <input type="text" class="form-control search_box" v-model="filterForm.email"
+                  :placeholder="translations.email" />
               </div>
               <div class="col-md-2">
                 <select class="form-select" aria-label="Default select example" v-model="filterForm.is_active">
@@ -39,10 +41,11 @@
                 </select>
               </div>
               <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">{{ translations.search }}  &nbsp; <i class="bi bi-search"></i> </button>
+                <button type="submit" class="btn btn-primary">{{ translations.search }} &nbsp; <i
+                    class="bi bi-search"></i> </button>
               </div>
               <div class="col-md-2">
-                <Link class="btn btn-primary ms-auto" :href="route('users.create')">{{ translations.create }}  &nbsp; <i
+                <Link class="btn btn-primary ms-auto" :href="route('users.create')">{{ translations.create }} &nbsp; <i
                   class="bi bi-plus-circle"> </i></Link>
               </div>
             </div>
@@ -70,7 +73,7 @@
                   <th scope="row">{{ index + 1 }}</th>
                   <td>{{ user.name }}</td>
                   <td>
-                    <img :src="user.avatar" alt="Avatar" class="avatar" width="45px"  />
+                    <img :src="user.avatar" alt="Avatar" class="avatar" width="45px" />
                   </td>
                   <td>
                     <span v-for="role in user.roles" :key="role.id" class="badge bg-secondary">
@@ -130,7 +133,7 @@ import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 
-defineProps({ users: Object,translations:Array })
+const props = defineProps({ users: Object, translations: Array })
 
 
 
@@ -181,22 +184,22 @@ const Activate = (id) => {
 
 const Delete = (id) => {
   Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
+    title: props.translations.are_your_sure,
+    text: props.translations.You_will_not_be_able_to_revert_this,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#d33',
     cancelButtonColor: '#3085d6',
-    confirmButtonText: 'Yes, delete it!'
+    confirmButtonText: props.translations.yes,
+    cancelButtonText: props.translations.cancel,
   }).then((result) => {
     if (result.isConfirmed) {
       router.delete('users/' + id, {
         onSuccess: () => {
-          Swal.fire(
-            'Deleted!',
-            'Your item has been deleted.',
-            'success'
-          );
+          Swal.fire({
+            title: props.translations.data_deleted_successfully,
+            icon: "success"
+          });
         },
         onError: () => {
           Swal.fire(

@@ -21,6 +21,7 @@ class RoleController extends Controller
     {
         $roles = Role::latest()->get();
         return Inertia('roles-permissions/Roles/index',[
+            'translations' => __('messages'),
             'roles'=>$roles
          ]);
     }
@@ -30,7 +31,9 @@ class RoleController extends Controller
 
     public function create()
     {
-        return Inertia('roles-permissions/Roles/Create');
+        return Inertia('roles-permissions/Roles/Create',[
+            'translations' => __('messages'),
+         ]);
     }
 
     public function store(Request $request)
@@ -49,12 +52,13 @@ class RoleController extends Controller
 
         
         return redirect()->route('roles.index')
-            ->with('success', 'Role Saved successfully!');
+            ->with('success',  __('messages.data_saved_successfully'));
     }
 
     public function edit(Role $role)
     {
         return Inertia('roles-permissions/Roles/Edit',[
+            'translations' => __('messages'),
             'role'=>$role
          ]);
       
@@ -74,7 +78,8 @@ class RoleController extends Controller
         );
 
         return redirect()->route('roles.index')
-            ->with('success', 'Role Updated successfully!');
+            ->with('success',  __('messages.data_updated_successfully'));
+
 
     }
 
@@ -83,7 +88,8 @@ class RoleController extends Controller
         $role = Role::find($roleId);
         $role->delete();
         return redirect()->route('roles.index')
-        ->with('success', 'Role Deleted successfully!');
+        ->with('success',  __('messages.data_deleted_successfully'));
+
     }
 
     public function addPermissionToRole($roleId)
@@ -98,6 +104,7 @@ class RoleController extends Controller
     
 
                                 return Inertia('roles-permissions/Roles/Add-permissions',[
+            'translations' => __('messages'),
                                     'role' => $role,
                                     'permissions' => $permissions,
                                     'rolePermissions' => $rolePermissions
@@ -114,6 +121,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($roleId);
           $role->syncPermissions($request->selectedPermissions);
         return redirect()->route('roles.index')
-        ->with('success', 'Permissions added to role!');
+        ->with('success',  __('messages.role_permissions_updated_successfully'));
+
     }
 }

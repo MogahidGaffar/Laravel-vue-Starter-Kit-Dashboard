@@ -1,19 +1,19 @@
 <template>
 
-    <AuthenticatedLayout>
+<AuthenticatedLayout :translations="translations">
   
       <!-- breadcrumb-->
       <div class="pagetitle">
-        <h1>Roles</h1>
+        <h1>{{ translations.permissions }}</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <Link class="nav-link" :href="route('dashboard')">
-              Home
+            {{translations.Home}}
               </Link>
             </li>
-            <li class="breadcrumb-item active">Permissions</li>
-            <li class="breadcrumb-item active">Edit</li>
+            <li class="breadcrumb-item active">{{ translations.edit }}  </li>
+  
           </ol>
         </nav>
       </div>
@@ -25,21 +25,21 @@
   
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Edit Permission </h5>
+                <h5 class="card-title"> {{ translations.edit_permission }} </h5>
                 <br>
   
                 <!-- General Form Elements -->
                 <form @submit.prevent="update" class="row g-3">
                   <div class="row mb-3">
-                    <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                    <label for="inputText" class="col-sm-2 col-form-label">{{ translations.name }}  </label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" placeholder="Permission name" v-model="form.name">
+                      <input type="text" class="form-control" :placeholder="translations.name " v-model="form.name">
                       <InputError :message="form.errors.name" />
                     </div>
                 </div>
                  
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Update &nbsp; <i class="bi bi-save"></i> </button>
+                    <button type="submit" class="btn btn-primary">{{ translations.update }}   &nbsp; <i class="bi bi-save"></i> </button>
                   </div>
   
   
@@ -65,6 +65,7 @@
   
   const props = defineProps({
     permission: Object,
+    translations:Array
   })
   
   const form = useForm({

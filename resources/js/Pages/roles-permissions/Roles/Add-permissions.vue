@@ -1,6 +1,6 @@
 <template>
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :translations="translations">
 
         <!-- breadcrumb-->
         <div class="pagetitle">
@@ -9,11 +9,11 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <Link class="nav-link" :href="route('dashboard')">
-                        Home
+                        {{ translations.Home }}
                         </Link>
                     </li>
-                    <li class="breadcrumb-item active">Roles</li>
-                    <li class="breadcrumb-item active">Edit</li>
+                    <li class="breadcrumb-item active">{{ translations.roles }}</li>
+                    <li class="breadcrumb-item active">{{ translations.edit }}</li>
                 </ol>
             </nav>
         </div>
@@ -26,7 +26,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Edit Role Permissions</h5>
+                            <h5 class="card-title"> {{ translations.edit_role_permission }}</h5>
                             <br>
 
 
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Update &nbsp; <i
+                                    <button type="submit" class="btn btn-primary">{{ translations.update }} &nbsp; <i
                                             class="bi bi-save"></i> </button>
                                 </div>
 
@@ -81,6 +81,8 @@ const props = defineProps({
     role: Object,
     permissions: Object,
     rolePermissions: Array,
+    translations:Array
+
 })
 
 const form = useForm({

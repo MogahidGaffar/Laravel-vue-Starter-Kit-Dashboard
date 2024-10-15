@@ -1304,9 +1304,9 @@ h6 {
   width: 120px;
 }
 
-select{
+.form-select select{
   text-align: center !important;
 }
-option{
+.form-select option{
   text-align: center !important;
 }

@@ -1,6 +1,6 @@
 <template>
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :translations="translations">
   
   
       <!-- breadcrumb-->
@@ -10,11 +10,10 @@
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <Link class="nav-link" :href="route('dashboard')">
-              Home
+              {{ translations.Home }}
               </Link>
             </li>
-            <li class="breadcrumb-item active">Roles</li>
-  
+            <li class="breadcrumb-item active"> {{ translations.roles }}</li>
           </ol>
         </nav>
       </div>
@@ -25,7 +24,7 @@
             <div class="card-header">
               <div class="d-flex">
   
-                <Link class="btn btn-primary ms-auto" :href="route('roles.create')">Add new &nbsp; <i
+                <Link class="btn btn-primary ms-auto" :href="route('roles.create')"> {{ translations.create }} &nbsp; <i
                   class="bi bi-plus-circle"> </i></Link>
               </div>
             </div>
@@ -36,10 +35,10 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Permissions</th>
-                  <th scope="col">Edit</th>
-                  <th scope="col">Delete</th>
+                  <th scope="col"> {{ translations.name }}</th>
+                  <th scope="col"> {{ translations.permissions }}</th>
+                  <th scope="col"> {{ translations.edit }}</th>
+                  <th scope="col"> {{ translations.delete }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -89,29 +88,29 @@
   import Swal from 'sweetalert2';
   import { router } from '@inertiajs/vue3'
   
-  defineProps({ roles: Object })
+  const props =defineProps({ roles: Object ,translations:Array})
   
 
   
   const Delete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: props.translations.are_your_sure,
+      text: props.translations.You_will_not_be_able_to_revert_this,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: props.translations.yes,
+      cancelButtonText: props.translations.cancel,
     }).then((result) => {
       if (result.isConfirmed) {
         router.delete('roles/' + id, {
           onSuccess: () => {
-            Swal.fire(
-              'Deleted!',
-              'Your item has been deleted.',
-              'success'
-            );
-          },
+            Swal.fire({
+            title: props.translations.data_deleted_successfully,
+            icon: "success"
+          });
+        },
           onError: () => {
             Swal.fire(
               'Error!',

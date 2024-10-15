@@ -19,13 +19,14 @@ class PermissionController extends Controller
     {
         $permissions = Permission::latest()->paginate(10);
         return Inertia('roles-permissions/Permissions/index',[
-            'permissions'=>$permissions
+            'translations' => __('messages'),
+              'permissions'=>$permissions
          ]);
     }
 
     public function create()
     {
-        return Inertia('roles-permissions/Permissions/Create');
+        return Inertia('roles-permissions/Permissions/Create',[     'translations' => __('messages')]);
     }
 
     public function store(Request $request)
@@ -43,13 +44,14 @@ class PermissionController extends Controller
         ]);
 
         return redirect()->route('permissions.index')
-            ->with('success', 'Permission Saved successfully!');
+        ->with('success',  __('messages.data_saved_successfully'));
     }
 
     public function edit(Permission $permission)
     {
         return Inertia('roles-permissions/Permissions/Edit',[
-            'permission'=>$permission
+            'translations' => __('messages'),
+             'permission'=>$permission
          ]); }
 
     public function update(Request $request, Permission $permission)
@@ -67,7 +69,7 @@ class PermissionController extends Controller
         ]);
 
         return redirect()->route('permissions.index')
-            ->with('success', 'Permission Updated successfully!');
+        ->with('success',  __('messages.data_updated_successfully'));
     }
 
     public function destroy($permissionId)
@@ -75,7 +77,7 @@ class PermissionController extends Controller
         $permission = Permission::find($permissionId);
         $permission->delete();
         return redirect()->route('permissions.index')
-        ->with('success', 'Permission Deleted Successfully!');
+        ->with('success',  __('messages.data_deleted_successfully'));
 
     }
 }

@@ -67,7 +67,6 @@
                   <th scope="col">{{ translations.affected_record  }}</th>
                   <th scope="col"> {{ translations.at  }}</th>
                   <th scope="col">{{ translations.details  }}</th>
-                  <th scope="col">{{ translations.delete  }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -85,11 +84,7 @@
                       <i class="bi bi-eye"></i>
                     </a>
                   </td>
-                  <td> <button type="button" class="btn btn-danger" @click="Delete(log.id)">
-                      <i class="bi bi-trash"></i>
-                    </button>
-
-                  </td>
+                 
                 </tr>
 
               </tbody>

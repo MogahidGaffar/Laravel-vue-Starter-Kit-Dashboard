@@ -1,30 +1,32 @@
 <template>
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :translations="translations">
   
   
       <!-- breadcrumb-->
       <div class="pagetitle">
-        <h1>Permissions</h1>
+        <h1>{{ translations.permissions }}</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <Link class="nav-link" :href="route('dashboard')">
-              Home
+            {{translations.Home}}
               </Link>
             </li>
-            <li class="breadcrumb-item active">Permissions  </li>
+            <li class="breadcrumb-item active">{{ translations.permissions }}  </li>
   
           </ol>
         </nav>
       </div>
       <!-- End breadcrumb-->
+
+      
       <section class="section dashboard">
         <div class="card">
           <div class="card-body">
             <div class="card-header">
               <div class="d-flex">
-                <Link class="btn btn-primary ms-auto" :href="route('permissions.create')">Add new &nbsp; <i class="bi bi-plus-circle"> </i></Link>
+                <Link class="btn btn-primary ms-auto" :href="route('permissions.create')"> {{ translations.create }}  &nbsp; <i class="bi bi-plus-circle"> </i></Link>
               </div>
             </div>
   
@@ -34,9 +36,9 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Edit</th>
-                  <th scope="col">Delete</th>
+                  <th scope="col">{{ translations.name }} </th>
+                  <th scope="col">{{ translations.edit }} </th>
+                  <th scope="col">{{ translations.delete }} </th>
                 </tr>
               </thead>
               <tbody>
@@ -81,14 +83,15 @@
   import Swal from 'sweetalert2';
   import { router } from '@inertiajs/vue3'
   
-  defineProps({ permissions: Object })
+  const props = defineProps({ permissions: Object, translations:Array })
   
-
+  
+  
   
   const Delete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+   title: props.translations.are_your_sure,
+      text: props.translations.You_will_not_be_able_to_revert_this,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -98,12 +101,11 @@
       if (result.isConfirmed) {
         router.delete('permissions/' + id, {
           onSuccess: () => {
-            Swal.fire(
-              'Deleted!',
-              'Your item has been deleted.',
-              'success'
-            );
-          },
+            Swal.fire({
+            title: props.translations.data_deleted_successfully,
+            icon: "success"
+          });
+        },
           onError: () => {
             Swal.fire(
               'Error!',
