@@ -34,7 +34,9 @@
 <div class="card info-card customers-card">
 
     <div class="card-body">
-        <h5 class="card-title">Users <span>| This Year</span></h5>
+        <h5 class="card-title">Users 
+            <!-- <span>| This Year</span> -->
+        </h5>
 
         <div class="d-flex align-items-center">
             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -57,7 +59,9 @@
                 <div class="col-xxl-4 col-md-4">
                     <div class="card info-card sales-card">
                         <div class="card-body">
-                            <h5 class="card-title">Products <span>| Today</span></h5>
+                            <h5 class="card-title">Products 
+                                <!-- <span>| Today</span> -->
+                            </h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -80,7 +84,9 @@
                     <div class="card info-card revenue-card">
 
                         <div class="card-body">
-                            <h5 class="card-title">Roles <span>| This Month</span></h5>
+                            <h5 class="card-title">Roles
+                                 <!-- <span>| This Month</span> -->
+                            </h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

@@ -17,7 +17,8 @@ class UserObserver
             'badge' => 'success',
             'affected_record_id' => $user->id,
             'updated_data' => json_encode($user),
-           'by_user_id' => auth()->id() ?? $user->id, // Use auth()->id() if available, otherwise fallback to $user->id
+           'by_user_id' => auth()->id() ?? $user->id, 
+
         ]);
     }
 

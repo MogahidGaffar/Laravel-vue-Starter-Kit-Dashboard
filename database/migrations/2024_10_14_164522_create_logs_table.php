@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->foreignIdFor(
                 \App\Models\User::class,
                 'by_user_id'
-                )->nullable()->constrained('users');
+                )->constrained('users');
                 $table->timestamps();
         });
     }
