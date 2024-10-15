@@ -238,6 +238,7 @@ h6 {
   font-weight: 500;
   color: #012970;
   font-family: "Poppins", sans-serif;
+  margin-bottom: 25px;
 }
 
 .card-title span {
@@ -1297,4 +1298,15 @@ h6 {
 .avatar {
   margin: auto !important;
   border-radius: 25px;
+}
+
+.changeLang {
+  width: 120px;
+}
+
+select{
+  text-align: center !important;
+}
+option{
+  text-align: center !important;
 }

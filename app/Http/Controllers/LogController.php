@@ -41,7 +41,8 @@ class LogController extends Controller
         $actions = ['Create', 'Update', 'Delete'];
     
         return Inertia('Logs/index', [
-            'filters' => $filters,
+            'translations' => __('messages'),
+             'filters' => $filters,
             'logs' => $logs,
             'users' => $users,
             'modules' => $modules,
@@ -53,6 +54,7 @@ class LogController extends Controller
     public function view(Log $log)
     {
         return Inertia('Logs/view', [
+            'translations' => __('messages'),
             'log' => $log
         ]);
     }

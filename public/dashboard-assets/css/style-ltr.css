@@ -1,3 +1,26 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+a,
+p,
+option,
+select,
+input,
+button,
+Link,
+ul,
+li,
+.main {
+    font-family: 'Cairo' !important;
+    text-align: right !important;
+    direction: ltr;
+}
+
 .sidebar {
     right: 0;
 }

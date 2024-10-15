@@ -34,14 +34,13 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('dashboard-assets/css/style.css') }}" rel="stylesheet">
 
-    @if (app()->getLocale() === 'en')
-        <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-rtl.css') }}">
-
-    @else
+    @if (app()->getLocale() === 'ar')
         <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-ltr.css') }}">
-
+        <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
+    @else
+    <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-rtl.css') }}">
     @endif
-
+   
     <!-- Scripts -->
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])

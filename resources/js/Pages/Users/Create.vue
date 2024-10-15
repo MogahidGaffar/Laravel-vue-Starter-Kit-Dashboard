@@ -1,19 +1,19 @@
 <template>
 
-  <AuthenticatedLayout>
+  <AuthenticatedLayout :translations="translations">
 
     <!-- breadcrumb-->
     <div class="pagetitle">
-      <h1>Users</h1>
+      <h1> {{ translations.users }}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <Link class="nav-link" :href="route('dashboard')">
-            Home
+            {{ translations.Home }}
             </Link>
           </li>
-          <li class="breadcrumb-item active">Users</li>
-          <li class="breadcrumb-item active">Create</li>
+          <li class="breadcrumb-item active"> {{ translations.users }}</li>
+          <li class="breadcrumb-item active"> {{ translations.create }}</li>
         </ol>
       </nav>
     </div>
@@ -26,38 +26,38 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Add New User </h5>
+              <h5 class="card-title"> {{ translations.add_new_user }} </h5>
 
               <!-- General Form Elements -->
               <form @submit.prevent="store" class="row g-3">
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                  <label for="inputText" class="col-sm-2 col-form-label"> {{ translations.name }}</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="user name" v-model="form.name">
+                    <input type="text" class="form-control" :placeholder="translations.name" v-model="form.name">
                     <InputError :message="form.errors.name" />
                   </div>
 
                 </div>
                 <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                  <label for="inputEmail" class="col-sm-2 col-form-label"> {{ translations.email }}</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" v-model="form.email" placeholder="user Email">
+                    <input type="email" class="form-control" v-model="form.email"  :placeholder="translations.email">
                     <InputError :message="form.errors.email" />
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" v-model="form.password" placeholder="Password">
+                    <input type="password" class="form-control" v-model="form.password"  :placeholder="translations.password">
                     <InputError :message="form.errors.password" />
                   </div>
                 </div>
 
                 <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Roles</label>
+                  <label for="inputPassword" class="col-sm-2 col-form-label"> {{ translations.roles }}</label>
                   <div class="col-sm-10">
                     <select name="roles[]" class="form-control" multiple v-model="form.selectedRoles">
-                      <option value="" disabled>Select Role</option>
+                      <option value="" disabled> {{ translations.roles }}</option>
                       <option v-for="role in roles" :key="role" :value="role">
                         {{ role }}
                       </option>
@@ -65,7 +65,7 @@
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputNumber" class="col-sm-2 col-form-label">Profle</label>
+                  <label for="inputNumber" class="col-sm-2 col-form-label"> {{ translations.avatar }}</label>
                   <div class="col-sm-10">
                     <input type="file" @input="form.avatar = $event.target.files[0]" />
                     <progress v-if="form.progress" :value="form.progress.percentage" max="100">
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Save &nbsp; <i class="bi bi-save"
+                  <button type="submit" class="btn btn-primary"> {{ translations.save }} &nbsp; <i class="bi bi-save"
                       v-if="!show_loader"></i>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
                       v-if="show_loader"></span>
@@ -113,6 +113,7 @@ const show_loader = ref(false);
 
 const props = defineProps({
   roles: Object,
+  translations: Array,
 })
 
 

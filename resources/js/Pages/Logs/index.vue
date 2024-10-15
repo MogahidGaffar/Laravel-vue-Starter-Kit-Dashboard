@@ -1,20 +1,19 @@
 <template>
 
-  <AuthenticatedLayout>
+  <AuthenticatedLayout :translations="translations">
 
 
     <!-- breadcrumb-->
     <div class="pagetitle">
-      <h1>Logs</h1>
+      <h1>   {{ translations.logs }} </h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <Link class="nav-link" :href="route('dashboard')">
-            Home
+              {{ translations.Home }} 
             </Link>
           </li>
-          <li class="breadcrumb-item active">Logs</li>
-
+          <li class="breadcrumb-item active">   {{ translations.logs }} </li>
         </ol>
       </nav>
     </div>
@@ -34,24 +33,24 @@
             <div class="row filter_form">
               <div class="col-md-3">
                 <select class="form-select" aria-label="Default select example" v-model="filterForm.module">
-                  <option value="" selected disabled>Module</option>
+                  <option value="" selected disabled>  {{ translations.module }}  </option>
                   <option v-for="module in modules" :key="module.id" :value="module">{{ module }}s</option>
                 </select>
               </div>
               <div class="col-md-3">
                 <select class="form-select" aria-label="Default select example" v-model="filterForm.action">
-                  <option value="" selected disabled>Action</option>
+                  <option value="" selected disabled> {{ translations.action }} </option>
                   <option v-for="action in actions" :key="action.id" :value="action">{{ action }}</option>
                 </select>
               </div>
               <div class="col-md-3">
                 <select class="form-select" aria-label="Default select example" v-model="filterForm.by_user_id">
-                  <option value="" selected disabled>By</option>
+                  <option value="" selected disabled>  {{ translations.by }} </option>
                   <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
                 </select>
               </div>
               <div class="col-md-3">
-                <button type="submit" class="btn btn-primary">Search &nbsp; <i class="bi bi-search"></i> </button>
+                <button type="submit" class="btn btn-primary">  {{ translations.search }}  &nbsp; <i class="bi bi-search"></i> </button>
               </div>
             </div>
 
@@ -62,13 +61,13 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">By</th>
-                  <th scope="col">On Module</th>
-                  <th scope="col">action</th>
-                  <th scope="col">affected record</th>
-                  <th scope="col"> at</th>
-                  <th scope="col">Details</th>
-                  <th scope="col">Delete</th>
+                  <th scope="col"> {{ translations.by }} </th>
+                  <th scope="col"> {{ translations.module }} </th>
+                  <th scope="col"> {{ translations.action }}</th>
+                  <th scope="col">{{ translations.affected_record  }}</th>
+                  <th scope="col"> {{ translations.at  }}</th>
+                  <th scope="col">{{ translations.details  }}</th>
+                  <th scope="col">{{ translations.delete  }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,7 +116,7 @@ import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 
-defineProps({ logs: Object, users: Object, modules: Array, actions: Array })
+defineProps({ logs: Object, users: Object, modules: Array, actions: Array,translations:Array })
 
 
 const filterForm = reactive({

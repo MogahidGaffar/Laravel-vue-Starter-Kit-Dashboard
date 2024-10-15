@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\LangController;
 use App\Http\Controllers\LogController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -19,15 +20,16 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Dashboard', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
+Route::get('/',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard',[DashboardController::class,'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -54,6 +56,9 @@ Route::post('users/{user}/activate',[UsersController::class,'activate'])->name('
     Route::get('logs', [LogController::class, 'index'])->name('logs');
     Route::get('logs/{log}', [LogController::class, 'view'])->name('logs.view');
     Route::post('logs/undo/{log}', [LogController::class, 'undo'])->name('logs.undo');
+
+    Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+
 
 
 });

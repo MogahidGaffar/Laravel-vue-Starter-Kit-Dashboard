@@ -15,7 +15,6 @@ class UsersController extends Controller
     public function index(Request $request)
     {
 
-
         // Define the filters
         $filters = [
             'name' => $request->name,
@@ -42,6 +41,7 @@ class UsersController extends Controller
         $users = $UsersQuery->paginate(10);
 
         return Inertia('Users/index', [
+            'translations' => __('messages'),
             'filters' => $filters,
             'users' => $users,
         ]);
@@ -54,7 +54,7 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::pluck('name', 'name')->all();
-        return Inertia('Users/Create', ['roles' => $roles]);
+        return Inertia('Users/Create', [ 'translations' => __('messages'),'roles' => $roles]);
     }
 
     /**
@@ -84,7 +84,7 @@ class UsersController extends Controller
         $user->syncRoles($request->selectedRoles);
 
         return redirect()->route('users.index')
-            ->with('success', 'user Saved successfully!');
+        ->with('success',  __('messages.data_saved_successfully'));
     }
 
     /**
@@ -103,6 +103,7 @@ class UsersController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         $userRoles = $user->roles->pluck('name')->all();
         return Inertia('Users/Edit', [
+            'translations' => __('messages'),
             'user' => $user,
             'roles' => $roles,
             'userRoles' => $userRoles
@@ -118,12 +119,12 @@ class UsersController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', 
         ]);
     
-        // Check if an avatar file is uploaded
+        // Check if an avatar file is uploaded and Store it
         if ($request->hasFile('avatar')) {
-            // Store the file in the 'avatars' directory within the 'public' disk
+            $validatedData['avatar'] = $request->validate([
+                'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',])['avatar'];
             $path = $request->file('avatar')->store('avatars', 'public');
             $validatedData['avatar'] = $path;
         }
@@ -135,7 +136,7 @@ class UsersController extends Controller
         $user->syncRoles($request->selectedRoles);
     
         return redirect()->route('users.index')
-            ->with('success', 'User updated successfully!');
+            ->with('success',  __('messages.data_updated_successfully'));
     }
     
 
@@ -156,6 +157,6 @@ class UsersController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index')
-            ->with('success', 'user Deleted successfully!');
+        ->with('success',  __('messages.data_deleted_successfully'));
     }
 }

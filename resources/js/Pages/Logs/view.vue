@@ -1,20 +1,20 @@
 <template>
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :translations="translations">
   
   
       <!-- breadcrumb-->
       <div class="pagetitle">
-        <h1>Logs</h1>
+        <h1>  {{ translations.logs }} </h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <Link class="nav-link" :href="route('dashboard')">
-              Home
+                {{ translations.Home }}
               </Link>
             </li>
-            <li class="breadcrumb-item active">Logs</li>
-            <li class="breadcrumb-item active">View</li>
+            <li class="breadcrumb-item active">  {{ translations.logs }} </li>
+            <li class="breadcrumb-item active">  {{ translations.view }} </li>
   
           </ol>
         </nav>
@@ -33,7 +33,7 @@
           <div class="card-body">
             <form @submit.prevent="undo" class="row g-3">
 
-          <h5 class="card-title"  v-if="log.action != 'create'">Before {{ log.action }}</h5>
+          <h5 class="card-title"  v-if="log.action != 'create'">{{ translations.before }} </h5>
           <div class="table-responsive"  v-if="log.action != 'create'">
           <table class="table table-bordered fs-13">
                 <thead>
@@ -51,7 +51,7 @@
             </div>
 
 
-            <h5 class="card-title" v-if="log.action != 'delete'">After {{ log.action }}</h5>
+            <h5 class="card-title" v-if="log.action != 'delete'">  {{ translations.after }} </h5>
           <div class="table-responsive" v-if="log.action != 'delete'">
           <table class="table table-bordered fs-13">
                 <thead>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Undo <i class="ri-refresh-line"></i> </button>
+                  <button type="submit" class="btn btn-primary">  {{ translations.undo }}  <i class="ri-refresh-line"></i> </button>
                 </div>
             </form>
 
@@ -90,6 +90,7 @@ import { router } from '@inertiajs/vue3'
   
   const props = defineProps({
     log: Object,
+    translations:Array
   })
 
 

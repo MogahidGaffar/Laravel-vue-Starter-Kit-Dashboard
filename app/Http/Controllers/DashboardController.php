@@ -13,6 +13,7 @@ class DashboardController extends Controller
 
     public function index (){
         return Inertia::render('Dashboard',[
+            'translations' => __('messages'),
             'userCount'=>User::all()->count(),
             'rolesCount'=>Role::all()->count()
         ]);

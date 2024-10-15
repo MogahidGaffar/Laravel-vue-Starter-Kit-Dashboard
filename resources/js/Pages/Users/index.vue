@@ -1,19 +1,17 @@
 <template>
 
-  <AuthenticatedLayout>
-
-
+  <AuthenticatedLayout :translations="translations" >
     <!-- breadcrumb-->
     <div class="pagetitle">
-      <h1>Users</h1>
+      <h1>{{ translations.users }}</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <Link class="nav-link" :href="route('dashboard')">
-            Home
+            {{ translations.Home }} 
             </Link>
           </li>
-          <li class="breadcrumb-item active">Users</li>
+          <li class="breadcrumb-item active">{{ translations.users }} </li>
 
         </ol>
       </nav>
@@ -28,23 +26,23 @@
           <form @submit.prevent="Filter">
             <div class="row filter_form">
               <div class="col-md-3">
-                <input type="text" class="form-control search_box" v-model="filterForm.name" placeholder="Name" />
+                <input type="text" class="form-control search_box" v-model="filterForm.name" :placeholder="translations.name"   /> 
               </div>
               <div class="col-md-3">
-                <input type="text" class="form-control search_box" v-model="filterForm.email" placeholder="E-mail" />
+                <input type="text" class="form-control search_box" v-model="filterForm.email" :placeholder="translations.email" />
               </div>
               <div class="col-md-2">
                 <select class="form-select" aria-label="Default select example" v-model="filterForm.is_active">
-                  <option value="" selected disabled>Status</option>
-                  <option :value="1">Active</option>
-                  <option :value="0">Not Active</option>
+                  <option value="" selected disabled> {{ translations.status }}</option>
+                  <option :value="1">{{ translations.active }}</option>
+                  <option :value="0">{{ translations.not_active }} </option>
                 </select>
               </div>
               <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Search &nbsp; <i class="bi bi-search"></i> </button>
+                <button type="submit" class="btn btn-primary">{{ translations.search }}  &nbsp; <i class="bi bi-search"></i> </button>
               </div>
               <div class="col-md-2">
-                <Link class="btn btn-primary ms-auto" :href="route('users.create')">Add new &nbsp; <i
+                <Link class="btn btn-primary ms-auto" :href="route('users.create')">{{ translations.create }}  &nbsp; <i
                   class="bi bi-plus-circle"> </i></Link>
               </div>
             </div>
@@ -57,14 +55,14 @@
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Avatar</th>
-                  <th scope="col">Roles</th>
-                  <th scope="col">E-mail</th>
-                  <th scope="col">Created at</th>
-                  <th scope="col">Active</th>
-                  <th scope="col">Edit</th>
-                  <th scope="col">Delete</th>
+                  <th scope="col"> {{ translations.name }}</th>
+                  <th scope="col"> {{ translations.avatar }}</th>
+                  <th scope="col"> {{ translations.role }}</th>
+                  <th scope="col"> {{ translations.email }}</th>
+                  <th scope="col"> {{ translations.created_at }}</th>
+                  <th scope="col"> {{ translations.status }}</th>
+                  <th scope="col">{{ translations.edit }}</th>
+                  <th scope="col">{{ translations.delete }}</th>
                 </tr>
               </thead>
               <tbody class=" text-center">
@@ -124,6 +122,7 @@
 
 
 <script setup>
+
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 import { Link } from '@inertiajs/vue3'
@@ -131,7 +130,10 @@ import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 
-defineProps({ users: Object })
+defineProps({ users: Object,translations:Array })
+
+
+
 const filterForm = reactive({
   name: '',
   email: '',
