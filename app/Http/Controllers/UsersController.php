@@ -12,12 +12,40 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users =User::with('roles')->latest()->paginate(10);
-     return Inertia('Users/index',[
-        'users'=>$users
-     ]);
+
+
+        // Define the filters
+        $filters = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'is_active' => $request->is_active,
+        ];
+        // Start the User query
+        $UsersQuery = User::with('roles')->latest();
+
+        // Apply the filters if they exist
+        $UsersQuery->when($filters['name'], function ($query, $name) {
+            return $query->where('name', 'LIKE', "%{$name}%");
+        });
+
+        $UsersQuery->when($filters['email'], function ($query, $email) {
+            return $query->where('email', 'LIKE', "%{$email}%");
+        });
+
+
+        if (isset($filters['is_active'])) {
+            $UsersQuery->where('is_active', $filters['is_active']);
+        }
+        // Paginate the filtered users
+        $users = $UsersQuery->paginate(10);
+
+        return Inertia('Users/index', [
+            'filters' => $filters,
+            'users' => $users,
+        ]);
+
     }
 
     /**
@@ -25,7 +53,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::pluck('name', 'name')->all();
         return Inertia('Users/Create', ['roles' => $roles]);
     }
 
@@ -34,15 +62,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-       $user= User::make(
+        $user = User::make(
             $request->validate([
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
                 'password' => 'required',
             ])
         );
-        if(!empty($request->password)){
-           $user->password=$request->password;
+        if (!empty($request->password)) {
+            $user->password = $request->password;
         }
         $user->save();
         $user->syncRoles($request->selectedRoles);
@@ -64,13 +92,13 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::pluck('name', 'name')->all();
         $userRoles = $user->roles->pluck('name')->all();
-        return Inertia('Users/Edit',[
-            'user'=>$user,
+        return Inertia('Users/Edit', [
+            'user' => $user,
             'roles' => $roles,
             'userRoles' => $userRoles
-            ]);
+        ]);
     }
 
     /**
@@ -90,16 +118,17 @@ class UsersController extends Controller
             ->with('success', 'user Updated successfully!');
     }
 
-    
+
     public function activate(User $user)
-{
-    $user->update([
-            'is_active' => ($user->is_active) ? 0 : 1
-        ]
-    );
-return redirect()->route('users.index')
-->with('success', 'user Status Updated successfully!');
-}
+    {
+        $user->update(
+            [
+                'is_active' => ($user->is_active) ? 0 : 1
+            ]
+        );
+        return redirect()->route('users.index')
+            ->with('success', 'user Status Updated successfully!');
+    }
     /**
      * Remove the specified resource from storage.
      */
@@ -107,6 +136,6 @@ return redirect()->route('users.index')
     {
         $user->delete();
         return redirect()->route('users.index')
-        ->with('success', 'user Deleted successfully!');
+            ->with('success', 'user Deleted successfully!');
     }
 }

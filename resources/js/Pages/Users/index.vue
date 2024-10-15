@@ -23,11 +23,34 @@
     <section class="section dashboard">
       <div class="card">
         <div class="card-body">
+<!-- {{ filterForm }} -->
+          
+          <form @submit.prevent="Filter">
+            <div class="row filter_form">
+              <div class="col-md-3">
+                <input type="text" class="form-control search_box" v-model="filterForm.name"  placeholder="Name" />
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control search_box" v-model="filterForm.email" placeholder="E-mail" />
+              </div>
+              <div class="col-md-3">
+                <select class="form-select" aria-label="Default select example" v-model="filterForm.is_active">
+                  <option value="" selected disabled>Status</option>
+                  <option :value="1"  >Active</option>
+                  <option :value="0"  >Not Active</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Search &nbsp; <i class="bi bi-search"></i> </button>
+              </div>
+            </div>
+           
+          </form>
+
+
           <div class="card-header">
             <div class="d-flex">
-
-              <Link class="btn btn-primary ms-auto" :href="route('users.create')">Add new &nbsp; <i
-                class="bi bi-plus-circle"> </i></Link>
+              <Link class="btn btn-primary ms-auto" :href="route('users.create')">Add new &nbsp; <i class="bi bi-plus-circle"> </i></Link>
             </div>
           </div>
 
@@ -104,11 +127,22 @@ import Pagination from '@/Components/Pagination.vue';
 import { Link } from '@inertiajs/vue3'
 import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
+import { reactive } from 'vue'
 
 defineProps({ users: Object })
+const filterForm = reactive({
+  name: '',
+  email: '',
+  is_active: '',
+})
 
-// router.put(`/users/${id}/activate`, {
-//     });
+const Filter = () => {
+  router.get(
+    route('users.index'),
+    filterForm,
+    { preserveState: true, preserveScroll: true },
+  )
+}
 
 
 const Activate = (id) => {
