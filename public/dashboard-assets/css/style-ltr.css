@@ -7,9 +7,7 @@ h6,
 span,
 a,
 p,
-option,
-select,
-input[text],
+input,
 button,
 Link,
 ul,
@@ -22,6 +20,17 @@ td {
     font-family: 'Cairo' !important;
     text-align: right !important;
     direction: ltr;
+}
+
+option,
+select {
+    font-family: 'Cairo' !important;
+    text-align: center;
+}
+
+table,
+.row {
+    direction: rtl;
 }
 
 .sidebar {

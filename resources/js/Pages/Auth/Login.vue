@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Laravel vue sterter kit dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -50,23 +50,30 @@
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Email</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="email" v-model="form.email" required autofocus autocomplete="username"  class="form-control" >
-                          <br>
-                      </div>
-                      <InputError  :message="form.errors.email" />
+                      <TextInput
+                    id="email"
+                    type="email"
+                    class="mt-1 block w-full"
+                    v-model="form.email"
+                    required
+                    autocomplete="username"
+                />
+                <InputError class="mt-2" :message="form.errors.email" />
 
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
+                      <label for="yourPassword" class="form-label"> Password</label>
 
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend"><i class="bi bi-lock"></i></span>
-                      <input type="password"  v-model="form.password" class="form-control" id="yourPassword"  required autocomplete="current-password">
-                    </div>
-                    <InputError  :message="form.errors.password" />
+                      <TextInput
+                    id="password"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.password"
+                    required
+                    autocomplete="new-password"
+                />
+                <InputError class="mt-2" :message="form.errors.password" />
 
                 </div>
                 <InputError  :message="form.errors.is_active" />
@@ -92,7 +99,7 @@
               </div>
 
                     <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                      <p class="small mb-0">Don't have account? <a :href="route('register')">Create an account</a></p>
                     </div>
                   </form>
 

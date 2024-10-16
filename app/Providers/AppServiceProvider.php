@@ -30,7 +30,5 @@ class AppServiceProvider extends ServiceProvider
         Role::observe(RoleObserver::class);
         Permission::observe(PermissionObserver::class);
         App::setLocale(Session::get('locale', config('app.locale')));
-
-
     }
 }
