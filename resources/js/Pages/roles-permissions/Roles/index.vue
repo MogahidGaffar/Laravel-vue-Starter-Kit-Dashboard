@@ -24,7 +24,7 @@
             <div class="card-header">
               <div class="d-flex">
   
-                <Link class="btn btn-primary ms-auto" :href="route('roles.create')"> {{ translations.create }} &nbsp; <i
+                <Link v-if="hasPermission('create roles')" class="btn btn-primary ms-auto" :href="route('roles.create')"> {{ translations.create }} &nbsp; <i
                   class="bi bi-plus-circle"> </i></Link>
               </div>
             </div>
@@ -36,9 +36,9 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col"> {{ translations.name }}</th>
-                  <th scope="col"> {{ translations.permissions }}</th>
-                  <th scope="col"> {{ translations.edit }}</th>
-                  <th scope="col"> {{ translations.delete }}</th>
+                  <th scope="col" v-if="hasPermission('update roles')"> {{ translations.permissions }}</th>
+                  <th scope="col" v-if="hasPermission('update roles')"> {{ translations.edit }}</th>
+                  <th scope="col" v-if="hasPermission('delete roles')"> {{ translations.delete }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -46,20 +46,20 @@
                     <th scope="row">{{ index+1 }}</th>
 
                   <td>{{ role.name }}</td>
-                  <td>
+                  <td v-if="hasPermission('update roles')">
                     <a class="btn btn-dark" :href="'roles/'+role.id+'/give-permissions'">
                       <i class="bi bi-lock"></i>
                     </a>
                   </td>
                  
-                  <td>
+                  <td v-if="hasPermission('update roles')">
                     <a class="btn btn-primary" :href="route('roles.edit', { role: role.id })">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   </td>
-                  <td>
+                  <td v-if="hasPermission('delete roles')">
   
-                    <button type="button" class="btn btn-danger" @click="Delete(role.id)">
+                    <button  type="button" class="btn btn-danger" @click="Delete(role.id)">
                       <i class="bi bi-trash"></i>
                     </button>
   
@@ -84,12 +84,16 @@
   <script setup>
   import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
   import Pagination from '@/Components/Pagination.vue';
-  import { Link } from '@inertiajs/vue3'
+  import { Link,usePage } from '@inertiajs/vue3'
   import Swal from 'sweetalert2';
   import { router } from '@inertiajs/vue3'
+const page = usePage()
   
   const props =defineProps({ roles: Object ,translations:Array})
   
+  const hasPermission = (permission) => {
+  return page.props.permissions.includes(permission);
+}
 
   
   const Delete = (id) => {

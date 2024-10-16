@@ -106,10 +106,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
-import { Link } from '@inertiajs/vue3'
+import { Link,usePage } from '@inertiajs/vue3'
 import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
+const page = usePage()
 
 defineProps({ logs: Object, users: Object, modules: Array, actions: Array,translations:Array })
 
@@ -126,6 +127,9 @@ const Filter = () => {
     filterForm,
     { preserveState: true, preserveScroll: true },
   )
+}
+const hasPermission = (permission) => {
+  return page.props.permissions.includes(permission);
 }
 
 const Delete = (id) => {
