@@ -10,7 +10,7 @@
                </Link>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item" v-if="hasPermission('read users')">
     <Link  class="nav-link "  :href="route('users.index')"  :class="{ 'collapsed':  !$page.url.startsWith('/users') }" >
             <i class="bi bi-people"></i>
             <span>{{translations.users  }}</span>
@@ -18,7 +18,7 @@
     </li>
 
 
-    <li class="nav-item">
+    <li class="nav-item" >
         <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"  :class="{ 'collapsed':  !$page.url.startsWith('/roles') && !$page.url.startsWith('/permissions') }" >
             <i class="bi bi-lock"></i><span>{{translations.roles_control  }}</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -38,7 +38,7 @@
         </ul>
     </li>
     
-    <li class="nav-item">
+    <li class="nav-item" v-if="hasPermission('read logs')">
     <Link  class="nav-link "  :href="route('logs')"  :class="{ 'collapsed':  !$page.url.startsWith('/logs') }" >
             <i class="bi bi-database"></i>
             <span>{{translations.logs  }}</span>
@@ -57,8 +57,13 @@
 
 
 <script setup>
-import { Link } from '@inertiajs/vue3';
-defineProps({message: String,translations:Array })
+import { Link , usePage} from '@inertiajs/vue3'
+const page = usePage()
+
+const hasPermission = (permission) => {
+  return page.props.permissions.includes(permission);
+}
+defineProps({message: String,translations:Array,permissions:Array })
 </script>
 
 <script>

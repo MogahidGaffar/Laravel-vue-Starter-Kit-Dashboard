@@ -52,4 +52,13 @@ return [
 'data_saved_successfully'=>'! تـم حفـظ البيانات بنجـاح  ',
 'data_deleted_successfully'=>'! تـم حـذف البيانات بنجـاح  ',
 'role_permissions_updated_successfully'=>'! تـم تحديث صلاحـيات الدور بنجـاح  ',
+'Update_your_accounts_profile_information_and_email_address'=> 'يمكنك تحديث معلومات الملف الشخصي لحسابك وعنوان البريد الإلكتروني',
+'update_password'=>'تحديث كلمة المرور',
+'current_password'=>'كلمة المرور الحالية',
+'new_password'=>'كلمة المرور الجديدة',
+'confirm_password'=>'تأكيد كلمة المرور',
+'delete_account'=>'حذف الحـسـاب',
+'Ensure_long_random_password_to_stay_secure'=>'تأكد من أن حسابك يستخدم كلمة مرور طويلة وعشوائية ليظل آمنًا.',
+'Once_your_account_is_deleted'=>'بمجرد حذف حسابك، سيتم حذف موارده وبياناته نهائيًا. قبل حذف حسابك، يرجى تنزيل أي بيانات أو معلومات ترغب في الاحتفاظ بها.',
+
 ];

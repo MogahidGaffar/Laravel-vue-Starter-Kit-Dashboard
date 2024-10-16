@@ -45,13 +45,12 @@
                     class="bi bi-search"></i> </button>
               </div>
               <div class="col-md-2">
-                <Link class="btn btn-primary ms-auto" :href="route('users.create')">{{ translations.create }} &nbsp; <i
+                <Link v-if="hasPermission('create users')" class="btn btn-primary ms-auto" :href="route('users.create')">{{ translations.create }} &nbsp; <i
                   class="bi bi-plus-circle"> </i></Link>
               </div>
             </div>
 
           </form>
-
 
           <div class="table-responsive">
             <table class="table text-center">
@@ -64,8 +63,8 @@
                   <th scope="col"> {{ translations.email }}</th>
                   <th scope="col"> {{ translations.created_at }}</th>
                   <th scope="col"> {{ translations.status }}</th>
-                  <th scope="col">{{ translations.edit }}</th>
-                  <th scope="col">{{ translations.delete }}</th>
+                  <th scope="col" v-if="hasPermission('update users')">{{ translations.edit }}</th>
+                  <th scope="col" v-if="hasPermission('delete users')">{{ translations.delete }}</th>
                 </tr>
               </thead>
               <tbody class=" text-center">
@@ -94,13 +93,12 @@
                       </label>
                     </div>
                   </td>
-                  <td>
+                  <td v-if="hasPermission('update users')">
                     <a class="btn btn-primary" :href="route('users.edit', { user: user.id })">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   </td>
-                  <td>
-
+                  <td v-if="hasPermission('delete users')">
                     <button type="button" class="btn btn-danger" @click="Delete(user.id)">
                       <i class="bi bi-trash"></i>
                     </button>
@@ -128,12 +126,13 @@
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
-import { Link } from '@inertiajs/vue3'
+import { Link , usePage} from '@inertiajs/vue3'
 import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
 
 const props = defineProps({ users: Object, translations: Array })
+const page = usePage()
 
 
 
@@ -152,6 +151,9 @@ const Filter = () => {
 }
 
 
+const hasPermission = (permission) => {
+  return page.props.permissions.includes(permission);
+}
 const Activate = (id) => {
   Swal.fire({
     title: 'Are you sure?',

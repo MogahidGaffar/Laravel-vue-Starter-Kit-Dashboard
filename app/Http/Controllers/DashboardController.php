@@ -12,6 +12,7 @@ class DashboardController extends Controller
 {
 
     public function index (){
+        // dd(auth()->user()->getPermissionsViaRoles());
         return Inertia::render('Dashboard',[
             'translations' => __('messages'),
             'userCount'=>User::all()->count(),

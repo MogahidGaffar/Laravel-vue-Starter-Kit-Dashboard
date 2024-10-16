@@ -232,7 +232,7 @@
     </header>
 
     <!-- Include the Sidebar here -->
-    <Sidebar :translations="translations"  />
+    <Sidebar :translations="translations" :permissions=" page.props.Permissions" />
 
     <!-- Include the main content here -->
 
@@ -246,7 +246,7 @@
         <main>
             <slot />
         </main>
-
+{{ page.props.Permissions }}
     </main>
 
 

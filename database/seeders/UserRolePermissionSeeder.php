@@ -17,26 +17,35 @@ class UserRolePermissionSeeder extends Seeder
     public function run(): void
     {
         // Create Permissions
-        Permission::create(['name' => 'view role']);
-        Permission::create(['name' => 'create role']);
-        Permission::create(['name' => 'update role']);
-        Permission::create(['name' => 'delete role']);
+        Permission::create(['name' => 'create roles']);
+        Permission::create(['name' => 'read roles']);
+        Permission::create(['name' => 'update roles']);
+        Permission::create(['name' => 'delete roles']);
+        Permission::create(['name' => 'view roles']);
 
-        Permission::create(['name' => 'view permission']);
-        Permission::create(['name' => 'create permission']);
-        Permission::create(['name' => 'update permission']);
-        Permission::create(['name' => 'delete permission']);
+        Permission::create(['name' => 'create permissions']);
+        Permission::create(['name' => 'read permissions']);
+        Permission::create(['name' => 'update permissions']);
+        Permission::create(['name' => 'delete permissions']);
+        Permission::create(['name' => 'view permissions']);
 
-        Permission::create(['name' => 'view user']);
-        Permission::create(['name' => 'create user']);
-        Permission::create(['name' => 'update user']);
-        Permission::create(['name' => 'delete user']);
+        Permission::create(['name' => 'create users']);
+        Permission::create(['name' => 'read users']);
+        Permission::create(['name' => 'update users']);
+        Permission::create(['name' => 'delete users']);
+        Permission::create(['name' => 'view users']);
 
-        Permission::create(['name' => 'view product']);
-        Permission::create(['name' => 'create product']);
-        Permission::create(['name' => 'update product']);
-        Permission::create(['name' => 'delete product']);
+        Permission::create(['name' => 'create products']);
+        Permission::create(['name' => 'read products']);
+        Permission::create(['name' => 'update products']);
+        Permission::create(['name' => 'delete products']);
+        Permission::create(['name' => 'view products']);
 
+        Permission::create(['name' => 'create logs']);
+        Permission::create(['name' => 'read logs']);
+        Permission::create(['name' => 'update logs']);
+        Permission::create(['name' => 'delete logs']);
+        Permission::create(['name' => 'view logs']);
 
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
@@ -50,10 +59,10 @@ class UserRolePermissionSeeder extends Seeder
         $superAdminRole->givePermissionTo($allPermissionNames);
 
         // Let's give few permissions to admin role.
-        $adminRole->givePermissionTo(['create role', 'view role', 'update role']);
-        $adminRole->givePermissionTo(['create permission', 'view permission']);
-        $adminRole->givePermissionTo(['create user', 'view user', 'update user']);
-        $adminRole->givePermissionTo(['create product', 'view product', 'update product']);
+        $adminRole->givePermissionTo(['create roles','read roles', 'view roles', 'update roles']);
+        $adminRole->givePermissionTo(['create permissions','read permissions', 'view permissions']);
+        $adminRole->givePermissionTo(['create users', 'read users','view users', 'update users']);
+        $adminRole->givePermissionTo(['create logs', 'read logs','view logs', 'update logs']);
 
 
         // Let's Create User and assign Role to it.
