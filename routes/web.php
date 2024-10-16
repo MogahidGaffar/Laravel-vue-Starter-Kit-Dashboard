@@ -5,9 +5,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,9 +60,18 @@ Route::post('users/{user}/activate',[UsersController::class,'activate'])->name('
     Route::post('logs/undo/{log}', [LogController::class, 'undo'])->name('logs.undo');
 
     Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+    // Route::get('/export-users', [ExportController::class, 'export'])->name('export.users');
+   
+    Route::resource('notification', NotificationController::class)
+  ->middleware('auth')
+  ->only(['index']);
 
 
-
+  
 });
+
+// Route::get('/export-users', [ExportController::class, 'export'])
+// ->withoutMiddleware(['web'])->name('export.users');
+Route::get('/export-users', [ExportController::class, 'export'])->name('export.users');
 
 require __DIR__.'/auth.php';

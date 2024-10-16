@@ -14,7 +14,6 @@ ul,
 li,
 label,
 .alert,
-.swal2-html-container,
 th,
 td {
     font-family: 'Cairo' !important;
@@ -23,7 +22,8 @@ td {
 }
 
 option,
-select {
+select,
+.swal2-title {
     font-family: 'Cairo' !important;
     text-align: center;
 }
@@ -33,8 +33,18 @@ table,
     direction: rtl;
 }
 
+.swal2-html-container,
+.swal2-title {
+    font-family: 'Cairo' !important;
+    text-align: center !important;
+}
+
 .sidebar {
     right: 0;
+}
+
+.header-nav .profile .dropdown-item i {
+    margin-left: 10px !important;
 }
 
 @media (min-width: 1200px) {

@@ -36,13 +36,14 @@ class HandleInertiaRequests extends Middleware
                 'id' => $request->user()->id,
                 'name' => $request->user()->name,
                 'email' => $request->user()->email,
+                'notificationCount' => $request->user()->unreadNotifications()->count(),
                 'avatar' => $request->user()->avatar,
             ] : null,
             'flash' => [
                 'success' => $request->session()->get('success')
             ],
             'auth' => [
-                'user' => $request->user(), // Passing the authenticated user
+                'user' => $request->user(), 
             ],
             'auth_permissions'=>$request->user() ?  $request->user()->getPermissionsViaRoles()->pluck('name')->toArray() : []
 

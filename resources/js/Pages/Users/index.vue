@@ -25,11 +25,11 @@
 
           <form @submit.prevent="Filter">
             <div class="row filter_form">
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <input type="text" class="form-control search_box" v-model="filterForm.name"
                   :placeholder="translations.name" />
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <input type="text" class="form-control search_box" v-model="filterForm.email"
                   :placeholder="translations.email" />
               </div>
@@ -43,6 +43,12 @@
               <div class="col-md-2">
                 <button type="submit" class="btn btn-primary">{{ translations.search }} &nbsp; <i
                     class="bi bi-search"></i> </button>
+              </div>
+              <div class="col-md-2">
+                <!-- <button v-if="hasPermission('read users')" class="btn btn-success" @click="exportUsers">{{ translations.export }} &nbsp; <i class="bi bi-filetype-xls"></i></button> -->
+                <Link v-if="hasPermission('read users')" class="btn btn-success" :href="route('export.users')">{{ translations.export }} &nbsp; <i class="bi bi-filetype-xls"></i></Link>
+            
+                
               </div>
               <div class="col-md-2">
                 <Link v-if="hasPermission('create users')" class="btn btn-primary ms-auto" :href="route('users.create')">{{ translations.create }} &nbsp; <i
@@ -156,12 +162,13 @@ const hasPermission = (permission) => {
 }
 const Activate = (id) => {
   Swal.fire({
-    title: 'Are you sure?',
+    title: props.translations.are_your_sure,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#d33',
     cancelButtonColor: '#7066e0',
-    confirmButtonText: 'Yes, change status'
+    confirmButtonText: props.translations.yes,
+    cancelButtonText: props.translations.cancel,
   }).then((result) => {
     if (result.isConfirmed) {
       router.post(`/users/${id}/activate`, {
@@ -214,5 +221,16 @@ const Delete = (id) => {
     }
   });
 }
+const exportUsers = () => {
+
+      const url = route('export.users'); // Get the URL using Ziggy
+      const link = document.createElement('a');  // Create an anchor element and trigger the download
+      link.href = url;
+      link.setAttribute('download', 'users.csv'); // Suggest a default filename
+      document.body.appendChild(link);  // Append the link to the document and trigger the click
+      link.click();
+      document.body.removeChild(link);      // Clean up by removing the link
+    }
+
 
 </script>

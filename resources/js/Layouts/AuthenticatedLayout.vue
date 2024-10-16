@@ -32,11 +32,13 @@
                 </li>
 
                 <li class="nav-item dropdown">
-
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                    <Link
+                    class="nav-link nav-icon" 
+            :href="route('notification.index')"
+          >
                         <i class="bi bi-bell"></i>
-                        <span class="badge bg-primary badge-number">4</span>
-                    </a>
+                        <span class="badge bg-primary badge-number">{{ notificationCount }}</span>
+                 </Link>
                     <!-- End Notification Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -276,6 +278,10 @@ const page = usePage()
 
 const user = computed(
     () => page.props.user,
+)
+
+const notificationCount = computed(
+  () => Math.min(page.props.user.notificationCount, 9),
 )
 
 
