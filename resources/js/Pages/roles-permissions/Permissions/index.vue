@@ -26,7 +26,7 @@
           <div class="card-body">
             <div class="card-header">
               <div class="d-flex">
-                <Link class="btn btn-primary ms-auto" :href="route('permissions.create')"> {{ translations.create }}  &nbsp; <i class="bi bi-plus-circle"> </i></Link>
+                <Link  v-if="hasPermission('create permissions')" class="btn btn-primary ms-auto" :href="route('permissions.create')"> {{ translations.create }}  &nbsp; <i class="bi bi-plus-circle"> </i></Link>
               </div>
             </div>
   
@@ -37,21 +37,20 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">{{ translations.name }} </th>
-                  <th scope="col">{{ translations.edit }} </th>
-                  <th scope="col">{{ translations.delete }} </th>
+                  <th scope="col" v-if="hasPermission('update permissions')">{{ translations.edit }} </th>
+                  <th scope="col" v-if="hasPermission('delete permissions')">{{ translations.delete }} </th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(permission, index)   in permissions.data" :key="permission.id">
                   <th scope="row">{{ index+1 }}</th>
                   <td>{{ permission.name }}</td>
-                  <td>
+                  <td  v-if="hasPermission('update permissions')">
                     <a class="btn btn-primary" :href="route('permissions.edit', { permission: permission.id })">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   </td>
-                  <td>
-  
+                  <td v-if="hasPermission('delete permissions')">
                     <button type="button" class="btn btn-danger" @click="Delete(permission.id)">
                       <i class="bi bi-trash"></i>
                     </button>
@@ -79,13 +78,19 @@
   <script setup>
   import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
   import Pagination from '@/Components/Pagination.vue';
-  import { Link } from '@inertiajs/vue3'
+  import { Link,usePage } from '@inertiajs/vue3'
   import Swal from 'sweetalert2';
   import { router } from '@inertiajs/vue3'
+const page = usePage()
   
   const props = defineProps({ permissions: Object, translations:Array })
   
   
+   
+  const hasPermission = (permission) => {
+  return page.props.auth_permissions.includes(permission);
+}
+
   
   
   const Delete = (id) => {

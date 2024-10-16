@@ -92,7 +92,7 @@ const page = usePage()
   const props =defineProps({ roles: Object ,translations:Array})
   
   const hasPermission = (permission) => {
-  return page.props.permissions.includes(permission);
+  return page.props.auth_permissions.includes(permission);
 }
 
   

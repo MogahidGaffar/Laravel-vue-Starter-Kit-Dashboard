@@ -129,7 +129,7 @@ const Filter = () => {
   )
 }
 const hasPermission = (permission) => {
-  return page.props.permissions.includes(permission);
+  return page.props.auth_permissions.includes(permission);
 }
 
 const Delete = (id) => {

@@ -1,6 +1,5 @@
 <template>
  
-
 <aside id="sidebar" class="sidebar">
 <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
@@ -61,9 +60,9 @@ import { Link , usePage} from '@inertiajs/vue3'
 const page = usePage()
 
 const hasPermission = (permission) => {
-  return page.props.permissions.includes(permission);
+  return page.props.auth_permissions.includes(permission);
 }
-defineProps({message: String,translations:Array,permissions:Array })
+defineProps({message: String,translations:Array})
 </script>
 
 <script>
