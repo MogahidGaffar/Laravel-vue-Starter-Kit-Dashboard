@@ -16,7 +16,7 @@ Everyone can benefit from this collective effort!
 - Register
 - Logout
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/login.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/login.PNG" style="height: auto; width: 100%">
 
 ### Users Management  :
 - Create Users
@@ -26,8 +26,8 @@ Everyone can benefit from this collective effort!
 - Pagination
 - Filteration
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/users.PNG" style="height: 400px; width: 90%">
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/edit_user.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/users.PNG" style="height: auto; width: 100%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/edit_user.PNG" style="height: auto; width: 100%">
 
 
 ### Roles & Permissions  :
@@ -37,22 +37,22 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 - Assing Permissions to Role
 - Assing Roles to User
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles.PNG" style="height: 400px; width: 90%">
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/permissions.PNG" style="height: 400px; width: 90%">
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles_permissions.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles.PNG" style="height: auto; width: 100%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/permissions.PNG" style="height: auto; width: 100%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles_permissions.PNG" style="height: auto; width: 100%">
 
 
 ###  Logging System :
 - Tracks all actions across modules 
 - Ability to undo actions.
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/logs.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/logs.PNG" style="height: auto; width: 100%">
 
 
 ###  Notification System :
 -  table based notifications system for inside actions (cruds and Qeueed jobs)
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/notifiaction.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/notifiaction.PNG" style="height: auto; width: 100%">
 
 
 ### Excel Exportation  :
@@ -71,13 +71,13 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 - logs by action chart
 - logs by user chart
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/dashabord.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/dashabord.PNG" style="height: auto; width: 100%">
 
 
 ### Multi-Language Support  :
 - Designed to accommodate both LTR and RTL languages.
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL.PNG" style="height: auto; width: 100%">
 
 
 ### Alert System  :
@@ -85,7 +85,7 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 - Bootstrap Alert
 - Sweet alert
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL2.PNG" style="height: 400px; width: 90%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL2.PNG" style="height: auto; width: 100%">
 
 ### Flexible Layout  :
 
