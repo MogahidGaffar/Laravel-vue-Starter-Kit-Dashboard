@@ -11,6 +11,7 @@ class RoleObserver
      */
     public function created(Role $role): void
     {
+        if (!app()->runningInConsole()) { // Stop Observer  During DB Seeding
         Log::create([
             'module_name' => 'Role',
             'action' => 'create',
@@ -19,6 +20,7 @@ class RoleObserver
             'updated_data' => json_encode($role),
            'by_user_id' => auth()->id() ,
         ]);
+    }
     }
 
     /**

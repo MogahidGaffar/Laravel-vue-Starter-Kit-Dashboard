@@ -649,6 +649,7 @@ h6 {
   .toggle-sidebar #main,
   .toggle-sidebar #footer {
     margin-left: 0;
+    margin-right: 0;
   }
 
   .toggle-sidebar .sidebar {
@@ -1319,4 +1320,9 @@ canvas {
 .canv_row {
   padding-bottom: 15px !important;
   padding-top: 15px !important;
+}
+
+
+.main-full-width {
+  margin-left: 0 !important;
 }

@@ -11,6 +11,7 @@ class UserObserver
      */
     public function created(User $user): void
     {
+        if (!app()->runningInConsole()) { // Stop Observer  During DB Seeding
         Log::create([
             'module_name' => 'User',
             'action' => 'create',
@@ -18,8 +19,8 @@ class UserObserver
             'affected_record_id' => $user->id,
             'updated_data' => json_encode($user),
            'by_user_id' => auth()->id() ?? $user->id, 
-
         ]);
+    }
     }
 
     /**

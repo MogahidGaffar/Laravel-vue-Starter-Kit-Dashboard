@@ -16,7 +16,6 @@ class UserRolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        Permission::withoutEvents(function () { //Stop Observers while Seeding
 
         // Create Permissions
         Permission::create(['name' => 'create roles']);
@@ -48,11 +47,10 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update logs']);
         Permission::create(['name' => 'delete logs']);
         Permission::create(['name' => 'view logs']);
-    });
-    
-    Role::withoutEvents(function () {  //Stop Observers while Seeding
+
+
     // Create Roles 
-        $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
+        $superAdminRole = Role::create(['name' => 'superadmin']); //as super-admin
         $adminRole = Role::create(['name' => 'admin']);
         $staffRole = Role::create(['name' => 'staff']);
         $userRole = Role::create(['name' => 'user']);
@@ -66,13 +64,12 @@ class UserRolePermissionSeeder extends Seeder
          $adminRole->givePermissionTo(['create permissions','read permissions', 'view permissions']);
          $adminRole->givePermissionTo(['create users', 'read users','view users', 'update users']);
          $adminRole->givePermissionTo(['create logs', 'read logs','view logs', 'update logs']);
-    });
        
+//php artisan cache:forget spatie.permission.cache 
 
 
         // Let's Create User and assign Role to it.
 
-        User::withoutEvents(function () {  //Stop Observers while Seeding
             // Create Super Admin user
             $superAdminUser = User::firstOrCreate(
                 ['email' => 'superadmin@gmail.com'],
@@ -105,6 +102,5 @@ class UserRolePermissionSeeder extends Seeder
                 ]
             );
             $staffUser->assignRole('staff');
-        });
     }
 }

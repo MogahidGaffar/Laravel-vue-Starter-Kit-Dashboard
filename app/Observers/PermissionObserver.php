@@ -11,14 +11,17 @@ class PermissionObserver
      */
     public function created(Permission $permission): void
     {
-        Log::create([
-            'module_name' => 'Permission',
-            'action' => 'create',
-            'badge' => 'success',
-            'affected_record_id' => $permission->id,
-            'updated_data' => json_encode($permission),
-           'by_user_id' => auth()->id() ,
-        ]);
+        if (!app()->runningInConsole()) { // Stop Observer  During DB Seeding
+            Log::create([
+                'module_name' => 'Permission',
+                'action' => 'create',
+                'badge' => 'success',
+                'affected_record_id' => $permission->id,
+                'updated_data' => json_encode($permission),
+               'by_user_id' => auth()->id() ,
+            ]);
+        }
+    
     }
 
     /**

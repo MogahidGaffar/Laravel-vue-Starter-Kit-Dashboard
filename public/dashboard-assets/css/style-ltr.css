@@ -50,7 +50,7 @@ table,
 @media (min-width: 1200px) {
     #main,
     #footer {
-        margin-right: 300px !important;
+        margin-right: 300px;
     }
 }
 

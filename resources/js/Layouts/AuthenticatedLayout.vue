@@ -9,7 +9,7 @@
             <img src="/dashboard-assets/img/app_logo.jpg" alt="">
             <span class="d-none d-lg-block">StarterKit</span>
             </Link>
-            <i class="bi bi-list toggle-sidebar-btn"></i>
+            <i class="bi bi-list toggle-sidebar-btn" @click="toggleBodyClass"></i>
         </div>
         <!-- End Logo -->
    
@@ -248,7 +248,6 @@
         <main>
             <slot />
         </main>
-{{ page.props.Permissions }}
     </main>
 
 
@@ -285,6 +284,7 @@ const notificationCount = computed(
 )
 
 
+
 const changeLanguage = (event) => {
     const selectedLanguage = event.target.value;
     const currentUrl = window.location.origin; // Get the current app URL
@@ -293,6 +293,22 @@ const changeLanguage = (event) => {
 };
 
 
+
+const isBodyActive = ref(false);
+
+const toggleBodyClass = () => {
+      isBodyActive.value = !isBodyActive.value;
+
+      if (isBodyActive.value) {
+        document.body.classList.add('toggle-sidebar');
+
+      } else {
+        document.body.classList.remove('toggle-sidebar');
+      }
+    };
+
+
+    
 export default {
     components: {
         Sidebar,

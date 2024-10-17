@@ -44,7 +44,6 @@
      */
     if (select('.toggle-sidebar-btn')) {
         on('click', '.toggle-sidebar-btn', function(e) {
-            alert(1);
             select('body').classList.toggle('toggle-sidebar')
         })
     }
