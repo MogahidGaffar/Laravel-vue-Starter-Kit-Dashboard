@@ -60,9 +60,15 @@ return [
 'delete_account'=>'حذف الحـسـاب',
 'Ensure_long_random_password_to_stay_secure'=>'تأكد من أن حسابك يستخدم كلمة مرور طويلة وعشوائية ليظل آمنًا.',
 'Once_your_account_is_deleted'=>'بمجرد حذف حسابك، سيتم حذف موارده وبياناته نهائيًا. قبل حذف حسابك، يرجى تنزيل أي بيانات أو معلومات ترغب في الاحتفاظ بها.',
+'statistics'=>'احصائيات بيانية',
 'export'=>'استـخراج',
 'Export_process_started_You_will_be_notified_when_it_finishes'=>'بدأت عملية التصدير. سيتم إعلامك عند الانتهاء',
 'notifications'=>'الإشـعارات',
 'recent_notifications'=>'أحـدث الإشـعارات',
+'users_by_role'=>'المستخدمين حسب الادوار',
+'users_by_status'=>'المستخدمين حسب الحالة',
+'logs_by_module'=>'العمليات حسب الوحدة',
+'logs_by_action'=>'العمليات حسب العملية',
+'logs_by_user'=>'العمليات حسب المستخدم',
 
 ];

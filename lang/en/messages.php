@@ -60,4 +60,9 @@ return [
     'delete_account' => 'Delete account',
     'Ensure_long_random_password_to_stay_secure' => 'Ensure your account is using a long, random password to stay secure.',
     'Once_your_account_is_deleted' => 'Once your account is deleted call of its resources and data will be permanently deleted. Before deleting your account please download any data or information that you wish to retain.',
+    'statistics'=>'Statistics',
+    'export'=>'Export',
+'Export_process_started_You_will_be_notified_when_it_finishes'=>"Export process started. You will be notified when it finishes.",
+'notifications'=>'notifications',
+'recent_notifications'=>'Recent notifications'
 ];

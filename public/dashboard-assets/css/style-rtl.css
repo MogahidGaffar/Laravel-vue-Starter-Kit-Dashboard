@@ -12,3 +12,9 @@
 .sidebar-nav .nav-link i {
     margin-right: 10px !important;
 }
+
+option,
+select,
+.swal2-title {
+    text-align: center;
+}

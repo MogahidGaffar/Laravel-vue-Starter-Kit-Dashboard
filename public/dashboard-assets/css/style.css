@@ -1326,3 +1326,7 @@ canvas {
 .main-full-width {
   margin-left: 0 !important;
 }
+
+.collapse {
+  visibility :visible !important;
+}

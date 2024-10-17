@@ -114,37 +114,37 @@
           </div>
 
           <div class="card-body">
-            <h5 class="card-title">Reports </h5>
+            <h5 class="card-title">{{ translations.statistics }} </h5>
 
 
             <div class="row canv_row">
               <div class="col-md-6">
-                <h1>Users per Role</h1>
+                <h1>{{ translations.users_by_role }} </h1>
                 <Chart :chartData="UserPerRolechartData" chartId="chart" chartType="bar" />
 
               </div>
               <div class="col-md-6">
-                <h2>Users by Status</h2>
+                <h2>{{ translations.users_by_status }} </h2>
                 <Chart :chartData="statusChartData" chartId="statusChart" chartType="pie" />
               </div>
             </div>
 
-            
 
       <div class="row canv_row">
         <div class="col-md-6">
-          <h2>Logs by Module</h2>
+          <h2>{{ translations.logs_by_module }} </h2>
           <Chart :chartData="modulesChartData" chartId="modulesChart" chartType="bar" />
         </div>
         <div class="col-md-6">
-          <h2>Logs by User</h2>
+          <h2>{{ translations.logs_by_user }} </h2>
           <Chart :chartData="usersChartData" chartId="usersChar" chartType="bar" />
         </div>
+      </div>
 
 
         <div class="row canv_row">
           <div class="col-md-6">
-            <h2>Logs by Action</h2>
+            <h2>{{ translations.logs_by_action}} </h2>
             <Chart :chartData="actionsChartData" chartId="actionsChart" chartType="pie" />
           </div>
         </div>
@@ -153,7 +153,6 @@
           </div>
 
         </div>
-      </div>
 
 
 
