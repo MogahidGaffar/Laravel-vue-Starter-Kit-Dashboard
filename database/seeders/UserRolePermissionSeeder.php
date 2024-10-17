@@ -16,6 +16,8 @@ class UserRolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        Permission::withoutEvents(function () { //Stop Observers while Seeding
+
         // Create Permissions
         Permission::create(['name' => 'create roles']);
         Permission::create(['name' => 'read roles']);
@@ -46,57 +48,63 @@ class UserRolePermissionSeeder extends Seeder
         Permission::create(['name' => 'update logs']);
         Permission::create(['name' => 'delete logs']);
         Permission::create(['name' => 'view logs']);
-
-        // Create Roles
+    });
+    
+    Role::withoutEvents(function () {  //Stop Observers while Seeding
+    // Create Roles 
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
         $adminRole = Role::create(['name' => 'admin']);
         $staffRole = Role::create(['name' => 'staff']);
         $userRole = Role::create(['name' => 'user']);
+         // Lets give all permission to super-admin role.
+         $allPermissionNames = Permission::pluck('name')->toArray();
 
-        // Lets give all permission to super-admin role.
-        $allPermissionNames = Permission::pluck('name')->toArray();
-
-        $superAdminRole->givePermissionTo($allPermissionNames);
-
-        // Let's give few permissions to admin role.
-        $adminRole->givePermissionTo(['create roles','read roles', 'view roles', 'update roles']);
-        $adminRole->givePermissionTo(['create permissions','read permissions', 'view permissions']);
-        $adminRole->givePermissionTo(['create users', 'read users','view users', 'update users']);
-        $adminRole->givePermissionTo(['create logs', 'read logs','view logs', 'update logs']);
+         $superAdminRole->givePermissionTo($allPermissionNames);
+ 
+         // Let's give few permissions to admin role.
+         $adminRole->givePermissionTo(['create roles','read roles', 'view roles', 'update roles']);
+         $adminRole->givePermissionTo(['create permissions','read permissions', 'view permissions']);
+         $adminRole->givePermissionTo(['create users', 'read users','view users', 'update users']);
+         $adminRole->givePermissionTo(['create logs', 'read logs','view logs', 'update logs']);
+    });
+       
 
 
         // Let's Create User and assign Role to it.
 
-        $superAdminUser = User::firstOrCreate([
-                    'email' => 'superadmin@gmail.com',
-                ], [
+        User::withoutEvents(function () {  //Stop Observers while Seeding
+            // Create Super Admin user
+            $superAdminUser = User::firstOrCreate(
+                ['email' => 'superadmin@gmail.com'],
+                [
                     'name' => 'Super Admin',
                     'email' => 'superadmin@gmail.com',
-                    'password' => Hash::make ('12345678'),
-                ]);
+                    'password' => Hash::make('12345678'),
+                ]
+            );
+            $superAdminUser->assignRole('superadmin');
 
-        $superAdminUser->assignRole($superAdminRole);
+            // Create Admin user
+            $adminUser = User::firstOrCreate(
+                ['email' => 'admin@gmail.com'],
+                [
+                    'name' => 'Admin',
+                    'email' => 'admin@gmail.com',
+                    'password' => Hash::make('12345678'),
+                ]
+            );
+            $adminUser->assignRole('admin');
 
-
-        $adminUser = User::firstOrCreate([
-                            'email' => 'admin@gmail.com'
-                        ], [
-                            'name' => 'Admin',
-                            'email' => 'admin@gmail.com',
-                            'password' => Hash::make ('12345678'),
-                        ]);
-
-        $adminUser->assignRole($adminRole);
-
-
-        $staffUser = User::firstOrCreate([
-                            'email' => 'staff@gmail.com',
-                        ], [
-                            'name' => 'Staff',
-                            'email' => 'staff@gmail.com',
-                            'password' => Hash::make('12345678'),
-                        ]);
-
-        $staffUser->assignRole($staffRole);
+            // Create Staff user
+            $staffUser = User::firstOrCreate(
+                ['email' => 'staff@gmail.com'],
+                [
+                    'name' => 'Staff',
+                    'email' => 'staff@gmail.com',
+                    'password' => Hash::make('12345678'),
+                ]
+            );
+            $staffUser->assignRole('staff');
+        });
     }
 }

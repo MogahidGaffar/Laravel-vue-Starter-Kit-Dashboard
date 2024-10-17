@@ -1,5 +1,3 @@
-
-
 <template>
   <AuthenticatedLayout :translations="translations">
     <!-- breadcrumb-->
@@ -9,7 +7,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
             <Link class="nav-link" :href="route('dashboard')">
-              {{ translations.Home }}
+            {{ translations.Home }}
             </Link>
           </li>
         </ol>
@@ -17,6 +15,10 @@
     </div>
     <!-- End breadcrumb-->
     <section class="section dashboard">
+
+
+
+
       <div class="row">
         <!-- Left side columns -->
         <div class="col-lg-12">
@@ -31,9 +33,7 @@
                   </h5>
 
                   <div class="d-flex align-items-center">
-                    <div
-                      class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                    >
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
@@ -56,9 +56,7 @@
                   </h5>
 
                   <div class="d-flex align-items-center">
-                    <div
-                      class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                    >
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
@@ -81,9 +79,7 @@
                   </h5>
 
                   <div class="d-flex align-items-center">
-                    <div
-                      class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                    >
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-lock"></i>
                     </div>
                     <div class="ps-3">
@@ -99,6 +95,41 @@
         </div>
         <!-- End Left side columns -->
       </div>
+
+
+      <div class="row canv_row">
+        <div class="col-md-6">
+      <h1>Users per Role</h1>
+          <Chart :chartData="UserPerRolechartData" chartId="chart" chartType="bar" />
+
+        </div>
+        <div class="col-md-6">
+          <h2>Users by Status</h2>
+          <Chart :chartData="statusChartData" chartId="statusChart" chartType="pie" />
+        </div>
+      </div>
+
+
+      <div class="row canv_row">
+        <div class="col-md-6">
+          <h2>Logs by Action</h2>
+          <Chart :chartData="actionsChartData" chartId="actionsChart" chartType="pie" />
+        </div>
+      </div>
+
+      <div class="row canv_row">
+        <div class="col-md-6">
+          <h2>Logs by Module</h2>
+          <Chart :chartData="modulesChartData" chartId="modulesChart" chartType="bar" />
+        </div>
+        <div class="col-md-6">
+          <h2>Logs by User</h2>
+          <Chart :chartData="usersChartData" chartId="usersChar" chartType="bar" />
+        </div>
+      </div>
+
+
+
     </section>
   </AuthenticatedLayout>
 </template>
@@ -106,10 +137,16 @@
 
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import Chart from '@/Components/Chart.vue';
+
 defineProps({
   userCount: Number,
   rolesCount: Number,
   translations: Array,
+  UserPerRolechartData: Object,
+  actionsChartData: Object,
+  modulesChartData: Object,
+  usersChartData: Object,
+  statusChartData: Object,
 });
 </script>

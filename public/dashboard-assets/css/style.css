@@ -1310,3 +1310,13 @@ h6 {
 .form-select option{
   text-align: center !important;
 }
+
+canvas {
+  height: 100% !important;
+    width: 65% !important;
+}
+
+.canv_row {
+  padding-bottom: 15px !important;
+  padding-top: 15px !important;
+}
