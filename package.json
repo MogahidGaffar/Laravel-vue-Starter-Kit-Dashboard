@@ -18,6 +18,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
+        "@inertiajs/progress": "^0.2.7",
         "chart.js": "^4.4.5",
         "sweetalert2": "^11.14.3"
     }

@@ -1330,3 +1330,28 @@ canvas {
 .collapse {
   visibility :visible !important;
 }
+
+.error-page {
+  /* text-align: center;
+  padding: 20px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.error-page img{
+height: 450px !important;
+}
+
+.error-page h1{
+  font-size: 35px;
+  font-weight: 600;
+}
+
+
+.error-page p{
+  font-size: 20px;
+  font-weight: 600;
+}

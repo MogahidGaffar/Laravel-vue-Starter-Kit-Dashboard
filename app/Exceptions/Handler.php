@@ -36,7 +36,9 @@ public function render($request, Throwable $exception)
     if ($exception instanceof HttpException && $exception->getStatusCode() === 403) {
         return Inertia::render('Errors/403');
     }
-
+    if ($exception instanceof HttpException && $exception->getStatusCode() === 404) {
+        return Inertia::render('Errors/404');
+    }
     return parent::render($request, $exception);
 }
 
