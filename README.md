@@ -1,5 +1,5 @@
 
-# 🚀 Reusable Starter Kit Dashboard
+## 🚀 Laravel vue iertia Reusable Starter Kit Dashboard
 
 After just over a week of hard work, I have successfully developed a reusable starter kit dashboard using Laravel and Vue.js 🎉
 
@@ -15,6 +15,8 @@ Everyone can benefit from this collective effort!
 - Login
 - Register
 - Logout
+
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/login.PNG" height="250" widht="400">
 
 ### Users Management  :
 - Create Users
