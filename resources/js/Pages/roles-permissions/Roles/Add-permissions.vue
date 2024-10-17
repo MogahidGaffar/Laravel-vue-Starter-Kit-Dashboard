@@ -32,7 +32,7 @@
 
                             <!--  Form  -->
                             <form @submit.prevent="update" class="row g-3">
-                                <div class="row">
+                                <div class="row roles_permissions">
                                     <div class="col-md-4" v-for="permission in permissions" :key="permission.id">
                                         <div>
                                             <label class="inline-flex items-center me-5 cursor-pointer">

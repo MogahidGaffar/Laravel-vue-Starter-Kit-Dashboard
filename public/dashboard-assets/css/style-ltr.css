@@ -33,6 +33,10 @@ table,
     direction: rtl;
 }
 
+.roles_permissions {
+    direction: ltr;
+}
+
 .swal2-html-container,
 .swal2-title {
     font-family: 'Cairo' !important;
