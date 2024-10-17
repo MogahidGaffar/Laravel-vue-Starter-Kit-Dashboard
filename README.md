@@ -33,12 +33,14 @@ Everyone can benefit from this collective effort!
 ### Roles & Permissions  :
 Efficiently managed using Spatie, including CRUD operations and filtration
 - Roles (Create , update , read , delete)
-- Permissions (Create , update , read , delete)
-- Assing Permissions to Role
-- Assing Roles to User
 
 <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles.PNG" style="height: auto; width: 100%">
+
+- Permissions (Create , update , read , delete)
 <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/permissions.PNG" style="height: auto; width: 100%">
+
+- Assing Permissions to Role
+- Assing Roles to User
 <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles_permissions.PNG" style="height: auto; width: 100%">
 
 
@@ -82,7 +84,7 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 
 ### Manage your profile  :
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL2.PNG" style="height: auto; width: 100%">
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/profile.PNG" style="height: auto; width: 100%">
 
 
 ### Alert System  :
