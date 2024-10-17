@@ -27,8 +27,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="/dashboard-assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">Laravel Starter Kit </span>
+                  <span class="d-none d-lg-block">@mogahid Laravel Starter Kit </span>
                 </a>
               </div><!-- End Logo -->
 

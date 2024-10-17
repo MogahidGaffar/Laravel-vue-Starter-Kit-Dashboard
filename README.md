@@ -31,19 +31,22 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 - Assing Permissions to Role
 - Assing Roles to User
 
+###  Logging System :
+- Tracks all actions across modules 
+- Ability to undo actions.
+
+
+###  Notification System :
+-  table based notifications system for inside actions (cruds and Qeueed jobs)
+
 
 ### Excel Exportation  :
 - export users data to Excel using Queues
 
 ### Image File Uploading  :
- - File Uploading: Easy and effective management ofUser avatars images.
+ - File Uploading: Easy and effective management for users avatars images.
 
-###  Notification System :
--  table based notifications system for inside actions (cruds and Qeueed jobs)
 
-###  Logging System :
-- Tracks all actions across modules 
-- Ability to undo actions.
 
  
 ### Dashboard with Charts and Statistics :
@@ -59,7 +62,7 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 
 ### Alert System  :
  Custom alerts for users upon executing certain operations
-- Bootstrab Alert
+- Bootstrap Alert
 - Sweet alert
 
 ### Flexible Layout  :
@@ -71,7 +74,7 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 
 I am excited about the possibilities this starter kit opens up for future projects and collaborations. 
 
-I invite you to evaluate the project by giving it ⭐️; 
+I invite you to evaluate the project on my GitHub account by giving it ⭐️; 
 
 every rating contributes to improving the project and encourages me to continue developing more!
 
@@ -97,4 +100,7 @@ php artisan migrate:fresh --seed
 php artisan serve
 npm run dev
 ```
+
+### Copyright (c) 2024 Mogahid Gaffar
+
 

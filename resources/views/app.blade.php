@@ -48,6 +48,8 @@
 </head>
 
 <body class="font-sans antialiased">
+ {{-- Copyright (c) 2024 @MogahidGaffar --}}
+
     @inertia
 
 

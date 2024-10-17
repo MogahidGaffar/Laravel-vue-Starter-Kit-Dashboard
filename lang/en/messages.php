@@ -64,5 +64,10 @@ return [
     'export'=>'Export',
 'Export_process_started_You_will_be_notified_when_it_finishes'=>"Export process started. You will be notified when it finishes.",
 'notifications'=>'notifications',
-'recent_notifications'=>'Recent notifications'
+'recent_notifications'=>'Recent notifications',
+'users_by_role'=>'users by role',
+'users_by_status'=>'users by status',
+'logs_by_module'=>'logs by module',
+'logs_by_action'=>'logs by action',
+'logs_by_user'=>'logs by user',
 ];
