@@ -1,7 +1,7 @@
 
 ## 🚀 Laravel vue iertia Reusable Starter Kit Dashboard
 
-After just over a week of hard work, I have successfully developed a reusable starter kit dashboard using Laravel and Vue.js 🎉
+Glad to share with you my reusable starter kit dashboard using Laravel and Vue.js 🎉
 
 available for all my Dear Laravel Developers!  🌟 
 
