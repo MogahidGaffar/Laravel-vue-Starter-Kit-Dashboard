@@ -80,12 +80,16 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL.PNG" style="height: auto; width: 100%">
 
 
+### Manage your profile  :
+
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL2.PNG" style="height: auto; width: 100%">
+
+
 ### Alert System  :
  Custom alerts for users upon executing certain operations
 - Bootstrap Alert
 - Sweet alert
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL2.PNG" style="height: auto; width: 100%">
 
 ### Flexible Layout  :
 
