@@ -274,11 +274,11 @@ const flashSuccess = computed(
 const page = usePage()
 
 const user = computed(
-    () => page.props.user,
+    () => page.props.auth,
 )
 
 const notificationCount = computed(
-  () => Math.min(page.props.user.notificationCount, 9),
+  () => Math.min(page.props.auth.notificationCount, 9),
 )
 
 
