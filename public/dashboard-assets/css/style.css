@@ -640,7 +640,7 @@ h6 {
 
 @media (max-width: 1199px) {
   .toggle-sidebar .sidebar {
-    left: 0;
+    left: 0 !important;
   }
 }
 
@@ -653,7 +653,7 @@ h6 {
   }
 
   .toggle-sidebar .sidebar {
-    left: -300px;
+    left: -300px !important;
   }
 }
 
@@ -1210,6 +1210,17 @@ h6 {
   .error-404 img {
     max-width: 50%;
   }
+ 
+}
+@media (max-width: 992px) {
+
+.col-md-3,.col-md-2{
+  margin-bottom: 8px;
+}
+.col-md-3 .btn ,.col-md-2  .btn{
+  width: 150px;
+  text-align: center !important;
+}
 }
 
 /*--------------------------------------------------------------
@@ -1317,10 +1328,10 @@ canvas {
     width: 65% !important;
 }
 
-.canv_row {
+/* .canv_row {
   padding-bottom: 15px !important;
   padding-top: 15px !important;
-}
+} */
 
 
 .main-full-width {
@@ -1354,4 +1365,8 @@ height: 450px !important;
 .error-page p{
   font-size: 20px;
   font-weight: 600;
+}
+
+.sr-only {
+  position: relative !important;
 }

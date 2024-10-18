@@ -26,7 +26,7 @@ use App\Http\Controllers\ExportController;
 Route::get('/', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth','readonly'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
 
   Route::resource('users', UsersController::class);

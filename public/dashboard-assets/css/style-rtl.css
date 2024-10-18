@@ -18,3 +18,22 @@ select,
 .swal2-title {
     text-align: center;
 }
+
+@media (max-width: 1199px) {
+    .sidebar {
+        left: -300px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .toggle-sidebar .sidebar {
+        left: 0 !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .col-md-3 .btn,
+    .col-md-2 .btn {
+        margin-left: 73px !important;
+    }
+}

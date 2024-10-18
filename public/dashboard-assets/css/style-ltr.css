@@ -99,3 +99,17 @@ table,
 .sidebar-nav .nav-content a i {
     margin-left: 8px !important;
 }
+
+@media (max-width: 1199px) {
+    .toggle-sidebar .sidebar {
+        left: 59px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .col-md-3 .btn,
+    .col-md-2 .btn {
+        /* margin-right: 135px !important; */
+        margin-right: 65px !important;
+    }
+}
