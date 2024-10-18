@@ -7,7 +7,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/mogahid-gaffar-397b1719a/)
 
 <div align="center">
-  <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/dashboard-assets/img/app_logo.jpg?raw=true" alt="App Logo" width="200">
+  <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/dashboard-assets/img/readme_main_img.png?raw=true" alt="App Logo" width="200">
 </div>
 <br>
 
