@@ -1,11 +1,10 @@
 # 🚀 Laravel Vue Inertia Reusable Starter Kit Dashboard
-<div align="center">
+
 ![Forks](https://img.shields.io/github/forks/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard?style=social)
 ![Stargazers](https://img.shields.io/github/stars/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard?style=social)
 ![Issues](https://img.shields.io/github/issues/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard)
 ![MIT License](https://img.shields.io/github/license/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/mogahid-gaffar-397b1719a/)
-</div>
 
 <div align="center">
   <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/dashboard-assets/img/app_logo.jpg?raw=true" alt="App Logo" width="200">
