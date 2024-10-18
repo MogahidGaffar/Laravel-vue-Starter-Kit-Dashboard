@@ -16,7 +16,7 @@ Glad to share with you my reusable starter kit dashboard using Laravel and Vue.j
 This kit is available for all my dear Laravel developers! 🌟 
 
 ## PREVIEW
-![PREVIEW](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/PREVIEW.gif)
+<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/PREVIEW.gif" alt="PREVIEW" style="width: 100%; height:auto">
 
 
 ### 🌟 The Importance of Open Source Projects
