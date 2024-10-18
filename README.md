@@ -41,7 +41,6 @@ Efficiently managed using Spatie, including CRUD operations and filtration
 <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/permissions.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
 
 #### Assing Permissions to Role
-#### Assing Roles to User
 <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles_permissions.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
 
 
@@ -132,6 +131,6 @@ php artisan serve
 npm run dev
 ```
 
-### Copyright (c) 2024 Mogahid Gaffar
+#### Copyright (c) 2024 Mogahid Gaffar
 
 
