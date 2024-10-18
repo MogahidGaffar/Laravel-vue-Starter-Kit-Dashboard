@@ -10,7 +10,8 @@ Sharing such projects as open source enhances collaboration and benefits other d
 Everyone can benefit from this collective effort!
 
 ## Here’s a summary of the key features included:
-### Authorization :
+
+### Authentication :
 
 - Login
 - Register
