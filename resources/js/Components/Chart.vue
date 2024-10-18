@@ -45,8 +45,9 @@
   }
   
   canvas {
-    height: 70% !important;
-    width: 95% !important;
+    height: 100% !important;
+    width: 100% !important;
+    padding: 5px;
   }
   </style>
   
