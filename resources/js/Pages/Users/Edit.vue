@@ -23,11 +23,11 @@
 
       <div class="row">
         <div class="col-lg-12">
-
           <div class="card">
             <div class="card-body">
               <h5 class="card-title"> {{ translations.edit_user_info }}</h5>
               <!-- General Form Elements -->
+
               <form @submit.prevent="update" class="row g-3" method="POST">
 
                 <div class="row mb-3">
@@ -87,13 +87,6 @@
                 </div>
 
 
-
-                <div v-if="imageErrors.length" class="input-error">
-                  <div v-for="(error, index) in imageErrors" :key="index">
-                    {{ error }}
-                  </div>
-                </div>
-
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">{{ translations.update }} &nbsp; <i class="bi bi-save"  v-if="!show_loader"></i>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="show_loader"></span>
@@ -121,8 +114,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { useForm } from '@inertiajs/vue3'
 import { computed } from 'vue'
 import { ref } from 'vue';
+import InputError from '@/Components/InputError.vue';
 
-const imageErrors = computed(() => Object.values(form.errors))
 
 const props = defineProps({
   user: Object,

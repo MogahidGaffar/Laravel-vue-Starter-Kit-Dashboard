@@ -62,6 +62,7 @@
   <script setup>
   import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
   import { useForm } from '@inertiajs/vue3'
+import InputError from '@/Components/InputError.vue';
   
   const props = defineProps({
     permission: Object,

@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UsersController extends Controller
 {
@@ -70,32 +72,35 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-
-        $user = User::make(
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required|unique:users,email',
-                'password' => 'required',
-                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ])
-        );
-        if (!empty($request->password)) {
-            $user->password = $request->password;
-        }
-        $user->avatar = $request->avatar ?: 'avatars/default_avatar.png';
+        // Create user instance and assign validated data
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),  // Hash the password
+            'avatar' => $request->avatar ? $request->avatar : 'avatars/default_avatar.png',
+        ]);
+    
+        // Handle avatar upload if a file is provided
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->store('avatars', 'public');
             $user->avatar = $path;
         }
+    
+        // Save the user
         $user->save();
-        // Sync roles if any
-        $user->syncRoles($request->selectedRoles);
-
+    
+        // Sync roles if any selected
+        if ($request->has('selectedRoles')) {
+            $user->syncRoles($request->selectedRoles);
+        }
+    
+        // Redirect with success message
         return redirect()->route('users.index')
-        ->with('success',  __('messages.data_saved_successfully'));
+            ->with('success', __('messages.data_saved_successfully'));
     }
+    
 
     /**
      * Display the specified resource.
@@ -123,30 +128,24 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        // Validate the request
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-        ]);
+        // The request is automatically validated using the UpdateUserRequest rules
     
-        // Check if an avatar file is uploaded and Store it
+        // Check if an avatar file is uploaded and store it
         if ($request->hasFile('avatar')) {
-            $validatedData['avatar'] = $request->validate([
-                'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',])['avatar'];
             $path = $request->file('avatar')->store('avatars', 'public');
-            $validatedData['avatar'] = $path;
+            $user->avatar = $path; // Update the user's avatar path
         }
     
         // Update user information, including avatar and other fields, in a single save operation
-        $user->update($validatedData);
+        $user->update($request->validated());
     
         // Sync roles if any
         $user->syncRoles($request->selectedRoles);
     
         return redirect()->route('users.index')
-            ->with('success',  __('messages.data_updated_successfully'));
+            ->with('success', __('messages.data_updated_successfully'));
     }
     
 

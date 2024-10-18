@@ -14,6 +14,7 @@ ul,
 li,
 label,
 .alert,
+.text-red-600,
 th,
 td {
     font-family: 'Cairo' !important;

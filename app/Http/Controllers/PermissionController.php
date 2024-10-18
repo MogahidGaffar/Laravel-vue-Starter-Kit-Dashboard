@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
+use App\Http\Requests\StorePermissionRequest; 
+use App\Http\Requests\UpdatePermissionRequest;
 
 class PermissionController extends Controller
 {
@@ -29,24 +31,15 @@ class PermissionController extends Controller
         return Inertia('roles-permissions/Permissions/Create',[     'translations' => __('messages')]);
     }
 
-    public function store(Request $request)
+    public function store(StorePermissionRequest $request)
     {
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'unique:permissions,name'
-            ]
-        ]);
-
         Permission::create([
             'name' => $request->name
         ]);
-
+    
         return redirect()->route('permissions.index')
-        ->with('success',  __('messages.data_saved_successfully'));
+            ->with('success', __('messages.data_saved_successfully'));
     }
-
     public function edit(Permission $permission)
     {
         return Inertia('roles-permissions/Permissions/Edit',[
@@ -54,24 +47,15 @@ class PermissionController extends Controller
              'permission'=>$permission
          ]); }
 
-    public function update(Request $request, Permission $permission)
-    {
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'unique:permissions,name,'.$permission->id
-            ]
-        ]);
-
-        $permission->update([
-            'name' => $request->name
-        ]);
-
-        return redirect()->route('permissions.index')
-        ->with('success',  __('messages.data_updated_successfully'));
-    }
-
+         public function update(UpdatePermissionRequest $request, Permission $permission)
+         {
+             $permission->update([
+                 'name' => $request->name,
+             ]);
+         
+             return redirect()->route('permissions.index')
+                 ->with('success', __('messages.data_updated_successfully'));
+         }
     public function destroy($permissionId)
     {
         $permission = Permission::find($permissionId);

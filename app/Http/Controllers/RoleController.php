@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreRoleRequest; 
+use App\Http\Requests\UpdateRoleRequest;
 
 class RoleController extends Controller
 {
@@ -36,23 +38,15 @@ class RoleController extends Controller
          ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'unique:roles,name'
-            ]
-        ]);
-
+        // The validated data is automatically handled by the StoreRoleRequest
         Role::create([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
-
-        
+    
         return redirect()->route('roles.index')
-            ->with('success',  __('messages.data_saved_successfully'));
+            ->with('success', __('messages.data_saved_successfully'));
     }
 
     public function edit(Role $role)
@@ -64,23 +58,14 @@ class RoleController extends Controller
       
     }
 
-    public function update(Request $request, Role $role)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-
-        $role->update(
-            $request->validate([
-              'name' => [
-                'required',
-                'string',
-                'unique:roles,name,'.$role->id
-            ]
-            ])
-        );
-
+        $role->update([
+            'name' => $request->name,
+        ]);
+    
         return redirect()->route('roles.index')
-            ->with('success',  __('messages.data_updated_successfully'));
-
-
+            ->with('success', __('messages.data_updated_successfully'));
     }
 
     public function destroy($roleId)
