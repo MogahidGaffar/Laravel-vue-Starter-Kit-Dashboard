@@ -1,140 +1,139 @@
+# 🚀 Laravel Vue Inertia Reusable Starter Kit Dashboard
 
-## 🚀 Laravel vue iertia Reusable Starter Kit Dashboard
+![Forks](https://img.shields.io/github/forks/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard?style=social)
+![Stargazers](https://img.shields.io/github/stars/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard?style=social)
+![Issues](https://img.shields.io/github/issues/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard)
+![MIT License](https://img.shields.io/github/license/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard)
+
+<div align="center">
+  <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/dashboard-assets/img/app_logo.jpg?raw=true" alt="App Logo" width="200">
+</div>
 
 Glad to share with you my reusable starter kit dashboard using Laravel and Vue.js 🎉
 
-available for all my Dear Laravel Developers!  🌟 
+This kit is available for all my dear Laravel developers! 🌟 
 
-🌟 **The Importance of Open Source Projects**:  
-Sharing such projects as open source enhances collaboration and benefits other developers, making their lives easier in application development. 
-Everyone can benefit from this collective effort!
+### 🌟 The Importance of Open Source Projects
+Sharing such projects as open source enhances collaboration and benefits other developers, making their lives easier in application development. Everyone can benefit from this collective effort!
 
-## Here’s a summary of the key features included:
+## Key Features Included
 
-### Authentication :
+### 1. Authentication
+- **Login**
+- **Register**
+- **Logout**
 
-- Login
-- Register
-- Logout
+![Login Page](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/login.PNG)
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/login.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+---
 
-### Users Management  :
-- Create Users
-- Read Users
-- Update Users
-- Delete Users
-- Pagination
-- Filteration
+### 2. User Management
+- **Create Users**
+- **Read Users**
+- **Update Users**
+- **Delete Users**
+- **Pagination**
+- **Filtering**
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/users.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/edit_user.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+![Users Management](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/users.PNG)
+![Edit User](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/edit_user.PNG)
 
+---
 
-### Authorization : Roles & Permissions  
-Efficiently managed using Spatie, including CRUD operations and filtration
-#### Roles (Create , update , read , delete)
+### 3. Authorization: Roles & Permissions
+Efficiently managed using Spatie, including CRUD operations and filtering.
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+#### Roles
+![Roles Management](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles.PNG)
 
-#### Permissions (Create , update , read , delete)
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/permissions.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+#### Permissions
+![Permissions Management](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/permissions.PNG)
 
-#### Assing Permissions to Role
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles_permissions.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+#### Assigning Permissions to Role
+![Roles and Permissions Assignment](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/roles_permissions.PNG)
 
+---
 
-###  Logging System :
+### 4. Logging System
 - Tracks all actions across modules 
-- Ability to undo actions.
+- Ability to undo actions
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/logs.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+![Logging System](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/logs.PNG)
 
+---
 
-###  Notification System :
--  table based notifications system for inside actions (cruds and Qeueed jobs)
+### 5. Notification System
+- Table-based notifications for internal actions (CRUD and queued jobs)
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/notifiaction.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+![Notification System](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/notifiaction.PNG)
 
+---
 
-### Excel Exportation  :
-- export users data to Excel using Queues
+### 6. Excel Exportation
+- Export user data to Excel using queues
 
-### Image File Uploading  :
- - File Uploading: Easy and effective management for users avatars images.
+---
 
+### 7. Image File Uploading
+- Easy and effective management for user avatar images
 
+---
 
- 
-### Dashboard with Charts and Statistics :
-- users by role chart
-- users by status chart
-- logs by module chart 
-- logs by action chart
-- logs by user chart
+### 8. Dashboard with Charts and Statistics
+- Users by role chart
+- Users by status chart
+- Logs by module chart 
+- Logs by action chart
+- Logs by user chart
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/dashabord.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+![Dashboard](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/dashabord.PNG)
 
+---
 
-### Multi-Language Support  :
-- Designed to accommodate both LTR and RTL languages.
+### 9. Multi-Language Support
+- Designed to accommodate both LTR and RTL languages
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+![Multi-Language Support](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/RTL.PNG)
 
+---
 
-### Manage your profile  :
+### 10. Profile Management
+![Profile Management](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/profile.PNG)
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/profile.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+---
 
+### 11. Alert System
+- Custom alerts for users upon executing certain operations
+  - Bootstrap Alert
+  - Sweet Alert
 
-### Alert System  :
- Custom alerts for users upon executing certain operations
-- Bootstrap Alert
-- Sweet alert
+![Alert System](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/sweet_alert.PNG)
 
+---
 
-<img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/sweet_alert.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
+### 12. Flexible Layout
+- Support for customizing the layout according to user needs
 
-### Flexible Layout  :
-
-- Flexible Layout: Support for customizing the layout according to user needs.
-
-
-
+---
 
 I am excited about the possibilities this starter kit opens up for future projects and collaborations. 
 
-I invite you to evaluate the project on my GitHub account by giving it ⭐️; 
-
-every rating contributes to improving the project and encourages me to continue developing more!
+I invite you to evaluate the project on my GitHub account by giving it ⭐️; every rating contributes to improving the project and encourages me to continue developing more!
 
 ## Installation Commands
+
+To get started, follow these commands:
 
 ```bash
 # Clone the repository
 git clone https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard.git
 
 # Change directory
-cd Laravel-vue-Starter-Kit-Dashboard.git
+cd Laravel-vue-Starter-Kit-Dashboard
 
 # Install dependencies
 composer install
 
 # Install Node.js dependencies
 npm install
-
-# Run migrations
-php artisan migrate:fresh --seed
-
-# Start the local development server
-php artisan serve
-php artisan queue:work
-npm run dev
-
-
-
-```
-
-#### Copyright (c) 2024 Mogahid Gaffar
-
 
