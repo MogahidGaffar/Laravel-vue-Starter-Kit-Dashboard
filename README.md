@@ -128,7 +128,11 @@ php artisan migrate:fresh --seed
 
 # Start the local development server
 php artisan serve
+php artisan queue:work
 npm run dev
+
+
+
 ```
 
 #### Copyright (c) 2024 Mogahid Gaffar
