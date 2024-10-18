@@ -31,7 +31,7 @@ Everyone can benefit from this collective effort!
 <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/screenshots/edit_user.PNG" style="height: auto; width: 100%; border-radius: 15px !important; ">
 
 
-### Roles & Permissions  :
+### Authorization : Roles & Permissions  
 Efficiently managed using Spatie, including CRUD operations and filtration
 #### Roles (Create , update , read , delete)
 
