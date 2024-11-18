@@ -39,8 +39,12 @@
   
   
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary">{{ translations.save }}  &nbsp; <i class="bi bi-save"></i> </button>
-                  </div>
+                  <button type="submit" class="btn btn-primary" v-bind:disabled="show_loader"> {{ translations.save }} &nbsp; <i class="bi bi-save"
+                      v-if="!show_loader"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                      v-if="show_loader"></span>
+                  </button>
+                </div>
   
   
                 </form>
@@ -65,18 +69,33 @@
   import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
   import { useForm } from '@inertiajs/vue3'
   import InputError from '@/Components/InputError.vue';
+ import { ref } from 'vue';
   
   const props = defineProps({
     translations:Array
   })
+  
+  const show_loader = ref(false);
   
   const form = useForm({
     name: "",
   })
   
   
-  const store = () => form.post(
-    route('permissions.store'),
-  )
+  
+const store = () => {
+  show_loader.value = true;
+  form.post(route('permissions.store'), {
+    onSuccess: () => {
+      show_loader.value = false;
+    },
+    onError: () => {
+      show_loader.value = false;
+    },
+  });
+};
+
+
+
   
   </script>

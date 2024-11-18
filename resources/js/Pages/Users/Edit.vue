@@ -88,7 +88,7 @@
 
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary">{{ translations.update }} &nbsp; <i class="bi bi-save"  v-if="!show_loader"></i>
+                  <button type="submit" class="btn btn-primary" v-bind:disabled="show_loader">{{ translations.update }} &nbsp; <i class="bi bi-save"  v-if="!show_loader"></i>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="show_loader"></span>
                   </button>
                 </div>
