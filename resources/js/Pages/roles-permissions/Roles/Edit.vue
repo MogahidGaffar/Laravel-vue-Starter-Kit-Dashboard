@@ -38,10 +38,12 @@
                     </div>
                 </div>
                  
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">  {{ translations.update }} &nbsp; <i class="bi bi-save"></i> </button>
-                  </div>
-  
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary" v-bind:disabled="show_loader">{{ translations.update }} &nbsp; <i class="bi bi-save"  v-if="!show_loader"></i>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="show_loader"></span>
+                  </button>
+                </div>
+
   
                 </form>
                 <!--  From -->
@@ -65,18 +67,36 @@
   import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
   import { useForm } from '@inertiajs/vue3'
   import InputError from '@/Components/InputError.vue';
+import { ref } from 'vue';
   
+
   const props = defineProps({
     role: Object,
     translations:Array
   })
   
+const show_loader = ref(false);
+
+
   const form = useForm({
     name: props.role.name,
   })
   
-  const update = () => form.put(
-    route('roles.update', { role: props.role.id }),
-  )
+
+
+  
+const update = () => {
+  show_loader.value = true; 
+  form.put(route('roles.update', { role: props.role.id }), {
+    onSuccess: () => {
+      show_loader.value = false; 
+    },
+    onError: () => {
+      show_loader.value = false; 
+    },
+  });
+};
+
+
   
   </script>
