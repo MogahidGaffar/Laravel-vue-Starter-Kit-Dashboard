@@ -22,7 +22,6 @@ This kit is available for all my dear Laravel developers! 🌟
 ![Reviews](https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/reviews.png)
 
 ---
-
 ### 🌟 The Importance of Open Source Projects
 Sharing such projects as open source enhances collaboration and benefits other developers, making their lives easier in application development. Everyone can benefit from this collective effort!
 
