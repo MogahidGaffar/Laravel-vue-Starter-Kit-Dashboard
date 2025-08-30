@@ -10,7 +10,7 @@
   <img src="https://github.com/MogahidGaffar/Laravel-vue-Starter-Kit-Dashboard/blob/main/public/dashboard-assets/img/readme_main_img.png?raw=true" alt="App Logo" width="300" height="150">
 </div>
 <br>
-
+ 
 Glad to share with you my reusable starter kit dashboard using Laravel and Vue.js 🎉
 
 This kit is available for all my dear Laravel developers! 🌟 
