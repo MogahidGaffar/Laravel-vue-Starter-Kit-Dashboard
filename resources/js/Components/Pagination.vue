@@ -1,5 +1,5 @@
 <template>
-    <div  style="display: flex; justify-content: center;">
+    <div class="flex-center">
     <nav>
         <ul class="pagination">
             <li class="page-item" v-for="(link, index) in links">

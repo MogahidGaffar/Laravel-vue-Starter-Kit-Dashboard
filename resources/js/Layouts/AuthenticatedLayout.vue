@@ -24,11 +24,29 @@
                 </li> -->
                 <!-- End Search Icon-->
                 <li class="nav-item dropdown">
-                    <select class="form-control changeLang" @change="changeLanguage">
-                        <option value="" selected> {{translations.language  }} 🌍 </option>
-                        <option value="en"> English</option>
-                        <option value="ar">Arabic</option>
-                    </select>
+                    <a class="nav-link nav-icon d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-globe2"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#" @click.prevent="changeLanguage('en')">
+                                <img src="/dashboard-assets/img/flags/en.png" alt="English" class="flag-icon me-2">
+                                <span>English</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#" @click.prevent="changeLanguage('ar')">
+                                <img src="/dashboard-assets/img/flags/ar.png" alt="Arabic" class="flag-icon me-2">
+                                <span>Arabic</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#" @click.prevent="changeLanguage('tr')">
+                                <img src="/dashboard-assets/img/flags/tr.png" alt="Turkish" class="flag-icon me-2">
+                                <span>Turkish</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -182,7 +200,10 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img :src="user.avatar" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.name }}</span>
+                        <span class="d-none d-md-flex flex-column ps-2 lh-sm">
+                            <span class="dropdown-toggle">{{ user.name }}</span>
+                            <small class="text-muted text-capitalize">{{ user.role }}</small>
+                        </span>
                     </a>
                     <!-- End Profile Iamge Icon -->
 
@@ -283,8 +304,7 @@ const notificationCount = computed(
 
 
 
-const changeLanguage = (event) => {
-    const selectedLanguage = event.target.value;
+const changeLanguage = (selectedLanguage) => {
     const currentUrl = window.location.origin; // Get the current app URL
     const newUrl = `${currentUrl}/lang/change?lang=${selectedLanguage}`; // Construct the new URL
     window.location.href = newUrl; // Redirect to the new URL

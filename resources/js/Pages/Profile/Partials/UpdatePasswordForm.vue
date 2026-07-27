@@ -1,8 +1,5 @@
 <script setup>
 import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -10,7 +7,7 @@ const passwordInput = ref(null);
 const currentPasswordInput = ref(null);
 
 defineProps({
-    translations:Array,
+    translations: Array,
 });
 
 const form = useForm({
@@ -38,72 +35,35 @@ const updatePassword = () => {
 </script>
 
 <template>
-    <section>
-        <header>
-            <h2 class="text-lg font-medium text-gray-900"> {{ translations.update_password}}</h2>
+    <form @submit.prevent="updatePassword" class="row g-3">
+        <div class="col-md-4">
+            <label for="current_password" class="form-label">{{ translations.current_password }}</label>
+            <input id="current_password" ref="currentPasswordInput" type="password" class="form-control"
+                v-model="form.current_password" autocomplete="current-password">
+            <InputError :message="form.errors.current_password" class="mt-1" />
+        </div>
 
-            <p class="mt-1 text-sm text-gray-600">
-                {{ translations.Ensure_long_random_password_to_stay_secure }}
-            </p>
-        </header>
+        <div class="col-md-4">
+            <label for="password" class="form-label">{{ translations.new_password }}</label>
+            <input id="password" ref="passwordInput" type="password" class="form-control" v-model="form.password"
+                autocomplete="new-password">
+            <InputError :message="form.errors.password" class="mt-1" />
+        </div>
 
-        <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
-            <div>
-                <InputLabel for="current_password" :value="translations.current_password" />
+        <div class="col-md-4">
+            <label for="password_confirmation" class="form-label">{{ translations.confirm_password }}</label>
+            <input id="password_confirmation" type="password" class="form-control"
+                v-model="form.password_confirmation" autocomplete="new-password">
+            <InputError :message="form.errors.password_confirmation" class="mt-1" />
+        </div>
 
-                <TextInput
-                    id="current_password"
-                    ref="currentPasswordInput"
-                    v-model="form.current_password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    autocomplete="current-password"
-                />
+        <div class="col-12 d-flex align-items-center gap-3">
+            <button type="submit" class="btn btn-primary" :disabled="form.processing">{{ translations.save }}</button>
 
-                <InputError :message="form.errors.current_password" class="mt-2" />
-            </div>
-
-            <div>
-                <InputLabel for="password" :value="translations.new_password" />
-
-                <TextInput
-                    id="password"
-                    ref="passwordInput"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    autocomplete="new-password"
-                />
-
-                <InputError :message="form.errors.password" class="mt-2" />
-            </div>
-
-            <div>
-                <InputLabel for="password_confirmation" :value="translations.confirm_password" />
-
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    autocomplete="new-password"
-                />
-
-                <InputError :message="form.errors.password_confirmation" class="mt-2" />
-            </div>
-
-            <div class="flex items-center gap-4">
-                <PrimaryButton :disabled="form.processing">{{ translations.save }}</PrimaryButton>
-
-                <Transition
-                    enter-active-class="transition ease-in-out"
-                    enter-from-class="opacity-0"
-                    leave-active-class="transition ease-in-out"
-                    leave-to-class="opacity-0"
-                >
-                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600"> {{ translations.data_updated_successfully}}</p>
-                </Transition>
-            </div>
-        </form>
-    </section>
+            <Transition enter-active-class="transition ease-in-out" enter-from-class="opacity-0"
+                leave-active-class="transition ease-in-out" leave-to-class="opacity-0">
+                <span v-if="form.recentlySuccessful" class="text-success small">{{ translations.data_updated_successfully }}</span>
+            </Transition>
+        </div>
+    </form>
 </template>

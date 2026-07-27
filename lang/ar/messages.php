@@ -70,5 +70,16 @@ return [
 'logs_by_module'=>'سجـل العمليات حسب الوحدة',
 'logs_by_action'=>'سجـل العمليات حسب العملية',
 'logs_by_user'=>'سجـل العمليات حسب المستخدم',
+'auto' => 'النظام',
+'module_User' => 'المستخدمون',
+'module_Role' => 'الأدوار',
+'module_Permission' => 'الصلاحيات',
+'action_Create' => 'إنشاء',
+'action_Update' => 'تحديث',
+'action_Delete' => 'حذف',
+'close' => 'إغلاق',
+'account_information' => 'معلومات الحساب',
+'member_since' => 'عضو منذ',
+'last_login' => 'آخر تسجيل دخول',
 
 ];

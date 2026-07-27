@@ -12,7 +12,7 @@ class SetLocale
         $locale = $request->get('lang', config('app.locale'));
 
         // Check if the locale is valid
-        if (in_array($locale, ['en', 'ar'])) { // Add supported languages here
+        if (in_array($locale, ['en', 'ar', 'tr'])) { // Add supported languages here
             App::setLocale($locale);
         }
 

@@ -21,7 +21,7 @@
       <section class="section dashboard">
     
         <div class="row">
-            <div class="col-lg-8 " style="margin: auto">
+            <div class="col-lg-8 margin-auto">
 <div class="card">
 
 
@@ -32,7 +32,7 @@
     <div class="activity-item d-flex" v-for="notification in notifications" :key="notification.id">
         <div class="activite-label">{{ notification.created_at }}</div>
         <i class="bi bi-circle-fill activity-badge text-success align-self-start"></i>
-        <div class="activity-content" style="text-align: left;">
+        <div class="activity-content text-align-left">
             {{ notification.data.message }}
             <a v-if="notification.data.file_path" :href="notification.data.file_path" :target="_blank" class="fw-bold text-dark" target="_blank">
                 Download your file here

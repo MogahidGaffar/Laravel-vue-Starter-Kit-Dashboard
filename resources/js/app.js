@@ -1,5 +1,5 @@
 // import './bootstrap';
-import '../css/app.css';
+import '../css/all.css';
 import '../../public/dashboard-assets/js/main.js';
 
 import { createApp, h } from 'vue';

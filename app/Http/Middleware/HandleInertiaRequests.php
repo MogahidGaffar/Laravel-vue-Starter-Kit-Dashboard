@@ -38,6 +38,9 @@ class HandleInertiaRequests extends Middleware
                 'email' => $request->user()->email,
                 'notificationCount' => $request->user()->unreadNotifications()->count(),
                 'avatar' => $request->user()->avatar,
+                'role' => $request->user()->getRoleNames()->first(),
+                'member_since' => $request->user()->created_at?->format('M Y'),
+                'last_login' => $request->user()->last_login?->format('d M Y, H:i'),
             ] : null,
             'flash' => [
                 'success' => $request->session()->get('success')

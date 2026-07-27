@@ -114,3 +114,30 @@ table,
         margin-right: 65px !important;
     }
 }
+.pagetitle {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.pagetitle .breadcrumb {
+    font-size: 12px;
+}
+
+.dropdown-item.d-flex.align-items-center {
+    flex-direction: row;
+}
+
+.header.d-flex.align-items-center {
+    flex-direction: row-reverse;
+}
+
+.header {
+    padding-right: 20px;
+}
+
+.d-flex.align-items-center.justify-content-between {
+    flex-direction: row;
+}

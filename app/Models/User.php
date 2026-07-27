@@ -29,7 +29,8 @@ class User extends Authenticatable
         'created_at',
         'is_active',
         'avatar',
-        'updated_at'
+        'updated_at',
+        'last_login',
     ];
 
     protected $appends = ['avatar'];
@@ -59,6 +60,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'created_at'  => 'date:Y-m-d',
+        'last_login' => 'datetime',
     ];
 
 

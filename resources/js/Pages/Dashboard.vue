@@ -165,3 +165,30 @@ defineProps({
   statusChartData: Object,
 });
 </script>
+
+<style scoped>
+.canv_row {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.canv_row:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.canv_row>div:not(:last-child) {
+  border-right: 1px solid #e0e0e0;
+}
+
+@media (max-width: 767.98px) {
+  .canv_row>div:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+}
+</style>

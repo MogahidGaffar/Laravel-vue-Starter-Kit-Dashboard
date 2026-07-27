@@ -131,6 +131,19 @@
     margin-top: 2px;
 }
 
+.profile-section {
+    padding: 20px 24px;
+    border-top: 1px solid #ebeef4;
+}
+
+.profile-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #012970;
+    margin-bottom: 15px;
+    font-family: "Poppins", sans-serif;
+}
+
 @media (max-width: 767px) {
     .profile-hero-body {
         flex-direction: column;
