@@ -28,7 +28,7 @@
         </div>
         <div class="card-body">
 
-          <form @submit.prevent="Filter">
+          <form @submit.prevent>
             <div class="row filter_form">
               <div class="col-md-2">
                 <input type="text" class="form-control search_box" v-model="filterForm.name"
@@ -39,6 +39,9 @@
                   :placeholder="translations.email" />
               </div>
               <div class="col-md-2">
+                <CountryAutocomplete v-model="filterForm.country" :placeholder="translations.country" />
+              </div>
+              <div class="col-md-2">
                 <select class="form-select" aria-label="Default select example" v-model="filterForm.is_active">
                   <option value="" selected disabled> {{ translations.status }}</option>
                   <option :value="1">{{ translations.active }}</option>
@@ -46,14 +49,10 @@
                 </select>
               </div>
               <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">{{ translations.search }} &nbsp; <i
-                    class="bi bi-search"></i> </button>
-              </div>
-              <div class="col-md-2">
                 <!-- <button v-if="hasPermission('read users')" class="btn btn-success" @click="exportUsers">{{ translations.export }} &nbsp; <i class="bi bi-filetype-xls"></i></button> -->
                 <Link v-if="hasPermission('read users')" class="btn btn-success" :href="route('export.users')">{{ translations.export }} &nbsp; <i class="bi bi-filetype-xls"></i></Link>
-            
-                
+
+
               </div>
               <div class="col-md-2">
                 <Link v-if="hasPermission('create users')" class="btn btn-primary " :href="route('users.create')">{{ translations.create }} &nbsp; <i
@@ -63,6 +62,8 @@
 
           </form>
 
+          <ActiveFilters :filters="activeFilters" />
+
           <div class="table-responsive">
             <table class="table text-center">
               <thead>
@@ -71,6 +72,7 @@
                   <th scope="col"> {{ translations.name }}</th>
                   <th scope="col"> {{ translations.avatar }}</th>
                   <th scope="col"> {{ translations.role }}</th>
+                  <th scope="col"> {{ translations.country }}</th>
                   <th scope="col"> {{ translations.email }}</th>
                   <th scope="col"> {{ translations.created_at }}</th>
                   <th scope="col"> {{ translations.status }}</th>
@@ -91,6 +93,7 @@
                       {{ role.name }}
                     </span>
                   </td>
+                  <td>{{ user.country_name ?? '-' }}</td>
                   <td>{{ user.email }}</td>
                   <td>{{ user.created_at }}</td>
                   <td>
@@ -146,10 +149,14 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 import ViewUser from '@/Components/Modals/ViewUser.vue';
-import { Link , usePage} from '@inertiajs/vue3'
+import CountryAutocomplete from '@/Components/CountryAutocomplete.vue';
+import ActiveFilters from '@/Components/ActiveFilters.vue';
+import { countryName } from '@/utils/countries'
+import { Link, usePage } from '@inertiajs/vue3'
 import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
+import { useAutoFilters } from '@/composables/useAutoFilters'
 
 const props = defineProps({ users: Object, translations: Array })
 const page = usePage()
@@ -162,22 +169,20 @@ const View = (user) => {
   showViewModal.value = true
 }
 
-
-
-const filterForm = reactive({
+const { filterForm, activeFilters } = useAutoFilters('users.index', {
   name: '',
   email: '',
+  country: null,
   is_active: '',
+}, {
+  name: { label: () => props.translations.name },
+  email: { label: () => props.translations.email },
+  country: { label: () => props.translations.country, empty: null, resolve: countryName },
+  is_active: {
+    label: () => props.translations.status,
+    display: (value) => value === 1 ? props.translations.active : props.translations.not_active,
+  },
 })
-
-const Filter = () => {
-  router.get(
-    route('users.index'),
-    filterForm,
-    { preserveState: true, preserveScroll: true },
-  )
-}
-
 
 const hasPermission = (permission) => {
   return page.props.auth_permissions.includes(permission);

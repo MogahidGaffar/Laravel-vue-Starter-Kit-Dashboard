@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Response;
 class NotificationController extends Controller
@@ -23,7 +24,6 @@ class NotificationController extends Controller
         return inertia(
             'Notification/index',
             [
-            'translations' => __('messages'),
                 'notifications' => $formattedNotifications,
         //         'pagination' => [
         //     'current_page' => $notifications->currentPage(),

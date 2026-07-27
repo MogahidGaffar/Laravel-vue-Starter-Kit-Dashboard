@@ -29,15 +29,21 @@ class User extends Authenticatable
         'created_at',
         'is_active',
         'avatar',
+        'country',
         'updated_at',
         'last_login',
     ];
 
-    protected $appends = ['avatar'];
+    protected $appends = ['avatar', 'country_name'];
 
     public function getAvatarAttribute()
     {
         return asset("storage/{$this->attributes['avatar']}");
+    }
+
+    public function getCountryNameAttribute()
+    {
+        return $this->country['text'] ?? null;
     }
     /**
      * The attributes that should be hidden for serialization.
@@ -61,6 +67,7 @@ class User extends Authenticatable
         'password' => 'hashed',
         'created_at'  => 'date:Y-m-d',
         'last_login' => 'datetime',
+        'country' => 'array',
     ];
 
 

@@ -202,7 +202,7 @@
                         <img :src="user.avatar" alt="Profile" class="rounded-circle">
                         <span class="d-none d-md-flex flex-column ps-2 lh-sm">
                             <span class="dropdown-toggle">{{ user.name }}</span>
-                            <small class="text-muted text-capitalize">{{ user.role }}</small>
+                            <small class="text-muted text-capitalize text-center">{{ user.role }}</small>
                         </span>
                     </a>
                     <!-- End Profile Iamge Icon -->
@@ -258,10 +258,11 @@
     <!-- Include the main content here -->
 
     <main id="main" class="main" >
-        <div v-if="flashSuccess" class="alert alert-success bg-success text-light border-0 alert-dismissible fade show"
+        <div v-if="flashSuccess" ref="successAlertEl" class="alert alert-success bg-success text-light border-0 alert-dismissible fade show position-relative overflow-hidden"
             role="alert">
              {{flashSuccess }}
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="alert-auto-dismiss-progress"></div>
         </div>
 
         <main>
@@ -275,11 +276,24 @@
 
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Link } from '@inertiajs/vue3';
 defineProps({translations:Array })
 
 const showingNavigationDropdown = ref(false);
+
+const successAlertEl = ref(null);
+const ALERT_AUTO_DISMISS_MS = 3000;
+
+onMounted(() => {
+    if (flashSuccess.value) {
+        setTimeout(() => {
+            if (successAlertEl.value && window.bootstrap) {
+                window.bootstrap.Alert.getOrCreateInstance(successAlertEl.value).close();
+            }
+        }, ALERT_AUTO_DISMISS_MS);
+    }
+});
 </script>
 
 
@@ -339,3 +353,24 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.alert-auto-dismiss-progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    animation: alert-auto-dismiss-shrink 3s linear forwards;
+}
+
+@keyframes alert-auto-dismiss-shrink {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+</style>

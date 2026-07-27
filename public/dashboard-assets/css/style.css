@@ -837,6 +837,11 @@ h6 {
   background: #ffecdf;
 }
 
+.dashboard .logs-card .card-icon {
+  color: #e5a52e;
+  background: #fff5df;
+}
+
 /* Activity */
 .dashboard .activity {
   font-size: 14px;

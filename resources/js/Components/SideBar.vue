@@ -21,15 +21,15 @@
         <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"  :class="{ 'collapsed':  !$page.url.startsWith('/roles') && !$page.url.startsWith('/permissions') }" >
             <i class="bi bi-lock"></i><span>{{translations.roles_control  }}</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse " :class="{ 'show': $page.url.startsWith('/roles') || $page.url.startsWith('/permissions') }" data-bs-parent="#sidebar-nav">
             <li>
-                <Link   :href="route('roles.index')"  :class="{ 'collapsed':  !$page.url.startsWith('/roles') }" >
+                <Link   :href="route('roles.index')"  :class="{ 'active':  $page.url.startsWith('/roles') }" >
             <i class="bi bi-circle"></i>
             <span>{{translations.roles  }}</span>
                </Link>
             </li>
             <li>
-                <Link   :href="route('permissions.index')"  :class="{ 'collapsed':  !$page.url.startsWith('/permissions') }" >
+                <Link   :href="route('permissions.index')"  :class="{ 'active':  $page.url.startsWith('/permissions') }" >
             <i class="bi bi-circle"></i>
             <span>{{translations.permissions  }}</span>
                </Link>

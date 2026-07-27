@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Log;
 use Spatie\Permission\Models\Role;
@@ -22,14 +23,15 @@ class DashboardController extends Controller
     $modulesChartData = $this->getLogsChartDataByModule();
     $usersChartData = $this->getLogsChartDataByUser();
     $statusChartData = $this->getUsersChartDataByStatus();
+    $countryChartData = $this->getUsersChartDataByCountry();
 
     return Inertia::render('Dashboard', [
-        'translations' => __('messages'),
         'UserPerRolechartData' => $UserPerRolechartData,
         'actionsChartData' => $actionsChartData,
         'modulesChartData' => $modulesChartData,
         'usersChartData' => $usersChartData,
-        'statusChartData' => $statusChartData, 
+        'statusChartData' => $statusChartData,
+        'countryChartData' => $countryChartData,
         'userCount' => User::count(),
         'rolesCount' => Role::count(),
     ]);
@@ -136,5 +138,26 @@ class DashboardController extends Controller
             ];
         });
     }
-    
-}    
+
+    private function getUsersChartDataByCountry()
+    {
+        return Cache::remember('users_by_country_chart_data', 60, function () {
+            $countries = User::query()->get(['country'])
+                ->pluck('country')
+                ->map(fn ($country) => $country['text'] ?? 'Unspecified')
+                ->countBy();
+
+            return [
+                'labels' => $countries->keys(),
+                'datasets' => [
+                    [
+                        'label' => 'Users by Country',
+                        'backgroundColor' => ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C9CBCF'],
+                        'data' => $countries->values(),
+                    ],
+                ],
+            ];
+        });
+    }
+
+}

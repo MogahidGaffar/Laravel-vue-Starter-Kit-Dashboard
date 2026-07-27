@@ -1,7 +1,8 @@
 <?php 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
     use App\Notifications\ExportNotification;

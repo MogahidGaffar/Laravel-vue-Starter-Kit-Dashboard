@@ -74,6 +74,14 @@
                   </div>
                 </div>
 
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label"> {{ translations.country }}</label>
+                  <div class="col-sm-10">
+                    <CountryAutocomplete v-model="form.country" :placeholder="translations.country" />
+                    <InputError :message="form.errors.country" />
+                  </div>
+                </div>
+
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary" v-bind:disabled="show_loader"> {{ translations.save }} &nbsp; <i class="bi bi-save"
                       v-if="!show_loader"></i>
@@ -106,6 +114,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { useForm } from '@inertiajs/vue3'
 import InputError from '@/Components/InputError.vue';
+import CountryAutocomplete from '@/Components/CountryAutocomplete.vue';
 import { ref } from 'vue';
 
 const show_loader = ref(false);
@@ -123,6 +132,7 @@ const form = useForm({
   password: "",
   selectedRoles: "",
   avatar: null,
+  country: null,
 })
 
 

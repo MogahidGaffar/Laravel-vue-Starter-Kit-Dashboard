@@ -33,7 +33,7 @@
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">{{ translations.name }}</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="user name" v-model="form.name">
+                    <input type="text" class="form-control" :placeholder="translations.name" v-model="form.name">
                     <InputError :message="form.errors.name" />
 
                   </div>
@@ -41,7 +41,7 @@
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">{{ translations.email }}</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control" v-model="form.email" placeholder="user Email">
+                    <input type="email" class="form-control" v-model="form.email" :placeholder="translations.email">
                     <InputError :message="form.errors.email" />
 
                   </div>
@@ -49,7 +49,7 @@
                 <div class="row mb-3">
                   <label for="inputPassword" class="col-sm-2 col-form-label">{{ translations.password }}</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" v-model="form.password" placeholder="Password">
+                    <input type="password" class="form-control" v-model="form.password" :placeholder="translations.password">
                     <InputError :message="form.errors.password" />
 
                   </div>
@@ -86,6 +86,14 @@
                   </div>
                 </div>
 
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label"> {{ translations.country }}</label>
+                  <div class="col-sm-10">
+                    <CountryAutocomplete v-model="form.country" :placeholder="translations.country" />
+                    <InputError :message="form.errors.country" />
+                  </div>
+                </div>
+
 
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary" v-bind:disabled="show_loader">{{ translations.update }} &nbsp; <i class="bi bi-save"  v-if="!show_loader"></i>
@@ -115,6 +123,7 @@ import { useForm } from '@inertiajs/vue3'
 import { computed } from 'vue'
 import { ref } from 'vue';
 import InputError from '@/Components/InputError.vue';
+import CountryAutocomplete from '@/Components/CountryAutocomplete.vue';
 
 
 const props = defineProps({
@@ -133,6 +142,7 @@ const form = useForm({
   password: props.user.password,
   created_at: props.user.created_at,
   selectedRoles: props.userRoles,
+  country: props.user.country?.value ?? null,
 
 })
 

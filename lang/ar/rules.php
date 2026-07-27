@@ -10,6 +10,7 @@ return [
     'The_avatar_must_be_an_image_file' => 'يجب أن تكون الصورة صورة بصيغة صحيحة',
     'The_avatar_must_be_a_file_of_type_jpeg_png_jpg_gif' => 'يجب أن تكون الصورة من النوع: jpeg, png, jpg, gif',
     'The_avatar_must_not_exceed_2MB' => 'يجب ألا تتجاوز الصورة 2 ميغابايت',
+    'The_selected_country_is_invalid' => 'الدولة المحددة غير صالحة',
     'Role_name_is_required' => 'اسم الدور مطلوب',
     'Role_name_must_be_a_string' => 'يجب أن يكون اسم الدور نصًا',
     'Role_name_must_not_exceed_255_characters' => 'يجب ألا يتجاوز اسم الدور 255 حرفًا',
@@ -19,4 +20,5 @@ return [
     'Permission_name_must_not_exceed_255_characters' => 'يجب ألا يتجاوز اسم الصلاحية 255 حرفًا',
     'This_permission_name_has_already_been_taken' => 'هذه الصلاحية موجودة بالفعل',
     'Selected_permissions_are_required' => 'يرجى اختيار صلاحية واحدة على الأقل',
+    'Selected_permissions_must_be_valid' => 'واحدة أو أكثر من الصلاحيات المحددة غير صالحة',
 ];

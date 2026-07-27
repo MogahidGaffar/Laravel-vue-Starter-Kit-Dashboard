@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\LangController;
-use App\Http\Controllers\LogController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\LangController;
+use App\Http\Controllers\Admin\LogController;
+use App\Http\Controllers\Admin\NotificationController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\ExportController;
+use App\Http\Controllers\Admin\ExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,13 +33,13 @@ Route::middleware(['auth'])->group(function () {
   Route::post('users/{user}/activate', [UsersController::class, 'activate'])->name('activate');
   Route::post('users/{user}', [UsersController::class, 'update'])->name('users.update'); //  inertia does not support send files using put request
 
-  Route::resource('permissions', App\Http\Controllers\PermissionController::class);
-  Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
+  Route::resource('permissions', App\Http\Controllers\Admin\PermissionController::class);
+  Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\Admin\PermissionController::class, 'destroy']);
 
-  Route::resource('roles', App\Http\Controllers\RoleController::class);
-  Route::get('roles/{roleId}/delete', [App\Http\Controllers\RoleController::class, 'destroy']);
-  Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole']);
-  Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole']);
+  Route::resource('roles', App\Http\Controllers\Admin\RoleController::class)->except(['edit', 'update']);
+  Route::get('roles/{roleId}/delete', [App\Http\Controllers\Admin\RoleController::class, 'destroy']);
+  Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\Admin\RoleController::class, 'addPermissionToRole']);
+  Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\Admin\RoleController::class, 'givePermissionToRole']);
 
 
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

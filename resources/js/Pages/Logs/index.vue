@@ -29,9 +29,9 @@
         </div>
         <div class="card-body">
 
-          <form @submit.prevent="Filter">
+          <form @submit.prevent>
             <div class="row filter_form">
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <div class="position-relative">
                   <select class="form-select" aria-label="Default select example" v-model="filterForm.module">
                     <option value="" selected disabled>  {{ translations.module }}  </option>
@@ -40,7 +40,7 @@
                   <i class="bi bi-chevron-down select-chevron-icon"></i>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <div class="position-relative">
                   <select class="form-select" aria-label="Default select example" v-model="filterForm.action">
                     <option value="" selected disabled> {{ translations.action }} </option>
@@ -49,7 +49,7 @@
                   <i class="bi bi-chevron-down select-chevron-icon"></i>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <div class="position-relative">
                   <select class="form-select" aria-label="Default select example" v-model="filterForm.by_user_id">
                     <option value="" selected disabled>  {{ translations.by }} </option>
@@ -58,12 +58,11 @@
                   <i class="bi bi-chevron-down select-chevron-icon"></i>
                 </div>
               </div>
-              <div class="col-md-3">
-                <button type="submit" class="btn btn-primary">  {{ translations.search }}  &nbsp; <i class="bi bi-search"></i> </button>
-              </div>
             </div>
 
           </form>
+
+          <ActiveFilters :filters="activeFilters" />
 
           <div class="table-responsive">
             <table class="table text-center">
@@ -113,10 +112,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
+import ActiveFilters from '@/Components/ActiveFilters.vue';
 import { Link,usePage } from '@inertiajs/vue3'
-import Swal from 'sweetalert2';
-import { router } from '@inertiajs/vue3'
-import { reactive } from 'vue'
+import { useAutoFilters } from '@/composables/useAutoFilters'
 const page = usePage()
 
 const props = defineProps({ logs: Object, users: Object, modules: Array, actions: Array,translations:Array })
@@ -128,52 +126,27 @@ const getRowNumber = (index) => {
   return (currentPage - 1) * perPage + index + 1;
 };
 
-const filterForm = reactive({
+const { filterForm, activeFilters } = useAutoFilters('logs', {
   module: '',
   action: '',
   by_user_id: '',
+}, {
+  module: {
+    label: () => props.translations.module,
+    display: (value) => props.translations['module_' + value] || value,
+  },
+  action: {
+    label: () => props.translations.action,
+    display: (value) => props.translations['action_' + value] || value,
+  },
+  by_user_id: {
+    label: () => props.translations.by,
+    display: (value) => props.users.find(u => u.id === value)?.name ?? value,
+  },
 })
 
-const Filter = () => {
-  router.get(
-    route('logs'),
-    filterForm,
-    { preserveState: true, preserveScroll: true },
-  )
-}
 const hasPermission = (permission) => {
   return page.props.auth_permissions.includes(permission);
-}
-
-const Delete = (id) => {
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#d33',
-    cancelButtonColor: '#3085d6',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      router.delete('users/' + id, {
-        onSuccess: () => {
-          Swal.fire(
-            'Deleted!',
-            'Your item has been deleted.',
-            'success'
-          );
-        },
-        onError: () => {
-          Swal.fire(
-            'Error!',
-            'There was an issue deleting the item.',
-            'error'
-          );
-        }
-      });
-    }
-  });
 }
 
 </script>

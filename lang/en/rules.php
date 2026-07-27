@@ -10,6 +10,7 @@ return [
     'The_avatar_must_be_an_image_file' => 'The avatar must be an image file',
     'The_avatar_must_be_a_file_of_type_jpeg_png_jpg_gif' => 'The avatar must be a file of type: jpeg, png, jpg, gif',
     'The_avatar_must_not_exceed_2MB' => 'The avatar must not exceed 2MB',
+    'The_selected_country_is_invalid' => 'The selected country is invalid',
     'Role_name_is_required' => 'The role name is required',
     'This_role_name_has_already_been_taken' => 'This role already exists',
     'Role_name_must_be_a_string' => 'The role name must be a string',
@@ -19,4 +20,5 @@ return [
     'Permission_name_must_be_a_string' => 'The permission name must be a string',
     'Permission_name_must_not_exceed_255_characters' => 'The permission name must not exceed 255 characters',
     'Selected_permissions_are_required' => 'Please select at least one permission',
+    'Selected_permissions_must_be_valid' => 'One or more selected permissions are invalid',
 ];

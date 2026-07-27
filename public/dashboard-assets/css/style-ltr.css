@@ -81,6 +81,11 @@ table,
     flex-direction: row-reverse;
 }
 
+.btn.btn-primary.ms-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
 .dropdown-toggle {
     margin-right: 15px;
 }

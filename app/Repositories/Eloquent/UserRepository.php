@@ -26,6 +26,10 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             $query->where('email', 'LIKE', "%{$email}%");
         });
 
+        $query->when($filters['country'] ?? null, function ($query, $country) {
+            $query->where('country->value', (int) $country);
+        });
+
         if (isset($filters['is_active'])) {
             $query->where('is_active', $filters['is_active']);
         }

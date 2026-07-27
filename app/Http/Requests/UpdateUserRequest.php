@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Support\Countries;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateUserRequest extends FormRequest
@@ -25,6 +26,8 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $this->user->id, // Exclude current user's email
             'password' => 'nullable|string|min:8',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'country' => 'nullable|integer|in:' . implode(',', Countries::values()),
         ];
     }
 
@@ -40,6 +43,7 @@ class UpdateUserRequest extends FormRequest
             'avatar.image' => __('rules.The_avatar_must_be_an_image_file'),
             'avatar.mimes' => __('rules.The_avatar_must_be_a_file_of_type_jpeg_png_jpg_gif'),
             'avatar.max' => __('rules.The_avatar_must_not_exceed_2MB'),
+            'country.in' => __('rules.The_selected_country_is_invalid'),
         ];
         
     }

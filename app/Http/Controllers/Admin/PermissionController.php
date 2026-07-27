@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\PermissionRepositoryInterface;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\StorePermissionRequest;
@@ -21,14 +22,13 @@ class PermissionController extends Controller
     {
         $permissions = $this->permissions->paginateLatest(10);
         return Inertia('roles-permissions/Permissions/index',[
-            'translations' => __('messages'),
               'permissions'=>$permissions
          ]);
     }
 
     public function create()
     {
-        return Inertia('roles-permissions/Permissions/Create',[     'translations' => __('messages')]);
+        return Inertia('roles-permissions/Permissions/Create');
     }
 
     public function store(StorePermissionRequest $request)
@@ -43,7 +43,6 @@ class PermissionController extends Controller
     public function edit(Permission $permission)
     {
         return Inertia('roles-permissions/Permissions/Edit',[
-            'translations' => __('messages'),
              'permission'=>$permission
          ]);
     }

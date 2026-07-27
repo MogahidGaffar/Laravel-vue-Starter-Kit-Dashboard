@@ -24,7 +24,7 @@
         <div class="col-lg-12">
           <div class="row">
             <!-- Users Card -->
-            <div class="col-xxl-4 col-md-4">
+            <div class="col-xxl-3 col-md-6">
               <div class="card info-card customers-card">
                 <div class="card-body">
                   <h5 class="card-title">
@@ -47,7 +47,7 @@
             <!-- End Customers Card -->
 
             <!-- Products Card -->
-            <div class="col-xxl-4 col-md-4">
+            <div class="col-xxl-3 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">
@@ -70,7 +70,7 @@
             <!-- End Products Card -->
 
             <!-- Rules Card -->
-            <div class="col-xxl-4 col-md-4">
+            <div class="col-xxl-3 col-md-6">
               <div class="card info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title">
@@ -91,6 +91,27 @@
               </div>
             </div>
             <!-- End Rules Card -->
+
+            <!-- Logs Card (placeholder) -->
+            <div class="col-xxl-3 col-md-6">
+              <div class="card info-card logs-card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    {{ translations.logs }}
+                  </h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-journal-text"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6>0</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Logs Card -->
           </div>
         </div>
         <!-- End Left side columns -->
@@ -105,36 +126,36 @@
 
 
             <div class="row canv_row">
-              <div class="col-md-6">
-                <h1>{{ translations.users_by_role }} </h1>
+              <div class="col-md-4">
+                <h2>{{ translations.users_by_role }} </h2>
                 <Chart :chartData="UserPerRolechartData" chartId="chart" chartType="bar" />
 
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <h2>{{ translations.users_by_status }} </h2>
                 <Chart :chartData="statusChartData" chartId="statusChart" chartType="pie" />
+              </div>
+              <div class="col-md-4">
+                <h2>{{ translations.users_by_country }} </h2>
+                <Chart :chartData="countryChartData" chartId="countryChart" chartType="pie" />
               </div>
             </div>
 
 
       <div class="row canv_row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h2>{{ translations.logs_by_module }} </h2>
           <Chart :chartData="modulesChartData" chartId="modulesChart" chartType="bar" />
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <h2>{{ translations.logs_by_user }} </h2>
           <Chart :chartData="usersChartData" chartId="usersChar" chartType="bar" />
         </div>
-      </div>
-
-
-        <div class="row canv_row">
-          <div class="col-md-6">
-            <h2>{{ translations.logs_by_action}} </h2>
-            <Chart :chartData="actionsChartData" chartId="actionsChart" chartType="pie" />
-          </div>
+        <div class="col-md-4">
+          <h2>{{ translations.logs_by_action}} </h2>
+          <Chart :chartData="actionsChartData" chartId="actionsChart" chartType="pie" />
         </div>
+      </div>
       </div>
 
           </div>
@@ -163,6 +184,7 @@ defineProps({
   modulesChartData: Object,
   usersChartData: Object,
   statusChartData: Object,
+  countryChartData: Object,
 });
 </script>
 

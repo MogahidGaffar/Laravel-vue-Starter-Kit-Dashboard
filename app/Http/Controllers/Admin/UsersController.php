@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -9,9 +10,13 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\Contracts\RoleRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Support\Countries;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
+    private const DEFAULT_AVATAR = 'avatars/default_avatar.png';
+
     public function __construct(
         protected UserRepositoryInterface $users,
         protected RoleRepositoryInterface $roles,
@@ -32,13 +37,13 @@ class UsersController extends Controller
         $filters = [
             'name' => $request->name,
             'email' => $request->email,
+            'country' => $request->country,
             'is_active' => $request->is_active,
         ];
 
         $users = $this->users->paginateFiltered($filters, 10);
 
         return Inertia('Users/index', [
-            'translations' => __('messages'),
             'filters' => $filters,
             'users' => $users,
         ]);
@@ -51,7 +56,7 @@ class UsersController extends Controller
     public function create()
     {
         $roles = $this->roles->pluckNames();
-        return Inertia('Users/Create', [ 'translations' => __('messages'),'roles' => $roles]);
+        return Inertia('Users/Create', ['roles' => $roles]);
     }
 
     /**
@@ -64,7 +69,8 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),  // Hash the password
-            'avatar' => $request->avatar ? $request->avatar : 'avatars/default_avatar.svg',
+            'avatar' => $request->avatar ? $request->avatar : self::DEFAULT_AVATAR,
+            'country' => Countries::option($request->country),
         ];
 
         // Handle avatar upload if a file is provided
@@ -101,7 +107,6 @@ class UsersController extends Controller
         $roles = $this->roles->pluckNames();
         $userRoles = $user->roles->pluck('name')->all();
         return Inertia('Users/Edit', [
-            'translations' => __('messages'),
             'user' => $user,
             'roles' => $roles,
             'userRoles' => $userRoles
@@ -115,10 +120,25 @@ class UsersController extends Controller
     {
         // The request is automatically validated using the UpdateUserRequest rules
         $data = $request->validated();
+        $data['country'] = Countries::option($data['country'] ?? null);
 
-        // Check if an avatar file is uploaded and store it
+        // Never overwrite the stored avatar with an empty value; only replace it
+        // when a new file was actually uploaded.
         if ($request->hasFile('avatar')) {
+            $oldAvatar = $user->getRawOriginal('avatar');
+
             $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+
+            if ($oldAvatar && $oldAvatar !== self::DEFAULT_AVATAR) {
+                Storage::disk('public')->delete($oldAvatar);
+            }
+        } else {
+            unset($data['avatar']);
+
+            // Defensively backfill if the user somehow has no avatar stored at all.
+            if (empty($user->getRawOriginal('avatar'))) {
+                $data['avatar'] = self::DEFAULT_AVATAR;
+            }
         }
 
         // Update user information, including avatar and other fields, in a single save operation
@@ -145,7 +165,14 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
+        $avatar = $user->getRawOriginal('avatar');
+
         $this->users->delete($user);
+
+        if ($avatar && $avatar !== self::DEFAULT_AVATAR) {
+            Storage::disk('public')->delete($avatar);
+        }
+
         return redirect()->route('users.index')
         ->with('success',  __('messages.data_deleted_successfully'));
     }

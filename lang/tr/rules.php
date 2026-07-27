@@ -10,6 +10,7 @@ return [
     'The_avatar_must_be_an_image_file' => 'Avatar bir resim dosyası olmalıdır',
     'The_avatar_must_be_a_file_of_type_jpeg_png_jpg_gif' => 'Avatar şu türlerden biri olmalıdır: jpeg, png, jpg, gif',
     'The_avatar_must_not_exceed_2MB' => 'Avatar 2MB\'ı geçmemelidir',
+    'The_selected_country_is_invalid' => 'Seçilen ülke geçersiz',
     'Role_name_is_required' => 'Rol adı zorunludur',
     'This_role_name_has_already_been_taken' => 'Bu rol zaten mevcut',
     'Role_name_must_be_a_string' => 'Rol adı metin olmalıdır',
@@ -18,4 +19,6 @@ return [
     'Permission_name_is_required' => 'İzin adı zorunludur',
     'Permission_name_must_be_a_string' => 'İzin adı metin olmalıdır',
     'Permission_name_must_not_exceed_255_characters' => 'İzin adı 255 karakteri geçmemelidir',
+    'Selected_permissions_are_required' => 'Lütfen en az bir izin seçin',
+    'Selected_permissions_must_be_valid' => 'Seçilen izinlerden biri veya daha fazlası geçersiz',
 ];

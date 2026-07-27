@@ -5,7 +5,7 @@
   
       <!-- breadcrumb-->
       <div class="pagetitle">
-        <h1>Roles</h1>
+        <h1>{{ translations.roles }}</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -36,7 +36,6 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col"> {{ translations.name }}</th>
-                  <th scope="col" v-if="hasPermission('update roles')"> {{ translations.permissions }}</th>
                   <th scope="col" v-if="hasPermission('update roles')"> {{ translations.edit }}</th>
                   <th scope="col" v-if="hasPermission('delete roles')"> {{ translations.delete }}</th>
                 </tr>
@@ -47,13 +46,7 @@
 
                   <td>{{ role.name }}</td>
                   <td v-if="hasPermission('update roles')">
-                    <a class="btn btn-dark" :href="'roles/'+role.id+'/give-permissions'">
-                      <i class="bi bi-lock"></i>
-                    </a>
-                  </td>
-                 
-                  <td v-if="hasPermission('update roles')">
-                    <a class="btn btn-primary" :href="route('roles.edit', { role: role.id })">
+                    <a class="btn btn-primary" :href="'roles/'+role.id+'/give-permissions'">
                       <i class="bi bi-pencil-square"></i>
                     </a>
                   </td>

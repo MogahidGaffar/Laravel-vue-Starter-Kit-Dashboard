@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Log;
 use App\Repositories\Contracts\LogRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
@@ -35,7 +36,6 @@ class LogController extends Controller
         $actions = ['Create', 'Update', 'Delete'];
 
         return Inertia('Logs/index', [
-            'translations' => __('messages'),
              'filters' => $filters,
             'logs' => $logs,
             'users' => $users,
@@ -48,7 +48,6 @@ class LogController extends Controller
     public function view(Log $log)
     {
         return Inertia('Logs/view', [
-            'translations' => __('messages'),
             'log' => $log
         ]);
     }

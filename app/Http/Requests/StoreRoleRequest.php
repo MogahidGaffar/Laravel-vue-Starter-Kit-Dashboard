@@ -22,7 +22,9 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255|unique:roles,name', // Validate name field
+            'name' => 'required|string|max:255|unique:roles,name',
+            'selectedPermissions' => 'required|array|min:1',
+            'selectedPermissions.*' => 'string|exists:permissions,name',
         ];
     }
 
@@ -33,6 +35,10 @@ class StoreRoleRequest extends FormRequest
             'name.unique' => __('rules.This_role_name_has_already_been_taken'),
             'name.string' => __('rules.Role_name_must_be_a_string'),
             'name.max' => __('rules.Role_name_must_not_exceed_255_characters'),
+            'selectedPermissions.required' => __('rules.Selected_permissions_are_required'),
+            'selectedPermissions.array' => __('rules.Selected_permissions_are_required'),
+            'selectedPermissions.min' => __('rules.Selected_permissions_are_required'),
+            'selectedPermissions.*.exists' => __('rules.Selected_permissions_must_be_valid'),
         ];
     }
 }

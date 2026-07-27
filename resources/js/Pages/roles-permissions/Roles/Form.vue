@@ -4,7 +4,7 @@
 
         <!-- breadcrumb-->
         <div class="pagetitle">
-            <h1>Roles</h1>
+            <h1>{{ translations.roles }}</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -13,7 +13,7 @@
                         </Link>
                     </li>
                     <li class="breadcrumb-item active">{{ translations.roles }}</li>
-                    <li class="breadcrumb-item active">{{ translations.edit }}</li>
+                    <li class="breadcrumb-item active">{{ isEdit ? translations.edit : translations.create }}</li>
                 </ol>
             </nav>
         </div>
@@ -26,12 +26,20 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"> {{ translations.edit_role_permission }}</h5>
+                            <h5 class="card-title"> {{ isEdit ? translations.edit_role_permission : translations.add_new_role }}</h5>
                             <br>
 
 
                             <!--  Form  -->
-                            <form @submit.prevent="update" class="row g-3">
+                            <form @submit.prevent="submit" class="row g-3">
+                                <div class="row mb-3">
+                                    <label for="inputText" class="col-sm-2 col-form-label">{{ translations.name }}</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" :placeholder="translations.name" v-model="form.name">
+                                        <InputError :message="form.errors.name" />
+                                    </div>
+                                </div>
+
                                 <div class="row roles_permissions">
                                     <div class="col-md-4" v-for="permission in permissions" :key="permission.id">
                                         <div>
@@ -50,9 +58,13 @@
 
                                     </div>
                                 </div>
+                                <InputError :message="form.errors.selectedPermissions" />
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">{{ translations.update }} &nbsp; <i
-                                            class="bi bi-save"></i> </button>
+                                    <button type="submit" class="btn btn-primary" v-bind:disabled="form.processing">{{ isEdit ? translations.update : translations.save }} &nbsp; <i
+                                            class="bi bi-save" v-if="!form.processing"></i>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                                            v-if="form.processing"></span>
+                                    </button>
                                 </div>
 
 
@@ -74,26 +86,29 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { router } from '@inertiajs/vue3'
 import { useForm } from '@inertiajs/vue3'
+import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
     role: Object,
     permissions: Object,
     rolePermissions: Array,
-    translations:Array
-
+    translations: Array,
 })
+
+const isEdit = !!props.role
 
 const form = useForm({
+    name: props.role?.name ?? '',
     selectedPermissions: props.rolePermissions,
 })
-const update = () => {
-    router.put(`/roles/${props.role.id}/give-permissions`, {
-        selectedPermissions: form.selectedPermissions
-    });
 
-
+const submit = () => {
+    if (isEdit) {
+        form.put(`/roles/${props.role.id}/give-permissions`);
+    } else {
+        form.post(route('roles.store'));
+    }
 }
 
 </script>
