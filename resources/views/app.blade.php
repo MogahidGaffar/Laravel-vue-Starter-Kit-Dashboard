@@ -34,11 +34,9 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('dashboard-assets/css/style.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-direction.css') }}">
     @if (app()->getLocale() === 'ar')
-        <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-ltr.css') }}">
         <link href='https://fonts.googleapis.com/css?family=Cairo' rel='stylesheet'>
-    @else
-    <link rel="stylesheet" href="{{ asset('dashboard-assets/css/style-rtl.css') }}">
     @endif
    
     <!-- Scripts -->
@@ -47,7 +45,7 @@
     @inertiaHead
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans antialiased @if (app()->getLocale() === 'ar') rtl @endif">
  {{-- Copyright (c) 2024 @MogahidGaffar --}}
 
     @inertia

@@ -1,0 +1,192 @@
+/* Default (LTR) layout */
+.sidebar {
+    left: 0;
+}
+
+@media (min-width: 1200px) {
+    #main,
+    #footer {
+        margin-left: 300px;
+    }
+}
+
+.sidebar-nav .nav-link i {
+    margin-right: 10px !important;
+}
+
+option,
+select,
+.swal2-title {
+    text-align: center;
+}
+
+@media (max-width: 1199px) {
+    .sidebar {
+        left: -300px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .toggle-sidebar .sidebar {
+        left: 0 !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .col-md-3 .btn,
+    .col-md-2 .btn {
+        margin-left: 73px !important;
+    }
+}
+
+/* RTL layout overrides, active when <body> has the "rtl" class */
+body.rtl h1,
+body.rtl h2,
+body.rtl h3,
+body.rtl h4,
+body.rtl h5,
+body.rtl h6,
+body.rtl span,
+body.rtl a,
+body.rtl p,
+body.rtl input,
+body.rtl button,
+body.rtl Link,
+body.rtl ul,
+body.rtl li,
+body.rtl label,
+body.rtl .alert,
+body.rtl .text-red-600,
+body.rtl th,
+body.rtl td {
+    font-family: 'Cairo' !important;
+    text-align: right !important;
+    direction: ltr;
+}
+
+body.rtl option,
+body.rtl select,
+body.rtl .swal2-title {
+    font-family: 'Cairo' !important;
+    text-align: center;
+}
+
+body.rtl table,
+body.rtl .row {
+    direction: rtl;
+}
+
+body.rtl .roles_permissions {
+    direction: ltr;
+}
+
+body.rtl .swal2-html-container,
+body.rtl .swal2-title {
+    font-family: 'Cairo' !important;
+    text-align: center !important;
+}
+
+body.rtl .sidebar {
+    right: 0;
+    left: auto;
+}
+
+body.rtl .header-nav .profile .dropdown-item i {
+    margin-left: 10px !important;
+}
+
+@media (min-width: 1200px) {
+    body.rtl #main,
+    body.rtl #footer {
+        margin-right: 300px;
+        margin-left: 0;
+    }
+}
+
+body.rtl .sidebar-nav .nav-link i {
+    margin-left: 10px !important;
+}
+
+body.rtl .sidebar-nav .nav-link {
+    flex-direction: row-reverse;
+}
+
+body.rtl .sidebar-nav .nav-link .bi-chevron-down {
+    position: absolute;
+    left: 20px;
+}
+
+body.rtl .logo img {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+body.rtl .d-flex {
+    flex-direction: row-reverse;
+}
+
+body.rtl .btn.btn-primary.ms-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+body.rtl .dropdown-toggle {
+    margin-right: 15px;
+}
+
+body.rtl .card-title {
+    text-align: right;
+}
+
+body.rtl .dashboard .info-card h6 {
+    margin-right: 15px;
+}
+
+body.rtl .sidebar-nav .nav-content a {
+    flex-direction: row-reverse;
+}
+
+body.rtl .sidebar-nav .nav-content a i {
+    margin-left: 8px !important;
+}
+
+@media (max-width: 1199px) {
+    body.rtl .toggle-sidebar .sidebar {
+        left: 59px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    body.rtl .col-md-3 .btn,
+    body.rtl .col-md-2 .btn {
+        margin-right: 65px !important;
+    }
+}
+
+body.rtl .pagetitle {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+body.rtl .pagetitle .breadcrumb {
+    font-size: 12px;
+}
+
+body.rtl .dropdown-item.d-flex.align-items-center {
+    flex-direction: row;
+}
+
+body.rtl .header.d-flex.align-items-center {
+    flex-direction: row-reverse;
+}
+
+body.rtl .header {
+    padding-right: 20px;
+}
+
+body.rtl .d-flex.align-items-center.justify-content-between {
+    flex-direction: row;
+}
