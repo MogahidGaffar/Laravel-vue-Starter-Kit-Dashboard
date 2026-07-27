@@ -18,4 +18,5 @@ return [
     'Permission_name_must_be_a_string' => 'يجب أن يكون اسم الصلاحية نصًا',
     'Permission_name_must_not_exceed_255_characters' => 'يجب ألا يتجاوز اسم الصلاحية 255 حرفًا',
     'This_permission_name_has_already_been_taken' => 'هذه الصلاحية موجودة بالفعل',
+    'Selected_permissions_are_required' => 'يرجى اختيار صلاحية واحدة على الأقل',
 ];

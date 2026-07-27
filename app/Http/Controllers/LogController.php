@@ -1,12 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Log;
-use App\Models\User;
+use App\Repositories\Contracts\LogRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
+    public function __construct(
+        protected LogRepositoryInterface $logs,
+        protected UserRepositoryInterface $users,
+    ) {
+        $this->middleware('permission:read logs', ['only' => ['index']]);
+        $this->middleware('permission:view logs', ['only' => ['view']]);
+        $this->middleware('permission:update logs', ['only' => ['undo']]);
+    }
 
     public function index(Request $request)
     {
@@ -16,30 +26,14 @@ class LogController extends Controller
             'action' => $request->action,
             'by_user_id' => $request->by_user_id,
         ];
-        // Start the logs query
-        $logsQuery = Log::with('user')->latest();
-    
-        // Apply the filters if they exist
-        if ($filters['module_name']) {
-            $logsQuery->where('module_name', $filters['module_name']);
-        }
-    
-        if ($filters['action']) {
-            $logsQuery->where('action', $filters['action']);
-        }
-    
-        if ($filters['by_user_id']) {
-            $logsQuery->where('by_user_id', $filters['by_user_id']);
-        }
-    
-        // Paginate the filtered logs
-        $logs = $logsQuery->paginate(10);
-    
+
+        $logs = $this->logs->paginateFiltered($filters, 10);
+
         // Retrieve users, modules, and actions for the filter dropdowns
-        $users = User::latest()->get();
+        $users = $this->users->latestAll();
         $modules = ['User', 'Role', 'Permission'];
         $actions = ['Create', 'Update', 'Delete'];
-    
+
         return Inertia('Logs/index', [
             'translations' => __('messages'),
              'filters' => $filters,
@@ -61,24 +55,43 @@ class LogController extends Controller
     public function undo(Log $log)
     {
         // Get the module name from the log
-        $moduleName = $log->module_name; 
-        $modelClass = "App\\Models\\$moduleName";
-    
-        if ($log->action === 'create') { // If the action is create, delete the created record 
-            $modelInstance = $modelClass::findOrFail($log->affected_record_id);
-            $modelInstance->delete();
-        } elseif ($log->action === 'update') {  // If the action is update, update the model with original data
-            $modelInstance = $modelClass::findOrFail($log->affected_record_id);
-            if ($modelInstance) {
-                $modelInstance->update(json_decode($log->original_data, true));
-            } 
-        } elseif ($log->action === 'delete') {// If the action is delete, recreate the model with original data
-            $modelClass::create(json_decode($log->original_data, true));
-        }
-        return redirect()->route('logs')
-        ->with('success', 'Action Undoed successfully!');
-   
-    }
-    
+        $moduleName = $log->module_name;
+        $modelClass = $moduleName === 'Role'
+            ? \Spatie\Permission\Models\Role::class
+            : "App\\Models\\$moduleName";
 
+        $usesSoftDeletes = method_exists($modelClass, 'restore');
+        $query = $usesSoftDeletes ? $modelClass::withTrashed() : $modelClass::query();
+
+        switch ($log->action) {
+            case 'create':
+                // Force delete even if the model uses SoftDeletes.
+                $modelInstance = $query->findOrFail($log->affected_record_id);
+                $usesSoftDeletes ? $modelInstance->forceDelete() : $modelInstance->delete();
+                break;
+
+            case 'update':
+                $modelInstance = $query->findOrFail($log->affected_record_id);
+                $modelInstance->update(json_decode($log->original_data, true));
+                break;
+
+            case 'delete':
+                $originalData = json_decode($log->original_data, true);
+
+                // Restore instead of recreating if the model supports SoftDeletes.
+                $trashed = $usesSoftDeletes ? $query->find($originalData['id'] ?? null) : null;
+                if ($trashed) {
+                    $trashed->restore();
+                } else {
+                    $modelClass::create($originalData);
+                }
+                break;
+
+            default:
+                return redirect()->back()->with('error', 'Unknown action, cannot undo.');
+        }
+
+        return redirect()->route('logs')
+            ->with('success', 'Action Undoed successfully!');
+    }
 }

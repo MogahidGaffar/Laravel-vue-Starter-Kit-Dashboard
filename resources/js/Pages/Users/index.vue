@@ -74,6 +74,7 @@
                   <th scope="col"> {{ translations.email }}</th>
                   <th scope="col"> {{ translations.created_at }}</th>
                   <th scope="col"> {{ translations.status }}</th>
+                  <th scope="col" v-if="hasPermission('view users')">{{ translations.view }}</th>
                   <th scope="col" v-if="hasPermission('update users')">{{ translations.edit }}</th>
                   <th scope="col" v-if="hasPermission('delete users')">{{ translations.delete }}</th>
                 </tr>
@@ -104,6 +105,11 @@
                       </label>
                     </div>
                   </td>
+                  <td v-if="hasPermission('view users')">
+                    <button type="button" class="btn btn-secondary" @click="View(user)">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                  </td>
                   <td v-if="hasPermission('update users')">
                     <a class="btn btn-primary" :href="route('users.edit', { user: user.id })">
                       <i class="bi bi-pencil-square"></i>
@@ -128,6 +134,8 @@
       <Pagination :links="users.links" />
     </section>
 
+    <ViewUser :show="showViewModal" :user="selectedUser" :translations="translations" @close="showViewModal = false" />
+
   </AuthenticatedLayout>
 </template>
 
@@ -137,13 +145,22 @@
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
+import ViewUser from '@/Components/Modals/ViewUser.vue';
 import { Link , usePage} from '@inertiajs/vue3'
 import Swal from 'sweetalert2';
 import { router } from '@inertiajs/vue3'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 const props = defineProps({ users: Object, translations: Array })
 const page = usePage()
+
+const showViewModal = ref(false)
+const selectedUser = ref(null)
+
+const View = (user) => {
+  selectedUser.value = user
+  showViewModal.value = true
+}
 
 
 

@@ -77,6 +77,7 @@ class UserRolePermissionSeeder extends Seeder
                     'name' => 'Mogahid Gaffar',
                     'email' => 'mogahidgaffar@gmail.com',
                     'password' => Hash::make('12345678'),
+                    'avatar' => 'avatars/default_avatar.svg',
                 ]
             );
             $superAdminUser->assignRole('superadmin');
@@ -88,6 +89,7 @@ class UserRolePermissionSeeder extends Seeder
                     'name' => 'Admin',
                     'email' => 'admin@gmail.com',
                     'password' => Hash::make('12345678'),
+                    'avatar' => 'avatars/default_avatar.svg',
                 ]
             );
             $adminUser->assignRole('admin');
@@ -99,6 +101,7 @@ class UserRolePermissionSeeder extends Seeder
                     'name' => 'Staff',
                     'email' => 'staff@gmail.com',
                     'password' => Hash::make('12345678'),
+                    'avatar' => 'avatars/default_avatar.svg',
                 ]
             );
             $staffUser->assignRole('staff');

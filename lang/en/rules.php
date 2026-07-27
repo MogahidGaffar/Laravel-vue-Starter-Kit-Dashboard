@@ -18,4 +18,5 @@ return [
     'Permission_name_is_required' => 'The permission name is required',
     'Permission_name_must_be_a_string' => 'The permission name must be a string',
     'Permission_name_must_not_exceed_255_characters' => 'The permission name must not exceed 255 characters',
+    'Selected_permissions_are_required' => 'Please select at least one permission',
 ];

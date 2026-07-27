@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\Contracts\PermissionRepositoryInterface;
 use Spatie\Permission\Models\Permission;
-use App\Http\Requests\StorePermissionRequest; 
+use App\Http\Requests\StorePermissionRequest;
 use App\Http\Requests\UpdatePermissionRequest;
 
 class PermissionController extends Controller
 {
-    public function __construct()
+    public function __construct(protected PermissionRepositoryInterface $permissions)
     {
         $this->middleware('permission:read permissions', ['only' => ['index']]);
         $this->middleware('permission:create permissions', ['only' => ['create','store']]);
@@ -19,7 +19,7 @@ class PermissionController extends Controller
 
     public function index()
     {
-        $permissions = Permission::latest()->paginate(10);
+        $permissions = $this->permissions->paginateLatest(10);
         return Inertia('roles-permissions/Permissions/index',[
             'translations' => __('messages'),
               'permissions'=>$permissions
@@ -33,10 +33,10 @@ class PermissionController extends Controller
 
     public function store(StorePermissionRequest $request)
     {
-        Permission::create([
+        $this->permissions->create([
             'name' => $request->name
         ]);
-    
+
         return redirect()->route('permissions.index')
             ->with('success', __('messages.data_saved_successfully'));
     }
@@ -45,21 +45,23 @@ class PermissionController extends Controller
         return Inertia('roles-permissions/Permissions/Edit',[
             'translations' => __('messages'),
              'permission'=>$permission
-         ]); }
+         ]);
+    }
 
-         public function update(UpdatePermissionRequest $request, Permission $permission)
-         {
-             $permission->update([
-                 'name' => $request->name,
-             ]);
-         
-             return redirect()->route('permissions.index')
-                 ->with('success', __('messages.data_updated_successfully'));
-         }
+    public function update(UpdatePermissionRequest $request, Permission $permission)
+    {
+        $this->permissions->update($permission, [
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('permissions.index')
+            ->with('success', __('messages.data_updated_successfully'));
+    }
+
     public function destroy($permissionId)
     {
-        $permission = Permission::find($permissionId);
-        $permission->delete();
+        $permission = $this->permissions->findOrFail((int) $permissionId);
+        $this->permissions->delete($permission);
         return redirect()->route('permissions.index')
         ->with('success',  __('messages.data_deleted_successfully'));
 

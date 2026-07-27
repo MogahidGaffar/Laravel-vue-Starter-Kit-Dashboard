@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Select dropdown chevron icon positioning */
+.select-chevron-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.bordered {
+    border: solid 1px rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+}
+
+/* SweetAlert2 title centering */
+.swal2-title.text-center {
+    text-align: center !important;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+/* Language switcher flag icons */
+.flag-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: cover;
+}
+
+/* Profile page hero card */
+.profile-hero {
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.profile-hero-banner {
+    height: 80px;
+    background: url('/dashboard-assets/img/pattern_background.png') center / cover no-repeat,
+        linear-gradient(135deg, #4154f1, #717ff5);
+}
+
+.profile-hero-body {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 24px 20px;
+    flex-wrap: wrap;
+}
+
+.profile-avatar-wrap {
+    margin-top: -40px;
+    flex-shrink: 0;
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
+.profile-hero-info {
+    flex: 1;
+    padding-top: 12px;
+}
+
+.profile-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #012970;
+    margin: 0 0 4px;
+    font-family: "Poppins", sans-serif;
+}
+
+.profile-role {
+    font-size: 12px;
+    color: #fff;
+    background: #4154f1;
+    padding: 3px 12px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-transform: capitalize;
+}
+
+.profile-hero-stats {
+    display: flex;
+    gap: 24px;
+    padding: 12px 24px 20px;
+    flex-wrap: wrap;
+}
+
+.profile-stat {
+    text-align: center;
+    min-width: 90px;
+}
+
+.profile-stat-val {
+    font-size: 16px;
+    font-weight: 700;
+    color: #4154f1;
+}
+
+.profile-stat-lbl {
+    font-size: 11px;
+    color: #899bbd;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+    margin-top: 2px;
+}
+
+@media (max-width: 767px) {
+    .profile-hero-body {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .profile-hero-stats {
+        width: 100%;
+        justify-content: space-around;
+        border-top: 1px solid #ebeef4;
+        padding-top: 14px;
+    }
+}

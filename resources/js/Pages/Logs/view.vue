@@ -22,7 +22,7 @@
       <!-- End breadcrumb-->
   
       <section class="section dashboard">
-        <div class="card">
+        <div class="card bordered">
 
             <div class="card-header">
             <div class="d-flex">
